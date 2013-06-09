@@ -1,0 +1,72 @@
+/* 
+    Okvee Bootstrap sidebar menu
+    
+    Author: Vee w.
+
+    Licensed under GNU/GPL v3.0
+    http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+
+.obsm {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.obsm li {
+	list-style: none;
+	position: relative;
+}
+.obsm li:hover > ul {display: block;}
+.obsm li a {display: block;}
+.obsm ul {
+	display: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	width: 200px;
+	z-index: 5;
+}
+.obsm ul ul {
+	left: 200px;
+	margin: 0;
+}
+.obsm.right ul ul {
+	left: -200px;
+}
+
+
+.span1 .obsm > li > ul {
+	left: 60px;
+}
+.span2 .obsm > li > ul {
+	left: 140px;
+}
+.span3 .obsm > li > ul {
+	left: 220px;
+}
+.span4 .obsm > li > ul {
+	left: 300px;
+}
+.span5 .obsm > li > ul {
+	left: 380px;
+}
+.span6 .obsm > li > ul {
+	left: 460px;
+}
+.span7 .obsm > li > ul {
+	left: 540px;
+}
+/* on right side */
+.span1 .obsm.right > li > ul,
+.span2 .obsm.right > li > ul,
+.span3 .obsm.right > li > ul,
+.span4 .obsm.right > li > ul,
+.span5 .obsm.right > li > ul,
+.span6 .obsm.right > li > ul,
+.span7 .obsm.right > li > ul
+{
+	left: -200px;
+}
+

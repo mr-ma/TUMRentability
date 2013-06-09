@@ -1,0 +1,101 @@
+/* 
+    Okvee Bootstrap sidebar menu
+    
+    Author: Vee w.
+
+    Licensed under GNU/GPL v3.0
+    http://www.gnu.org/licenses/gpl-3.0.html
+*/
+
+
+@media (min-width: 1200px) {
+	.span1 .obsm > li > ul {
+		left: 70px;
+	}
+	.span2 .obsm > li > ul {
+		left: 170px;
+	}
+	.span3 .obsm > li > ul {
+		left: 270px;
+	}
+	.span4 .obsm > li > ul {
+		left: 370px;
+	}
+	.span5 .obsm > li > ul {
+		left: 470px;
+	}
+	.span6 .obsm > li > ul {
+		left: 570px;
+	}
+	.span7 .obsm > li > ul {
+		left: 670px;
+	}
+}
+@media (min-width: 980px) and (max-width: 1199px) {
+	.span1 .obsm > li > ul {
+		left: 60px;
+	}
+	.span2 .obsm > li > ul {
+		left: 140px;
+	}
+	.span3 .obsm > li > ul {
+		left: 220px;
+	}
+	.span4 .obsm > li > ul {
+		left: 300px;
+	}
+	.span5 .obsm > li > ul {
+		left: 380px;
+	}
+	.span6 .obsm > li > ul {
+		left: 460px;
+	}
+	.span7 .obsm > li > ul {
+		left: 540px;
+	}
+}
+@media (min-width: 768px) and (max-width: 979px) {
+	.span1 .obsm > li > ul {
+		left: 42px;
+	}
+	.span2 .obsm > li > ul {
+		left: 104px;
+	}
+	.span3 .obsm > li > ul {
+		left: 166px;
+	}
+	.span4 .obsm > li > ul {
+		left: 228px;
+	}
+	.span5 .obsm > li > ul {
+		left: 290px;
+	}
+	.span6 .obsm > li > ul {
+		left: 352px;
+	}
+	.span7 .obsm > li > ul {
+		left: 414px;
+	}
+}
+@media (max-width: 767px) {
+	.obsm li:hover > ul {display: none;}
+	.obsm li.expand ul, .obsm.right li.expand ul {
+		display: block;
+		position: relative;
+	}
+	.obsm li > ul, .obsm.right li > ul {left: 0 !important;}
+	.obsm ul {margin-left: 10px; width: 100%;}
+	.obsm ul ul {margin-left: 10px;}
+	.obsm ul .arrow {background-image: none;}
+	
+	.obsm.right li.arrow.expand {
+		background-image: none;
+		padding: 0 !important;
+	}
+	.obsm.right ul {width: auto;}
+	.obsm.right ul li.arrow, .obsm.right li.arrow:hover {
+		background-image: none;
+		padding: 0 !important;
+	}
+}
+

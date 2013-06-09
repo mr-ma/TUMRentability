@@ -4,13 +4,122 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap.min.css'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap-responsive.min.css'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/obsm-responsive.css'}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/obsm.css'}">
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        
+        <script src="@{'/public/javascripts/jquery-1.9.0.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/twitter-bootstrap-hover-dropdown.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/obsm.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/main.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
+        <!--add html5 support for ancient browser like IE.-->
+		<!--[if lt IE 9]>
+		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
     </head>
     <body>
-        #{doLayout /}
+        <div id="wrap">
+            <!-- Begin page content -->
+            <div class="container">
+                <div id="header" class="row-fluid">
+                    <div id="logo" class="span3"> 
+                        <a href="#"><img src="@{'/public/images/rentability_logo.png'}" alt="Rentability Logo"></a>
+                    </div>
+                    
+                    <div class="span5">
+                        <form id="search" class="form-search ">
+                            <input type="text" class="input-medium search-query span9">
+                            <button type="submit" class="btn">Search</button>
+                        </form>
+                        
+                    </div>
+                    <div class="span2">
+                        <p id="login"><a >Log in</a>&nbsp;&#124;&nbsp;<a>Register</a></p>
+                    </div>
+                    <div>
+                        <p id="language" class="pull-right"><a>English</a>&nbsp;&#124;&nbsp;<a>Deutsch</a></p>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="row-fluid" id="content">
+                    <div class="row-fluid span3">
+                        <!--sidebar menu goes here-->
+						<div class="row-fluid menu-wrapper">
+							<ul class="obsm">
+								<li><a>Home</a></li>
+								<li><a>Summer Sports</a>
+									<ul>
+										<li><a>Sports A</a></li>
+										<li><a>Sports B</a></li>
+										<li><a>Sports C</a></li>
+									</ul>
+								</li>
+								<li><a>Winter Sports</a>
+									<ul>
+										<li><a>Skiing</a></li>
+										<li><a>Snowboarding</a></li>
+										<li><a>Cross-Country</a></li>
+										<li><a>Sledding</a></li>
+									</ul>
+								</li>
+								<li><a>Water Sports</a>
+									<ul>
+										<li><a>Sports A</a></li>
+										<li><a>Sports B</a></li>
+										<li><a>Sports C</a></li>
+									</ul>
+								</li>
+								<li><a>Indoor Sports</a>
+									<ul>
+										<li><a>Sports A</a></li>
+										<li><a>Sports A</a></li>
+										<li><a>Sports A</a></li>
+									</ul>
+								</li>
+								<li><a>About us</a></li>
+								
+							</ul>
+						</div>
+						<!--end sidebar menu-->
+						<div class="row-fluid">
+						    <a class="btn btn-large btn-block btn-lend" type="button">I Want To Lend</a>
+						</div>
+						<br>
+						<div class="row-fluid">
+						    Ad Area
+						</div>
+                    </div>
+                    
+                    <div class="span9">
+                        #{doLayout /}
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            
+            <div id="push"></div>
+        </div>
+        <div id="footer">
+            <div class="container  ">
+                <ul class="breadcrumb text-center credit">
+                    <li><a href="#">About us</a> <span class="divider">/</span></li>
+                    <li><a href="#">Privacy Policy</a>
+                </ul>
+            </div>
+        </div>
+        
     </body>
+    
 </html>
+
+       

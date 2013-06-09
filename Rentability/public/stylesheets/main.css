@@ -1,0 +1,128 @@
+/* Custom page CSS */
+
+.container .credit {
+  margin: 20px 0;
+}
+
+.span3 .obsm > li > ul {
+	left: 270px;
+}
+
+#search {
+	margin-top: 40px;
+}
+#login {
+	margin-top: 50px;
+}
+#language {
+	margin-top: 50px;
+}
+
+a {cursor: pointer;}
+
+.btn-lend {
+	color: #FFFFFF;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #FFA216;
+	*background-color: #FFA216;
+	background-image: -moz-linear-gradient(top, #FF6316, #FFA216);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF6316), to(#FFA216));
+	background-image: -webkit-linear-gradient(top, #FF6316, #FFA216);
+	background-image: -o-linear-gradient(top, #FF6316, #FFA216);
+	background-image: linear-gradient(to bottom, #FF6316, #FFA216);
+	background-repeat: repeat-x;
+	border-color: #FFA216;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF6316', endColorstr='#FFA216', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-lend:hover,
+.btn-lend:active,
+.btn-lend.active,
+.btn-lend.disabled,
+.btn-lend[disabled] {
+	color: #FFFFFF;
+	background-color: #FFA216;
+	*background-color: #003bb3;
+}
+
+.menu-wrapper ul{
+	border-left: solid;
+	border-left-width: thin;
+	border-left-color:#D5E8CE;
+}
+
+.menu-wrapper {
+/* 	background: #000; */
+	margin: 0 0 10px 0;
+	padding: 10px 0;
+}
+.menu-wrapper a {cursor: pointer;}
+
+
+/* Okvee Bootstrap sidebar menu style */
+.obsm li {word-wrap: break-word;}
+.obsm li a {
+	padding: 7px 5px;
+}
+.obsm li:hover {
+/* 	background: #222; */
+}
+.obsm ul {
+/* 	background: #111; */
+/* 	box-shadow: 1px 1px 5px #000; */
+}
+.obsm .arrow, .obsm .arrow:hover {
+	background: url('../images/obsm-arrow-r.png') no-repeat right;
+	padding-right: 16px;
+}
+.obsm.right .arrow, .obsm.right .arrow:hover {
+	background: url('../images/obsm-arrow-l.png') no-repeat left;
+	padding: 0 0 0 16px;
+}
+.obsm .arrow:hover, .obsm.right .arrow:hover {
+/* 	background-color: #222; */
+}
+/* end Okvee Bootstrap sidebar menu style */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 60px;
+}
+#footer {
+  background-color: #f5f5f5;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+
+
+
+    
