@@ -20,31 +20,6 @@
 
 a {cursor: pointer;}
 
-.btn-lend {
-	color: #FFFFFF;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	background-color: #FFA216;
-	*background-color: #FFA216;
-	background-image: -moz-linear-gradient(top, #FF6316, #FFA216);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF6316), to(#FFA216));
-	background-image: -webkit-linear-gradient(top, #FF6316, #FFA216);
-	background-image: -o-linear-gradient(top, #FF6316, #FFA216);
-	background-image: linear-gradient(to bottom, #FF6316, #FFA216);
-	background-repeat: repeat-x;
-	border-color: #FFA216;
-	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF6316', endColorstr='#FFA216', GradientType=0);
-	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-}
-.btn-lend:hover,
-.btn-lend:active,
-.btn-lend.active,
-.btn-lend.disabled,
-.btn-lend[disabled] {
-	color: #FFFFFF;
-	background-color: #FFA216;
-	*background-color: #003bb3;
-}
 
 .menu-wrapper ul{
 	border-left: solid;
