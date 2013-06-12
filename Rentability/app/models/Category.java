@@ -11,9 +11,12 @@ public class Category extends Model {
 	
 	public String name;
 	
-	//not sure which jpa relationship to use here...
+	@OneToOne(optional = true)
 	public Category parent_category;
-
+	
+	/*@OneToMany(mappedBy = "parent_category")
+	public Collection<Category> sub_categories = new LinkedList<Category>();
+*/
 	public Category(String name, Category parent_Category) {
 		super();
 		this.name = name;
