@@ -23,11 +23,6 @@ public class Application extends Controller {
     	index();
     }
     
-    public static void findUserByID()
-    {
-    	
-    }
-    
     //Creation of a new Offer/Request/Article
     public static void createOffer()
     {
