@@ -20,7 +20,7 @@ public class Offer extends Model {
 	@ManyToOne(optional = false)
 	public Article article;
 	
-	@OneToMany
+	@OneToMany (mappedBy = "offer")
 	public Set<Request> requests;
 
 	
