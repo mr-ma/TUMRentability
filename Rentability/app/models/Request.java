@@ -15,7 +15,6 @@ public class Request extends Model {
 	public Date startTime;
 	public Date endTime;
 	
-	// Need to discuss this tomorrow
 	@ManyToOne(optional = false)
 	public Offer offer;
 	

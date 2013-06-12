@@ -17,15 +17,14 @@ public class Offer extends Model {
 	public Date startTime;
 	public Date endTime;
 	
-	// Need to discuss this tomorrow
 	@ManyToOne(optional = false)
 	public Article article;
 	
-	// commented out bc this results in an error @OneToMany(optional = true)
-	public Request request;
+	@OneToMany
+	public Set<Request> requests;
 
 	
-	public Offer(String pick_up_address, boolean insurance, short state, double price, String description, Date startTime, Date endTime, Article article, Request request) {
+	public Offer(String pick_up_address, boolean insurance, short state, double price, String description, Date startTime, Date endTime, Article article) {
 		super();
 		
 		this.pick_up_address = pick_up_address;		
@@ -36,7 +35,7 @@ public class Offer extends Model {
 		this.startTime = startTime;		
 		this.endTime = endTime;		
 		this.article = article;	
-		this.request = request;
+		this.requests = null;
 		
 		create();
 	}
