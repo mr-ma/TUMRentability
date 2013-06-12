@@ -19,11 +19,23 @@ public class Application extends Controller {
     public static void createUser(String firstName, String lastName, String eMail,
     		String phone, String nickName, String password){
     	
-    	new User(firstName, lastName, eMail, phone, nickName, getHash(password));
+    	new User(firstName, lastName, eMail, phone, nickName, getHash(password,"SHA-256"));
     	index();
     }
     
-    protected static String getHash(String data)
+    public static void findUserByID()
+    {
+    	
+    }
+    
+    //Creation of a new Offer/Request/Article
+    public static void createOffer()
+    {
+    	
+    }
+    
+    //Generating a hash value using a given method for some data
+    public static String getHash(String data, String hashMethod)
     {
     	MessageDigest md;
 		try {

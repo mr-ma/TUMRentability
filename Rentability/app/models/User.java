@@ -21,7 +21,7 @@ public class User extends Model {
 
 	public String passwordHash; //SHA-256 Hash
 	
-	public User(String first_name, String last_name, String nick_name, String email, String phone, String passwordHash) {
+	public User(String first_name, String last_name, String email, String phone, String nick_name, String passwordHash) {
 		super();
 		this.first_name = first_name;
 		this.last_name = last_name;
