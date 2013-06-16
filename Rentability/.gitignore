@@ -1,0 +1,9 @@
+tmp
+modules
+lib
+test-result
+logs
+eclipse
+.classpath
+.DS_Store
+.settings
