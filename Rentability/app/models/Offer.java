@@ -40,6 +40,10 @@ public class Offer extends Model {
 		create();
 	}
 	
+	public static List<Request> getAllRequests(Offer offer){
+		return Request.find("byOffer",offer).fetch();
+	}
+	
 	
 	
 	

@@ -30,6 +30,18 @@ public class Article extends Model {
 		
 	}
 	
+	public static List<Offer> getAllOffers(Article article){
+		return Offer.find("byArticle",article).fetch();
+	}
+	
+	public static List<Request> getAllRequests(Article article){
+		List<Request> requests = new ArrayList<Request>();
+    	for (Offer offer : Article.getAllOffers(article)){
+    		requests.addAll(Offer.getAllRequests(offer));
+    	}
+    	return requests;
+	}
+	
 	
 	
 	

@@ -75,19 +75,21 @@ public class BasicTest extends UnitTest {
 
     	// Find all offers of one user:
     	int i = 0;
-    	List<Article> skTUMArticles = Article.find("byOwner",user1).fetch();
-    	List<Offer> skTUMOffers = new ArrayList<Offer>();
-    	for (Article articles : skTUMArticles){
-    		List<Offer> skTUMCurrentOffers = Offer.find("byArticle",articles).fetch();
-    		for (Offer offers : skTUMCurrentOffers){
-    			skTUMOffers.add(offers);
-    		}
-    	}
-    	for (Offer offers : skTUMOffers){
-    		assertEquals("skTUM", offers.article.owner.nick_name);
+    	for (Offer offer : User.getAllOffers(user1)){
+    		assertEquals("skTUM", offer.article.owner.nick_name);
     		i++;
     	}
     	assertEquals(3, i);
+    	
+    	// Find all requested offers of one user:
+    	i = 0;
+    	for (Request request : User.getAllOfferRequests(user1)){
+    		assertEquals("skTUM", request.offer.article.owner.nick_name);
+    		assertEquals("naitsab", request.user.nick_name);
+    		i++;
+    	}
+    	assertEquals(3, i);
+    	
     }
     
     @Test

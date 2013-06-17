@@ -31,9 +31,30 @@ public class User extends Model {
 		this.passwordHash = passwordHash;
 		create();
 	}
-	
-	
-	
+
+	public static List<Article> getAllArticles (User user){
+		return Article.find("byOwner",user).fetch();
+	}
+
+	public static List<Offer> getAllOffers (User user){
+		List<Offer> offers = new ArrayList<Offer>();
+		for (Article article : User.getAllArticles(user)){
+    		offers.addAll(Article.getAllOffers(article));
+    	}
+    	return offers;
+	}
+
+	public static List<Request> getAllOfferRequests (User user){
+		List<Request> requests = new ArrayList<Request>();
+		for (Offer offer : User.getAllOffers(user)){
+    		requests.addAll(Offer.getAllRequests(offer));
+    	}
+    	return requests;
+	}
+
+	public static List<Request> getAllRequests (User user){
+		return Request.find("byUser",user).fetch();
+	}
 	
 	
 	
