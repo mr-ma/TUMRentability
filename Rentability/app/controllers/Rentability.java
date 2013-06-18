@@ -6,6 +6,7 @@ import java.util.*;
 
 import javax.validation.*;
 
+import play.db.jpa.Blob;
 import play.mvc.*;
 
 import models.*;
@@ -36,7 +37,7 @@ public class Rentability extends Application {
     }
     
     //Creating a new Offer
-    public static void saveOffer(String articleName, String description, String name, 
+    public static void saveOffer(Blob image, String articleName, String description, String name, 
     		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
     	
     	validation.required(articleName);
@@ -66,7 +67,9 @@ public class Rentability extends Application {
         	User u = new User("","","","","","");
         	
         	//null value to be implemented - represents the user (ie owner)
-        	Article a = new Article(articleName, description, u, c);
+        	Article a = new Article(articleName, description, u, c, image);
+        	
+        	System.out.println(image);
         	
         	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 			try {

@@ -3,7 +3,14 @@
 
 <h3>Offer your equipment!</h3>
 
-#{form @saveOffer()}
+#{form @saveOffer(), enctype:'multipart/form-data'}
+
+	#{field 'article.image'}
+		<p class="${field.errorClass}">
+			<strong>Article Image:</strong> <input type="file" name="${field.name}">
+			<span class="error">${field.error}</span>
+		</p>
+	#{/field}
 	#{field 'articleName'}
         <p class="${field.errorClass}">
             <strong>Article:</strong> <input type="text" name="${field.name}" size="16" value="${articleName}">

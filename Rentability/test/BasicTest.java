@@ -35,8 +35,8 @@ public class BasicTest extends UnitTest {
     	Category topCategory2 = new Category ("Summer Sports", null);
     	Category category1 = new Category ("Skiing", topCategory1);
     	Category category2 = new Category ("Racebikes", topCategory2);
-    	Article article1 = new Article("Atomic Ski REV 85 Pro", "This is a great ski.... . .. . .. . . .. . . .. . . .... ......... . ... .. .. .... . .... .. .... .. .. .. . ... .. ", user1, category1);
-    	Article article2 = new Article("Red Bull Carbon Pro SL (2010)", "A top bike made of carbon with Shimano Ultegra and Mavic Cosmic Carbon wheeles.", user2, category2);
+    	Article article1 = new Article("Atomic Ski REV 85 Pro", "This is a great ski.... . .. . .. . . .. . . .. . . .... ......... . ... .. .. .... . .... .. .... .. .. .. . ... .. ", user1, category1, null);
+    	Article article2 = new Article("Red Bull Carbon Pro SL (2010)", "A top bike made of carbon with Shimano Ultegra and Mavic Cosmic Carbon wheeles.", user2, category2, null);
     	Offer offer1 = new Offer("TUM Campus Garching", false, stateShort, 10, "I'm renting this ski during the semester because I have no time to go skiing.", new Date(1371417204236l), new Date(1371427572236l), article1);
     	Offer offer2 = new Offer("TUM Campus Garching", false, stateShort, 10, "I'm renting this ski during the semester because I have no time to go skiing.", new Date(1371427572236l), new Date(1371437940236l), article1);
     	Offer offer3 = new Offer("TUM Campus Garching", false, stateShort, 10, "I'm renting this ski during the semester because I have no time to go skiing.", new Date(1371448308236l), new Date(1371458676236l), article1);
