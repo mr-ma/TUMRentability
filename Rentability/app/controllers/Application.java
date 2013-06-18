@@ -25,6 +25,7 @@ public class Application extends Controller {
         render(randomID);
     }
     
+    //Rendering the Privacy Policy page
     public static void privacyPolicy()
     {
     	render();
