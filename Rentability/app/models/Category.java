@@ -22,10 +22,5 @@ public class Category extends Model {
 		this.name = name;
 		this.parent_category = parent_Category;
 		create();
-		
 	}
-	
-	
-    
-	
 }

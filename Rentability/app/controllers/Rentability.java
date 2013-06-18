@@ -1,5 +1,7 @@
 package controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import javax.validation.*;
@@ -34,15 +36,58 @@ public class Rentability extends Application {
     }
     
     //Creating a new Offer
-    public static void saveOffer(@Valid Article article, @Valid Category cat, @Valid Offer offer) {    	
+    public static void saveOffer(String articleName, String description, String name, 
+    		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
+    	
+    	validation.required(articleName);
+    	validation.required(description);
+    	validation.required(pickUpAddress);
+    	validation.required(startTime);
+    	validation.match(startTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
+    	validation.required(endTime);
+    	validation.match(endTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
+    	validation.required(price);
+    	validation.match(price, "\\d+\\.\\d{2}").message("Please indicate the Price in the given format!");
+    	
     	if(validation.hasErrors())
     	{
-    		render("@createOffer", article, cat, offer);
+    		List<Category> categories = Category.findAll();
+    		render("@createOffer", articleName, description, categories, pickUpAddress,
+    				startTime, endTime, price, insurance);
     	}
     	else
     	{
-    		article.create();
-    		offer.create();
+    		boolean insuranceRequired;
+    		
+    		List<Category> categories = Category.findAll();
+        	Category c = categories.get(Integer.valueOf(name) - 1);
+        	
+        	//Test User as long as Login insn't implemented
+        	User u = new User("","","","","","");
+        	
+        	//null value to be implemented - represents the user (ie owner)
+        	Article a = new Article(articleName, description, u, c);
+        	
+        	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+			try {
+				Date start = sdf.parse(startTime);
+				Date end = sdf.parse(endTime);
+				
+				if(insurance == null || !insurance.equals("true"))
+					insuranceRequired = false;
+				else
+					insuranceRequired = true;
+				
+				double doublePrice = Double.parseDouble(price);
+				
+				//null value to be implemented - represents the description
+	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, null, start, end, a);
+	        	
+	        	Application.index();
+	        	
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
     	}
     }
 }

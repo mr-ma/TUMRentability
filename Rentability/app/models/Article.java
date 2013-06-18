@@ -26,8 +26,6 @@ public class Article extends Model {
 		this.owner = owner;
 		this.category = category;
 		create();
-		
-		
 	}
 	
 	public static List<Offer> getAllOffers(Article article){

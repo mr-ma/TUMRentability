@@ -14,10 +14,9 @@ public class Offer extends Model {
 	@Required
 	public String pick_up_address;
 	
-	@Required
 	public boolean insurance;
 	
-	public short state;
+	public int state;
 	
 	@Required
 	@Column(precision=6, scale=2)
@@ -26,11 +25,9 @@ public class Offer extends Model {
 	public String description;
 	
 	@Required
-    @Temporal(TemporalType.DATE) 
 	public Date startTime;
 	
 	@Required
-    @Temporal(TemporalType.DATE) 
 	public Date endTime;
 	
 	@ManyToOne(optional = false)
@@ -41,7 +38,7 @@ public class Offer extends Model {
 	public Set<Request> requests;
 	*/
 	
-	public Offer(String pick_up_address, boolean insurance, short state, double price, String description, Date startTime, Date endTime, Article article) {
+	public Offer(String pick_up_address, boolean insurance, int state, double price, String description, Date startTime, Date endTime, Article article) {
 		super();
 		
 		this.pick_up_address = pick_up_address;		
