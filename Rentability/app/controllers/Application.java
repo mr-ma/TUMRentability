@@ -2,6 +2,9 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.data.validation.*;
+import play.libs.*;
+import play.cache.*;
 
 import java.util.*;
 import java.security.*;
@@ -11,16 +14,38 @@ import models.*;
 
 public class Application extends Controller {
 
+	//Rendering the index page
     public static void index() {
     	render();
     }
     
-    //Creating a new user
-    public static void createUser(String firstName, String lastName, String eMail,
-    		String phone, String nickName, String password){
-    	
-    	new User(firstName, lastName, eMail, phone, nickName, getHash(password,"SHA-256"));
-    	index();
+    //Rendering the registration page (and generating a unique ID for the captcha image)
+    public static void register() {
+    	String randomID = Codec.UUID();
+        render(randomID);
+    }
+    
+    //Registration of a new User
+    public static void saveUser(@Valid User user, String verifyPassword, @Required String code, String randomID) {
+        validation.required(verifyPassword);
+        validation.equals(verifyPassword, user.password).message("Your password doesn't match");
+        validation.equals(code, Cache.get(randomID)).message("Invalid Code, please type again!");
+        if(validation.hasErrors()) {
+            render("@register", user, verifyPassword);
+        }
+        user.create();
+        session.put("user", user.nick_name);
+        flash.success("Welcome, " + user.nick_name + "! Start renting Sports equipment right away!");
+        index();
+    }
+    
+    //Generation of captcha images using the play libraries
+    public static void captcha(String id) {
+        Images.Captcha captcha = Images.captcha();
+        //#000000 (ie black) represents the color of the captcha text
+        String code = captcha.getText("#000000");
+        Cache.set(id, code, "10mn");
+        renderBinary(captcha);
     }
     
     //Creation of a new Offer/Request/Article

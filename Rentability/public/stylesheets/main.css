@@ -1,5 +1,9 @@
 /* Custom page CSS */
 
+.error {
+	color: red;
+}
+
 .container .credit {
   margin: 20px 0;
 }

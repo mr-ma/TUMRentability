@@ -1,0 +1,66 @@
+#{extends 'main.html' /}
+#{set title:'Register' /}
+
+<h3>Create your account and start renting sports equipment!</h3>
+<p>All required fields are marked with an asterisk (*)</p>
+
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+
+#{form @saveUser()}
+    #{field 'user.nick_name'}
+        <p class="${field.errorClass}">
+            <strong>Nick Name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.nick_name}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.first_name'}
+        <p class="${field.errorClass}">
+            <strong>First Name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.first_name}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.last_name'}
+        <p class="${field.errorClass}">
+            <strong>Last Name:</strong> <input type="text" name="${field.name}" size="16" value="${user?.last_name}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.email'}
+        <p class="${field.errorClass}">
+            <strong>Email:</strong> <input type="text" name="${field.name}" size="16" value="${user?.email}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.phone'}
+        <p class="${field.errorClass}">
+            <strong>Phone:</strong> <input type="text" name="${field.name}" size="16" value="${user?.phone}">
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'user.password'}
+        <p class="${field.errorClass}">
+            <strong>Password:</strong> <input type="password" name="${field.name}" size="16" value="${user?.password}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'verifyPassword'}
+        <p class="${field.errorClass}">
+            <strong>Verify password:</strong> <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    <p>
+	    <label for="code">Please type the code below to verfify your registration: </label>
+	    <img src="@{Application.captcha(randomID)}" />
+	    <br />
+	    <input type="text" name="code" id="code" size="18" value="" /> *
+	    <input type="hidden" name="randomID" value="${randomID}" />
+	</p>    
+    <p class="buttons">
+        <input type="submit" value="Register"> <a href="@{index()}">Cancel</a>    
+    </p>
+#{/form}

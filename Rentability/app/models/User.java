@@ -1,6 +1,11 @@
 package models;
 
 import play.*;
+import play.data.validation.Email;
+import play.data.validation.Match;
+import play.data.validation.MaxSize;
+import play.data.validation.MinSize;
+import play.data.validation.Required;
 import play.db.jpa.*;
 
 import javax.persistence.*;
@@ -9,17 +14,35 @@ import java.util.*;
 @Entity
 public class User extends Model {
 
+	@Required
+	@MaxSize(50)
+	@MinSize(2)
 	public String first_name;
 	
+	@Required
+	@MaxSize(50)
+	@MinSize(2)
 	public String last_name;
 	
+	@Required
+	@MaxSize(100)
+	@MinSize(4)
+	@Email
 	public String email;
 	
+	@MaxSize(15)
+	@MinSize(4)
 	public String phone;
 	
+	@Required
+	@MaxSize(30)
+	@MinSize(4)
 	public String nick_name;
-
-	public String passwordHash; //SHA-256 Hash
+	
+	@Required
+	@MaxSize(30)
+	@MinSize(8)
+	public String password; //SHA-256 Hash
 	
 	public User(String first_name, String last_name, String email, String phone, String nick_name, String passwordHash) {
 		super();
@@ -28,7 +51,7 @@ public class User extends Model {
 		this.nick_name = nick_name;
 		this.email = email;
 		this.phone = phone;
-		this.passwordHash = passwordHash;
+		this.password = passwordHash;
 		create();
 	}
 
