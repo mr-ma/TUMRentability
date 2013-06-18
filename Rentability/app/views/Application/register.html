@@ -53,6 +53,12 @@
             <span class="error">${field.error}</span>
         </p>
     #{/field}
+    #{field 'policyAgreement'}
+        <p class="${field.errorClass}">
+            <strong>Do you agree to our <a href="@{privacyPolicy()}">Privacy Policy</a>?</strong> <input type="checkbox" name="${field.name}" value="true">
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
     <p>
 	    <label for="code">Please type the code below to verfify your registration: </label>
 	    <img src="@{Application.captcha(randomID)}" />
@@ -61,6 +67,6 @@
 	    <input type="hidden" name="randomID" value="${randomID}" />
 	</p>    
     <p class="buttons">
-        <input type="submit" value="Register"> <a href="@{index()}">Cancel</a>    
+        <input type="submit" value="Create Account"> <a href="@{index()}">Cancel</a>    
     </p>
 #{/form}

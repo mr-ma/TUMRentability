@@ -25,8 +25,13 @@ public class Application extends Controller {
         render(randomID);
     }
     
+    public static void privacyPolicy()
+    {
+    	render();
+    }
+    
     //Registration of a new User
-    public static void saveUser(@Valid User user, String verifyPassword, @Required String code, String randomID) {
+    public static void saveUser(@Valid User user, String verifyPassword, @IsTrue String policyAgreement, @Required String code, String randomID) {
         validation.required(verifyPassword);
         validation.equals(verifyPassword, user.password).message("Your password doesn't match");
         validation.equals(code, Cache.get(randomID)).message("Invalid Code, please type again!");
@@ -46,12 +51,6 @@ public class Application extends Controller {
         String code = captcha.getText("#000000");
         Cache.set(id, code, "10mn");
         renderBinary(captcha);
-    }
-    
-    //Creation of a new Offer/Request/Article
-    public static void createOffer()
-    {
-    	
     }
     
     //Generating a hash value using a given method for some data
