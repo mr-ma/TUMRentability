@@ -13,18 +13,21 @@ public class Article extends Model {
 	
 	public String description;
 	
+	public Blob image;
+	
 	@ManyToOne(optional = false)
 	public User owner;
 	
 	@ManyToOne(optional = false)
 	public Category category;
 
-	public Article(String name, String description, User owner, Category category) {
+	public Article(String name, String description, User owner, Category category, Blob image) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.owner = owner;
 		this.category = category;
+		this.image = image;
 		create();
 	}
 	
