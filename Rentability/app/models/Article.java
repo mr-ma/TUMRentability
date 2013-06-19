@@ -42,9 +42,4 @@ public class Article extends Model {
     	}
     	return requests;
 	}
-	
-	
-	
-	
-	
 }

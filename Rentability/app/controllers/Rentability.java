@@ -69,8 +69,7 @@ public class Rentability extends Application {
         	//null value to be implemented - represents the user (ie owner)
         	Article a = new Article(articleName, description, u, c, image);
         	
-        	System.out.println(image);
-        	
+        	//Conversion of String Values to Dates, Boolean, etc.
         	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 			try {
 				Date start = sdf.parse(startTime);
