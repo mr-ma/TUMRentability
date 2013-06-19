@@ -90,8 +90,8 @@ public class Rentability extends Application {
 	        	flash.success("Your offer has successfully been created!");
 	        	Application.index();
 	        	
-			} catch (ParseException e) {
-				e.printStackTrace();
+			} catch (Exception ex) {
+				flash.error("Sorry an error occured, please try again!");
 			}
     	}
     }
