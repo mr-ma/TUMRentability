@@ -10,17 +10,21 @@ import play.db.jpa.Blob;
 import play.mvc.*;
 
 import models.*;
+@With(Secure.class)
+public class Rentability extends Controller {
 
-public class Rentability extends Application {
+	@Before
+    static void setConnectedUser() {
+        if(Security.isConnected()) {
+            User user = User.find("byEmail", Security.connected()).first();
 
-//  @Before
-//  static void checkUser() {
-//      if(connected() == null) {
-//          flash.error("Please log in first");
-//          Application.index();
-//      }
-//  }
-	
+//            if(user!= null)
+                renderArgs.put("user", user);
+//            else 
+//            	renderArgs.put("user", "guest");
+        }
+    }
+
 	
 	//Rendering the (personalized) index page
 	public static void index() {

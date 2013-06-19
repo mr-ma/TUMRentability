@@ -13,6 +13,21 @@ import models.*;
 
 
 public class Application extends Controller {
+	@Before
+    static void setConnectedUser() {
+        if(Security.isConnected()) 
+        {
+            User user = User.find("byEmail", Security.connected()).first();
+         // I'm passing nickname change if you need something else
+            if(user!= null)
+            { renderArgs.put("user", user);
+            }
+        }
+        else 
+    	{renderArgs.put("user", null);;
+    	}
+    }
+	
 
 	//Rendering the index page
     public static void index() {

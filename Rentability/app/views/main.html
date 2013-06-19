@@ -41,10 +41,19 @@
                     </div>
                     <p id="login" class="span4 pull-right">
                         
-                        <a href="#loginModal" role="button" data-toggle="modal">Log in</a>
-                        
+                       #{if user == NULL }
+                      <!--  <a href="#loginModal" role="button" data-toggle="modal">Log in</a> -->
+                      <a href=@{secure.login()} role="button" data-toggle="modal">Log in</a>
                         &nbsp;&#124;&nbsp;
                         <a href="@{Application.register()}">Registration</a>
+                       #{/if}
+                        #{secure.check  'user'}
+                        ${user.nick_name} 
+						&nbsp;&#124;&nbsp;
+                        <a href=@{secure.logout()} role="button" >Log out</a>
+                        &nbsp;&nbsp;
+                        #{/secure.check}
+                        
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a>English</a>
                         &nbsp;&#124;&nbsp;
