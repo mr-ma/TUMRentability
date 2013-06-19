@@ -2,6 +2,7 @@
 #{set title:'Creating an Offer' /}
 
 <h3>Offer your equipment!</h3>
+<p>All required fields are marked with an asterisk (*)</p>
 
 #{form @saveOffer(), enctype:'multipart/form-data'}
 
@@ -13,13 +14,13 @@
 	#{/field}
 	#{field 'articleName'}
         <p class="${field.errorClass}">
-            <strong>Article:</strong> <input type="text" name="${field.name}" size="16" value="${articleName}">
+            <strong>Article Name:</strong> <input type="text" name="${field.name}" size="16" value="${articleName}"> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'description'}
         <p class="${field.errorClass}">
-            <strong>Description:</strong> <textarea name="${field.name}" cols="15" rows="5"></textarea>
+            <strong>Description:</strong> <textarea name="${field.name}" cols="15" rows="5"></textarea> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}
@@ -27,25 +28,25 @@
 	#{select 'name', items:categories, valueProperty:'id', labelProperty:'name' /}
     #{field 'pickUpAddress'}
         <p class="${field.errorClass}">
-            <strong>Pick Up Address:</strong> <input type="text" name="${field.name}" size="16" value="${pickUpAddress}">
+            <strong>Pick Up Address:</strong> <input type="text" name="${field.name}" size="16" value="${pickUpAddress}"> *
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'startTime'}
         <p class="${field.errorClass}">
-            <strong>Start Time:</strong> <input type="text" name="${field.name}" size="16" value="${startTime}"> Format: DD.MM.YYYY
+            <strong>Start Time:</strong> <input type="text" name="${field.name}" size="16" value="${startTime}"> * Format: DD.MM.YYYY
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'endTime'}
         <p class="${field.errorClass}">
-            <strong>End Time:</strong> <input type="text" name="${field.name}" size="16" value="${endTime}"> Format: DD.MM.YYYY
+            <strong>End Time:</strong> <input type="text" name="${field.name}" size="16" value="${endTime}"> * Format: DD.MM.YYYY
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'price'}
         <p class="${field.errorClass}">
-            <strong>Price:</strong> <input type="text" name="${field.name}" size="16" value="${price}"> Format: 12.34
+            <strong>Price:</strong> <input type="text" name="${field.name}" size="16" value="${price}"> * Format: 12.34
             <span class="error">${field.error}</span>
         </p>
     #{/field}

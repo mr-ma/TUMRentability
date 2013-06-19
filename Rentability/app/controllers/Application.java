@@ -34,11 +34,19 @@ public class Application extends Controller {
     	render();
     }
     
+    //Rendering the About Us page
+    public static void aboutUs()
+    {
+    	render();
+    }
+    
     //Registration of a new User
     public static void saveUser(@Valid User user, String verifyPassword, @IsTrue String policyAgreement, @Required String code, String randomID) {
         validation.required(verifyPassword);
         validation.equals(verifyPassword, user.password).message("Your password doesn't match");
+        //Email must end with the string "tum.de"
         validation.match(user.email, ".+tum.de").message("Sorry, only TUM Mail Addresses are valid!");
+        //Comparing the entered validation code with the one from cache using the given randomID
         validation.equals(code, Cache.get(randomID)).message("Invalid Code, please type again!");
         if(validation.hasErrors()) {
             render("@register", user, verifyPassword, randomID);

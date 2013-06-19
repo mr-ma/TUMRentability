@@ -30,7 +30,7 @@
             <div class="container">
                 <div id="header" class="row-fluid">
                     <div id="logo" class="span3"> 
-                        <a href="@{index()}"><img src="@{'/public/images/rentability_logo.png'}" alt="Rentability Logo"></a>
+                        <a href="@{Application.index()}"><img src="@{'/public/images/rentability_logo.png'}" alt="Rentability Logo"></a>
                     </div>
                     
                     <div class="span5">
@@ -159,8 +159,8 @@
         <div id="footer">
             <div class="container  ">
                 <ul class="breadcrumb text-center credit">
-                    <li><a href="#">About us</a> <span class="divider">/</span></li>
-                    <li><a href="#">Privacy Policy</a>
+                    <li><a href="@{Application.aboutUs()}">About us</a> <span class="divider">/</span></li>
+                    <li><a href="@{Application.privacyPolicy()}">Privacy Policy</a>
                 </ul>
             </div>
         </div>

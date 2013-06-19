@@ -44,10 +44,12 @@ public class Rentability extends Application {
     	validation.required(description);
     	validation.required(pickUpAddress);
     	validation.required(startTime);
+    	//Make sure the date is entered in this format DD.MM.YYYY
     	validation.match(startTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
     	validation.required(endTime);
     	validation.match(endTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
     	validation.required(price);
+    	//Ensures that the price field is followed by 2 digits after the point
     	validation.match(price, "\\d+\\.\\d{2}").message("Please indicate the Price in the given format!");
     	
     	if(validation.hasErrors())
@@ -85,6 +87,7 @@ public class Rentability extends Application {
 				//null value to be implemented - represents the description
 	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, null, start, end, a);
 	        	
+	        	flash.success("Your offer has successfully been created!");
 	        	Application.index();
 	        	
 			} catch (ParseException e) {
