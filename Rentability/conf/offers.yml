@@ -1,0 +1,9 @@
+Offer(o1):
+ pick_up_address: arcisstr. 1
+ insurance: false
+ state: 1
+ price: 21.90
+ description: best deal ever
+ startTime: 2014-02-03
+ endTime: 2014-03-05
+ article: [a1]

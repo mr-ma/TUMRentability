@@ -31,6 +31,13 @@ public class Bootstrap extends Job {
 			
 		}
 		
+		if(Offer.count() == 0){
+			
+			Fixtures.loadModels("offers.yml");
+			
+			
+		}
+		
 		
 	}
 	
