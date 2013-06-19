@@ -8,3 +8,16 @@
 #{set 'moreScripts'}
     <script src="@{'/public/javascripts/index_ap.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 #{/set}
+
+
+<div>
+
+#{list items:offers, as:'offer'}
+	${offer.article.name} - ${offer.description} - ${offer.price} <br/>
+	<img src = "@{Inventory.articleImage(offer.article.id)}"> <br/>
+#{/list}
+
+
+
+</div> 
+

@@ -16,7 +16,10 @@ public class Application extends Controller {
 
 	//Rendering the index page
     public static void index() {
-    	render();
+    	
+    	List<Offer> offers = Inventory.getAllOffers();
+    	
+    	render(offers);
     }
     
     //Rendering the registration page (and generating a unique ID for the captcha image)
