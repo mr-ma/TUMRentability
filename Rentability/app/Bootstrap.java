@@ -1,4 +1,4 @@
-import models.Category;
+import models.*;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.test.Fixtures;
@@ -11,6 +11,12 @@ public class Bootstrap extends Job {
 		if(Category.count() == 0){
 		Fixtures.loadModels("categories.yml");
 		}
+		
+		if(User.count() == 0){
+			Fixtures.loadModels("users.yml");
+			}
+		
+		
 	}
 	
 }

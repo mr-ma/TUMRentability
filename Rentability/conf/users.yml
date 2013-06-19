@@ -1,0 +1,7 @@
+User(u1):
+ first_name: Bob
+ last_name: Bobsen
+ email: bla@tum.de
+ phone: 08999999
+ nick_name: BobbyP
+ password: nothing
