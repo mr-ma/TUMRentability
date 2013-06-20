@@ -37,6 +37,25 @@ public class Application extends Controller {
     	render(offers);
     }
     
+    
+    
+   public static void offerDetails(Long id){
+    	Offer offer = Offer.findById(id);
+    	List<Request> requests = Offer.getAllRequests(offer);
+    	String insurance = "No";
+    	if (offer.insurance){
+    		insurance = "Yes";
+    	}
+    	String reservedDatesEmpty = "";
+    	if (requests.isEmpty()){
+    		reservedDatesEmpty = "Currently there are no other requests for this offer.";
+    	}
+    	render(offer,requests,insurance,reservedDatesEmpty);
+    }
+    
+    
+    
+    
     //Rendering the registration page (and generating a unique ID for the captcha image)
     public static void register() {
     	String randomID = Codec.UUID();
