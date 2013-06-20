@@ -111,8 +111,11 @@ function checkValidDate() {
   <div class="row-fluid">
       <p class="lead">You want to rent this item? Send a request for this offer:</p>
       <span id="invalidDateMessage"><u>Please enter two valid dates that are in the timeperiod of the offer and doen't overlap with already reserved timeperiods. Then the price will be calculated and you are able to rent the item.</u><br /><br /></span>
-		#{form @offerDetails(offer.id), class:'form-horizontal'}
-			
+		#{form @Rentability.saveRequest(), class:'form-horizontal'}
+		    #{field 'offerID'}
+	            <input type="hidden" name="${field.name}" value="${offer.id}">
+		    #{/field}
+	
 		    #{field 'startTime'}
 		        <div class="control-group ${field.errorClass}">
 			        <label class="control-label" for="inputImage">Start Time:</label>
