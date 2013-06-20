@@ -9,8 +9,8 @@ POST    /register                               Application.saveUser
 GET     /offers/createOffer              		Rentability.createOffer
 POST    /offers/saveOffer              			Rentability.saveOffer
 GET  	  /offers/{id}							              Application.offerDetails
-+POST  /request								Rentability.saveRequest
-+GET		/request								Rentability.showRequest
+POST  /request								Rentability.saveRequest
+GET		/request								Rentability.showRequest
 
 
 # Ignore favicon requests
