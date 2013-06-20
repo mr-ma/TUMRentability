@@ -4,59 +4,94 @@
 <h3>Offer your equipment!</h3>
 <p>All required fields are marked with an asterisk (*)</p>
 
-#{form @saveOffer(), enctype:'multipart/form-data'}
+#{form @saveOffer(), enctype:'multipart/form-data', class:'form-horizontal'}
 
 	#{field 'image'}
-		<p class="${field.errorClass}">
-			<strong>Article Image:</strong> <input type="file" name="${field.name}">
-			<span class="error">${field.error}</span>
-		</p>
+	    <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Article Image:</label>
+	        <div class="controls">
+	            <input type="file" name="${field.name}">
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
 	#{/field}
 	#{field 'articleName'}
-        <p class="${field.errorClass}">
-            <strong>Article Name:</strong> <input type="text" name="${field.name}" size="16" value="${articleName}"> *
-            <span class="error">${field.error}</span>
-        </p>
+	    <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Article Name:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${articleName}"> *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+        
     #{/field}
     #{field 'description'}
-        <p class="${field.errorClass}">
-            <strong>Description:</strong> <textarea name="${field.name}" cols="15" rows="5"></textarea> *
-            <span class="error">${field.error}</span>
-        </p>
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Description:</label>
+	        <div class="controls">
+	            <textarea name="${field.name}" cols="15" rows="3"></textarea> *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
     #{/field}
-    <strong>Category Name:</strong>
-	#{select 'name', items:categories, valueProperty:'id', labelProperty:'name' /}
+    
+    <div class="control-group ${field.errorClass}">
+        <label class="control-label" for="inputEmail">Category Name:</label>
+        <div class="controls">
+            #{select 'name', items:categories, valueProperty:'id', labelProperty:'name' /}
+            <span class="error">${field.error}</span>
+        </div>
+    </div>
+    
     #{field 'pickUpAddress'}
-        <p class="${field.errorClass}">
-            <strong>Pick Up Address:</strong> <input type="text" name="${field.name}" size="16" value="${pickUpAddress}"> *
-            <span class="error">${field.error}</span>
-        </p>
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Pick Up Address:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${pickUpAddress}"> *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
     #{/field}
+    
     #{field 'startTime'}
-        <p class="${field.errorClass}">
-            <strong>Start Time:</strong> <input type="text" name="${field.name}" size="16" value="${startTime}"> * Format: DD.MM.YYYY
-            <span class="error">${field.error}</span>
-        </p>
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Start Time:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${startTime}"> * Format: DD.MM.YYYY
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
     #{/field}
+    
     #{field 'endTime'}
-        <p class="${field.errorClass}">
-            <strong>End Time:</strong> <input type="text" name="${field.name}" size="16" value="${endTime}"> * Format: DD.MM.YYYY
-            <span class="error">${field.error}</span>
-        </p>
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">End Time:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${endTime}"> * Format: DD.MM.YYYY
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
     #{/field}
     #{field 'price'}
-        <p class="${field.errorClass}">
-            <strong>Price:</strong> <input type="text" name="${field.name}" size="16" value="${price}"> * Format: 12.34
-            <span class="error">${field.error}</span>
-        </p>
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Price:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${price}"> * Format: 12.34
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
     #{/field}
     #{field 'insurance'}
-        <p class="${field.errorClass}">
-            <strong>Insurance required?</strong> <input type="checkbox" name="${field.name}" value="true">
-            <span class="error">${field.error}</span>
-        </p>
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEmail">Insurance required?</label>
+	        <div class="controls">
+	            <input type="checkbox" name="${field.name}" value="true">
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
     #{/field}
+    
     <p class="buttons">
-        <input type="submit" value="Create Offer"> <a href="@{index()}">Cancel</a>    
+        <input class="btn" type="submit" value="Create Offer"> <a href="@{index()}">Cancel</a>    
     </p>
 #{/form}
