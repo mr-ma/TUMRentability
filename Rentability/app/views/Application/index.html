@@ -5,19 +5,77 @@
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/index_ap.css'}">
 #{/set}
 
+
+
+<!-- Start: PRODUCT LIST -->
+<div class="container">
+    
+    
+        <div class="row-fluid">
+            
+            %{def count = 0;}%
+            <ul class="thumbnails">
+            #{list items:offers, as:'offer'}
+                
+                #{if (count%3 == 0)}
+	                  #{if (count != 0)}</ul><ul class="thumbnails">#{/if}
+	                  
+		              <li class="span3">
+		                <div class="thumbnail">
+		                  <img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
+		                  <div class="caption">
+		                    <h3>${offer.article.name}</h3>
+		                    <p>
+		                      ${count}<br/>
+		                      ${offer.price}<br/>
+		                      ${offer.description}
+		                    </p>
+		                  </div>
+		                  <div class="widget-footer">
+		                    <p>
+		                      <a href="#" class="btn btn-primary">Borrow</a>&nbsp;
+		                      <a href="product.html" class="btn">Read more</a>
+		                    </p>
+		                  </div>
+		                </div>
+		              </li>
+	              
+	            #{/if}
+	            #{else}
+	              <li class="span3">
+	                <div class="thumbnail">
+	                  <img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
+	                  <div class="caption">
+	                    <h3>${offer.article.name}</h3>
+	                    <p>
+	                      ${count}<br/>
+	                      ${offer.price}<br/>
+	                      ${offer.description}
+	                    </p>
+	                  </div>
+	                  <div class="widget-footer">
+	                    <p>
+	                      <a href="#" class="btn btn-primary">Borrow</a>&nbsp;
+	                      <a href="product.html" class="btn">Read more</a>
+	                    </p>
+	                  </div>
+	                </div>
+	              </li>
+	            #{/else}
+	            %{count = count + 1;}%
+            #{/list}
+            
+        </div>
+        
+    
+		<!--${offer.article.name} - ${offer.description} - ${offer.price} <br/>-->
+		<!--<img src = "@{Inventory.articleImage(offer.article.id)}"> <br/>-->
+   
+</div>
+<!-- End: PRODUCT LIST -->
+
 #{set 'moreScripts'}
+    <script src="@{'/public/javascripts/jquery.equalheights.js'}" type="text/javascript" charset="${_response_encoding}"></script>
     <script src="@{'/public/javascripts/index_ap.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 #{/set}
-
-
-<div>
-
-#{list items:offers, as:'offer'}
-	${offer.article.name} - ${offer.description} - ${offer.price} <br/>
-	<img src = "@{Inventory.articleImage(offer.article.id)}"> <br/>
-#{/list}
-
-
-
-</div> 
 
