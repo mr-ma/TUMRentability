@@ -1,6 +1,7 @@
 package models;
 
 import play.*;
+import play.data.validation.Required;
 import play.db.jpa.*;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Request extends Model {
 	
 	@Required
 	@Temporal(TemporalType.DATE) 
-	public Date startTime
+	public Date startTime;
 
 	@Required
 	@Temporal(TemporalType.DATE) 
