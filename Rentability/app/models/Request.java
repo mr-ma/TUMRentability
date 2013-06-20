@@ -10,9 +10,19 @@ import java.util.*;
 @Entity
 public class Request extends Model {
 
+	@Required
 	public short state;
+	
+	@Required
+	@Column(precision=6, scale=2)
 	public double adjustedPrice;
-	public Date startTime;
+	
+	@Required
+	@Temporal(TemporalType.DATE) 
+	public Date startTime
+
+	@Required
+	@Temporal(TemporalType.DATE) 
 	public Date endTime;
 	
 	@ManyToOne(optional = false)
