@@ -1,8 +1,11 @@
 #{extends 'Secure/layout.html' /}
 
-<div id="login">
-	
-	<h1>&{'secure.title'}</h1>
+<div id="login" class="container-fluid">
+
+    <div class="row-fluid">
+    <div class="span4"></div>
+    <div class="span6">
+    <h1>&{'secure.title'}</h1>
 		
 	#{form @authenticate()}
 		
@@ -16,26 +19,45 @@
 				&{flash.success}
 			</p>
 		#{/if}
-	
-		<p id="username-field">
-			<label for="username">&{'secure.username'}</label>
-			<input type="text" name="username" id="username" value="${flash.username}" />
-		</p>
-		<p id="password-field">
-			<label for="password">&{'secure.password'}</label>
-			<input type="password" name="password" id="password" value="" />
-		</p>
-		<p id="remember-field">
-			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
-			<label for="remember">&{'secure.remember'}</label>
-		</p>
-		<p id="signin-field">
-			<input type="submit" id="signin" value="&{'secure.signin'}" />
-		</p>
-	
+	    
+	    <div id="username-field" class="control-group >
+	        <label class="control-label" for="username">&{'secure.username'}</label>
+	        
+	        <div class="controls">
+	            <input type="text" name="username" id="username" value="${flash.username}" />
+	        </div>
+        </div>
 		
+		<div id="password-field" class="control-group >
+	        
+	        <label class="control-label" for="password">&{'secure.password'}</label>
+	        <div class="controls">
+	            <input type="password" name="password" id="password" value="" />
+	        </div>
+        </div>
+		
+		<div id="remember-field" class="control-group >
+	        <label class="control-label" for="remember"></label>
+	        <div class="controls">
+	            <label for="remember">&{'secure.remember'}</label>
+	            <input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+	        </div>
+        </div>
+        
+		<div id="signin-field" class="control-group >
+	        <label class="control-label" for="remember"></label>
+	        <div class="controls">
+	            <input type="submit" id="signin" value="&{'secure.signin'}" />
+	        </div>
+        </div>
+
 	#{/form}
-		<p id="register">
-			<a href=@{Application.register()} > Not a member of Rentability, Join now! - Fast and easy!</a>
-		</p>
+	<p id="register">
+		<a href=@{Application.register()} > Not a member of Rentability? Join now! - Fast and easy!</a>
+	</p>
+	</div>
+	<div class="span2"></div>
+    </div>
+
+	
 </div>
