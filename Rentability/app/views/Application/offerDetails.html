@@ -3,6 +3,72 @@
 
 <script src="@{'/public/javascripts/calculateAdjustedPrice.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 
+<script type="text/javascript">
+function checkValidDate() {
+
+	var validDate = "false";
+
+	var startDate = new Date(document.getElementById("startTime").value);
+	var endDate = new Date(document.getElementById("endTime").value);
+	
+	// Check if dates overlap with other requests:
+	var startDateRequestString;
+	var startDateRequestYear;
+	var startDateRequestMonth;
+	var startDateRequestDay;
+	var endDateRequestString;
+	var endDateRequestYear;
+	var endDateRequestMonth;
+	var endDateRequestDay;
+	var startDateRequest;
+	var endDateRequest;
+	var requestDateConflict = "false";
+	#{list items:requests, as:'request'}
+	startDateRequestString = "${request.startTime}";
+	startDateRequestYear = startDateRequestString.charAt(0) + startDateRequestString.charAt(1) + startDateRequestString.charAt(2) + startDateRequestString.charAt(3);
+	startDateRequestMonth = startDateRequestString.charAt(5) + startDateRequestString.charAt(6);
+	startDateRequestDay = startDateRequestString.charAt(8) + startDateRequestString.charAt(9);
+	endDateRequestString = "${request.endTime}";
+	endDateRequestYear = endDateRequestString.charAt(0) + endDateRequestString.charAt(1) + endDateRequestString.charAt(2) + endDateRequestString.charAt(3);
+	endDateRequestMonth = endDateRequestString.charAt(5) + endDateRequestString.charAt(6);
+	endDateRequestDay = endDateRequestString.charAt(8) + endDateRequestString.charAt(9);
+	startDateRequest = new Date(startDateRequestMonth + "/" + startDateRequestDay + "/" + startDateRequestYear);
+	endDateRequest = new Date(endDateRequestMonth + "/" + endDateRequestDay + "/" + endDateRequestYear);
+	if (!((startDate.getTime() < startDateRequest.getTime() || startDate.getTime() > endDateRequest.getTime()) && (endDate.getTime() < startDateRequest.getTime() || endDate.getTime() > endDateRequest.getTime()))){
+		requestDateConflict = "true";
+	}
+	#{/list}
+	
+	// Check if dates are in the offered timeperiod
+	var startDateOfferString = "${offer.startTime}";
+	var startDateOfferYear = startDateOfferString.charAt(0) + startDateOfferString.charAt(1) + startDateOfferString.charAt(2) + startDateOfferString.charAt(3);
+	var startDateOfferMonth = startDateOfferString.charAt(5) + startDateOfferString.charAt(6);
+	var startDateOfferDay = startDateOfferString.charAt(8) + startDateOfferString.charAt(9);
+	var endDateOfferString = "${offer.endTime}";
+	var endDateOfferYear = endDateOfferString.charAt(0) + endDateOfferString.charAt(1) + endDateOfferString.charAt(2) + endDateOfferString.charAt(3);
+	var endDateOfferMonth = endDateOfferString.charAt(5) + endDateOfferString.charAt(6);
+	var endDateOfferDay = endDateOfferString.charAt(8) + endDateOfferString.charAt(9);
+	var startDateOffer = new Date(startDateOfferMonth + "/" + startDateOfferDay + "/" + startDateOfferYear);
+	var endDateOffer = new Date(endDateOfferMonth + "/" + endDateOfferDay + "/" + endDateOfferYear);
+	
+	if (requestDateConflict == "false" && startDateOffer.getTime() <= startDate.getTime() && startDate.getTime() <= endDateOffer.getTime() && startDateOffer.getTime() <= endDate.getTime() && endDateOffer.getTime() >= endDate.getTime() && startDate.getTime() <= endDate.getTime()){
+		validDate = "true";
+	}
+	
+	if (validDate == "true"){
+		calculateAdjustedPrice(${offer.price});
+		document.getElementById("sendrequestbutton").style.display = "inline";
+		document.getElementById("invalidDateMessage").style.display = "none";
+	}
+	else {
+		document.getElementById("sendrequestbutton").style.display = "none";
+		document.getElementById("invalidDateMessage").style.display = "inline";
+		document.getElementById("calculatedPrice").value = "";
+	}
+}
+</script>
+
+
 <h1>Offer details:</h1>
 
 #{form @offerDetails(offer.id)}
@@ -13,12 +79,12 @@
 	<b>Pick-up address</b> ${offer.pick_up_address}<br />
 	<br />
 	<b>Price per day:</b> ${offer.price}<br />
-	Available from <b>${offer.startTime}</b> to <b>${offer.endTime}</b><br />
+	Available from <b>${offer.startTime.format('MM/dd/yyyy')}</b> to <b>${offer.endTime.format('MM/dd/yyyy')}</b><br />
 	<br />
 	<b>Already reserved:</b>
 	<br />
 	#{list items:requests, as:'request'}
-	From <b>${request.startTime}</b> to <b>${request.endTime}</b><br />
+	From <b>${request.startTime.format('MM/dd/yyyy')}</b> to <b>${request.endTime.format('MM/dd/yyyy')}</b><br />
 	#{/list}
 	${reservedDatesEmpty}
 	<br />
@@ -27,16 +93,17 @@
 	<b><u>You want to rent this item? Send a request for this offer:</u></b>
     #{field 'startTime'}
         <p class="${field.errorClass}">
-            <strong>Start Time:</strong> <input onchange="calculateAdjustedPrice(${offer.price})" type="text" name="${field.name}" id="startTime" size="16" value="${startTime}"> Format: MM/DD/YYYY
+            <strong>Start Time:</strong> <input onchange="checkValidDate()" type="text" name="${field.name}" id="startTime" size="16" value="${startTime}"> Format: MM/DD/YYYY
             <span class="error">${field.error}</span>
         </p>
     #{/field}
     #{field 'endTime'}
         <p class="${field.errorClass}">
-            <strong>End Time:</strong> <input onchange="calculateAdjustedPrice(${offer.price})" type="text" name="${field.name}" id="endTime" size="16" value="${endTime}"> Format: MM/DD/YYYY
+            <strong>End Time:</strong> <input onchange="checkValidDate()" type="text" name="${field.name}" id="endTime" size="16" value="${endTime}"> Format: MM/DD/YYYY
             <span class="error">${field.error}</span>
         </p>
     #{/field}
+    <span id="invalidDateMessage"><u>Please enter two valid dates that are in the timeperiod of the offer and doen't overlap with already reserved timeperiods. Then the price will be calculated and you are able to rent the item.</u><br /><br /></span>
     #{field 'adjustedPrice'}
         <p class="${field.errorClass}">
             <strong>Calculated price:</strong> <input type="text" readonly="readonly" id="calculatedPrice" name="${field.name}" size="5" value="">
@@ -44,7 +111,7 @@
         </p>
     #{/field}
     <p class="buttons">
-        <input type="submit" value="Send request!">
+        <input id="sendrequestbutton" style="display:none;" type="submit" value="Send request!">
     </p>
 #{/form}
 
