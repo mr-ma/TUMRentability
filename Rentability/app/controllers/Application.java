@@ -24,7 +24,7 @@ public class Application extends Controller {
             }
         }
         else 
-    	{renderArgs.put("user", null);;
+    	{renderArgs.put("user", null);
     	}
     }
 	

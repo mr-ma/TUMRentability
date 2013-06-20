@@ -58,6 +58,7 @@ public class Rentability extends Controller {
     	
     	if(validation.hasErrors())
     	{
+    		System.out.println(image.getFile().getAbsolutePath());
     		List<Category> categories = Category.findAll();
     		render("@createOffer", articleName, description, categories, pickUpAddress,
     				startTime, endTime, price, insurance);
@@ -69,8 +70,9 @@ public class Rentability extends Controller {
     		List<Category> categories = Category.findAll();
         	Category c = categories.get(Integer.valueOf(name) - 1);
         	
-        	//Test User as long as Login insn't implemented
+        	//Retrieving the logged in user
         	User u = new User("","","","","","");
+        	//User u = (User)renderArgs.get("user");
         	
         	//null value to be implemented - represents the user (ie owner)
         	Article a = new Article(articleName, description, u, c, image);
