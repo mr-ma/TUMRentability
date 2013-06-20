@@ -1,9 +1,39 @@
 Offer(o1):
- pick_up_address: arcisstr. 1
+ pick_up_address: Arcisstr. 1
  insurance: false
  state: 1
- price: 21.90
- description: best deal ever
+ price: 9.99
+ description: I wont be able to go skiing myself so i am offering you this great deal on my skis!
  startTime: 2014-02-03
  endTime: 2014-03-05
  article: [a1]
+ 
+Offer(o2):
+ pick_up_address: Säbener str. 1
+ insurance: false
+ state: 1
+ price: 12.99
+ description: Excellent nordic skates for all your cross-country-skiing training needs in the summer!
+ startTime: 2014-01-10
+ endTime: 2014-02-10
+ article: [a2]
+ 
+Offer(o3):
+ pick_up_address: Säbener str. 2
+ insurance: false
+ state: 1
+ price: 5.99
+ description: You will be able to conquer every mountain in the world with this accessory.
+ startTime: 2013-10-10
+ endTime: 2013-11-11
+ article: [a3]
+ 
+Offer(o4):
+ pick_up_address: Säbener str. 3
+ insurance: false
+ state: 1
+ price: 25.99
+ description: Top notch bike, available for rent all summer!
+ startTime: 2013-06-06
+ endTime: 2013-08-08
+ article: [a4]

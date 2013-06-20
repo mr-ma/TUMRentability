@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:offer.article.name /}
+
+<script src="@{'/public/javascripts/calculateAdjustedPrice.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+
+<h1>Offer details:</h1>
+
+#{form @offerDetails(offer.id)}
+  <img src = "@{Inventory.articleImage(offer.article.id)}"><br />
+	<b>Article description:</b> ${offer.article.description}<br />
+	<b>Offer description:</b> ${offer.description}<br />
+	<b>Insurance needed?</b> ${insurance}<br />
+	<b>Pick-up address</b> ${offer.pick_up_address}<br />
+	<br />
+	<b>Price per day:</b> ${offer.price}<br />
+	Available from <b>${offer.startTime}</b> to <b>${offer.endTime}</b><br />
+	<br />
+	<b>Already reserved:</b>
+	<br />
+	#{list items:requests, as:'request'}
+	From <b>${request.startTime}</b> to <b>${request.endTime}</b><br />
+	#{/list}
+	${reservedDatesEmpty}
+	<br />
+	<br />
+	
+	Send a request for this offer:
+    #{field 'startTime'}
+        <p class="${field.errorClass}">
+            <strong>Start Time:</strong> <input onchange="calculateAdjustedPrice(${offer.price})" type="text" name="${field.name}" id="startTime" size="16" value="${startTime}"> Format: MM/DD/YYYY
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'endTime'}
+        <p class="${field.errorClass}">
+            <strong>End Time:</strong> <input onchange="calculateAdjustedPrice(${offer.price})" type="text" name="${field.name}" id="endTime" size="16" value="${endTime}"> Format: MM/DD/YYYY
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    #{field 'adjustedPrice'}
+        <p class="${field.errorClass}">
+            <strong>Calculated price:</strong> <input type="text" readonly="readonly" id="calculatedPrice" name="${field.name}" size="5" value="">
+            <span class="error">${field.error}</span>
+        </p>
+    #{/field}
+    <p class="buttons">
+        <input type="submit" value="Send request!">
+    </p>
+#{/form}
+
+
+
+<script type="text/javascript" charset="${_response_encoding}">
+    $(function() {
+		$(".datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+	});
+</script>

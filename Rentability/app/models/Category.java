@@ -1,6 +1,7 @@
 package models;
 
 import play.*;
+import play.data.validation.Required;
 import play.db.jpa.*;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.*;
 @Entity
 public class Category extends Model {
 	
+	@Required
 	public String name;
 	
 	@OneToOne(optional = true)
