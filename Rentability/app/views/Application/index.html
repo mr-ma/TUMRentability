@@ -5,6 +5,14 @@
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/index_ap.css'}">
 #{/set}
 
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/jquery.equalheights.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+    <script src="@{'/public/javascripts/jquery.text-overflow.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+    <script src="@{'/public/javascripts/index_ap.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+    
+
+#{/set}
+
 <!-- Start: PRODUCT LIST -->
 <div class="container">
     
@@ -22,10 +30,9 @@
 		                <div class="thumbnail">
 		                  <img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
 		                  <div class="caption">
-		                    <h3>${offer.article.name}</h3>
+		                    <h4>${offer.article.name}</h4>
 		                    <p>
-		                      ${count}<br/>
-		                      ${offer.price}<br/>
+		                      ${offer.price} EUR<br/>
 		                      ${offer.description}
 		                    </p>
 		                  </div>
@@ -44,10 +51,9 @@
 	                <div class="thumbnail">
 	                  <img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
 	                  <div class="caption">
-	                    <h3>${offer.article.name}</h3>
+	                    <h4>${offer.article.name}</h4>
 	                    <p>
-	                      ${count}<br/>
-	                      ${offer.price}<br/>
+	                      ${offer.price} EUR<br/>
 	                      ${offer.description}
 	                    </p>
 	                  </div>
@@ -72,8 +78,5 @@
 </div>
 <!-- End: PRODUCT LIST -->
 
-#{set 'moreScripts'}
-    <script src="@{'/public/javascripts/jquery.equalheights.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-    <script src="@{'/public/javascripts/index_ap.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-#{/set}
+
 

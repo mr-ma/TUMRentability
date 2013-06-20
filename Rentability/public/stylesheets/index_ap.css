@@ -1,0 +1,15 @@
+
+div.thumbnail {
+	 height: 381px;
+	 position:relative;
+}
+
+.widget-footer {
+	clear: both;
+	position:absolute; 
+	bottom:4px;
+}
+
+div.thumbnail p {
+	margin-bottom: 1px;
+}
