@@ -15,6 +15,7 @@
 #{list items:offers, as:'offer'}
 	${offer.article.name} - ${offer.description} - ${offer.price} <br/>
 	<img src = "@{Inventory.articleImage(offer.article.id)}"> <br/>
+	<a href="@{offerDetails(offer.id)}">View details</a>
 #{/list}
 
 
