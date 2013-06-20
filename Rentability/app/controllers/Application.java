@@ -86,9 +86,12 @@ public class Application extends Controller {
             render("@register", user, verifyPassword, randomID);
         }
         user.create();
-        session.put("user", user.nick_name);
-        flash.success("Welcome, " + user.nick_name + "! Start renting Sports equipment right away!");
+        session.put("user", user.email);
+        if(Security.authenticate(user.email, user.password)){
+        	flash.success("Registration success! Please login and start renting Sports equipment right away!");  
+        }
         index();
+        
     }
     
     //Generation of captcha images using the play libraries

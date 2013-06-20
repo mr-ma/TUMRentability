@@ -1,6 +1,14 @@
 #{extends 'main.html' /}
 #{set title:offer.article.name /}
 
+#{set 'moreStyles'}
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}">
+#{/set}
+
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+
 <script src="@{'/public/javascripts/calculateAdjustedPrice.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 
 <script type="text/javascript">
@@ -68,51 +76,103 @@ function checkValidDate() {
 }
 </script>
 
-<h1>Offer details:</h1>
 
-#{form @offerDetails(offer.id)}
-  <img src = "@{Inventory.articleImage(offer.article.id)}"><br />
-	<b>Article description:</b> ${offer.article.description}<br />
-	<b>Offer description:</b> ${offer.description}<br />
-	<b>Insurance needed?</b> ${insurance}<br />
-	<b>Pick-up address</b> ${offer.pick_up_address}<br />
-	<br />
-	<b>Price per day:</b> ${offer.price}<br />
-	Available from <b>${offer.startTime.format('MM/dd/yyyy')}</b> to <b>${offer.endTime.format('MM/dd/yyyy')}</b><br />
-	<br />
-	<b>Already reserved:</b>
-	<br />
-	#{list items:requests, as:'request'}
-	From <b>${request.startTime.format('MM/dd/yyyy')}</b> to <b>${request.endTime.format('MM/dd/yyyy')}</b><br />
-	#{/list}
-	${reservedDatesEmpty}
-	<br />
-	<br />
-	
-	<b><u>You want to rent this item? Send a request for this offer:</u></b>
-    #{field 'startTime'}
-        <p class="${field.errorClass}">
-            <strong>Start Time:</strong> <input onchange="checkValidDate()" type="text" name="${field.name}" id="startTime" size="16" value="${startTime}"> Format: MM/DD/YYYY
-            <span class="error">${field.error}</span>
-        </p>
-    #{/field}
-    #{field 'endTime'}
-        <p class="${field.errorClass}">
-            <strong>End Time:</strong> <input onchange="checkValidDate()" type="text" name="${field.name}" id="endTime" size="16" value="${endTime}"> Format: MM/DD/YYYY
-            <span class="error">${field.error}</span>
-        </p>
-    #{/field}
-    <span id="invalidDateMessage"><u>Please enter two valid dates that are in the timeperiod of the offer and doen't overlap with already reserved timeperiods. Then the price will be calculated and you are able to rent the item.</u><br /><br /></span>
-    #{field 'adjustedPrice'}
-        <p class="${field.errorClass}">
-            <strong>Calculated price:</strong> <input type="text" readonly="readonly" id="calculatedPrice" name="${field.name}" size="5" value="">
-            <span class="error">${field.error}</span>
-        </p>
-    #{/field}
-    <p class="buttons">
-        <input id="sendrequestbutton" style="display:none;" type="submit" value="Send request!">
-    </p>
-#{/form}
+<div class="page-header">
+  <h2>${offer.article.name} </h2>
+</div>
+
+  <div class="row-fluid" id="offer_details">
+    <div class="span6">
+      <img src = "@{Inventory.articleImage(offer.article.id)}" class="img-polaroid">
+    </div>
+    <div class="span6">
+      <dl class="dl-horizontal">
+        <dt>Article description:</dt>
+        <dd>${offer.article.description}</dd>
+        <dt>Offer description:</dt>
+        <dd>${offer.description}</dd>
+        <dt>Insurance:</dt>
+        <dd>${insurance}</dd>
+        <dt>Pick-up address:</dt>
+        <dd>${offer.pick_up_address}</dd>
+        <dt>Price per day:</dt>
+        <dd> ${offer.price} EUR</dd>
+        <dt>Availability</dt>
+        <dd> ${offer.startTime.format('MM/dd/yyyy')} to ${offer.endTime.format('MM/dd/yyyy')} </dd>
+        <dt>Already reserved:</dt>
+        #{list items:requests, as:'request'}
+        <dd>${request.startTime.format('MM/dd/yyyy')} to ${request.endTime.format('MM/dd/yyyy')}</dd>
+        #{/list}
+        <dd>${reservedDatesEmpty}</dd>
+      </dl>
+    </div>
+  </div>
+  </br>
+  <div class="row-fluid">
+      <p class="lead">You want to rent this item? Send a request for this offer:</p>
+      <span id="invalidDateMessage"><u>Please enter two valid dates that are in the timeperiod of the offer and doen't overlap with already reserved timeperiods. Then the price will be calculated and you are able to rent the item.</u><br /><br /></span>
+		#{form @offerDetails(offer.id), class:'form-horizontal'}
+			
+		    #{field 'startTime'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputImage">Start Time:</label>
+			        <div class="controls" id="datetimepicker1">
+			            <div class="input-append">
+				            <input onchange="checkValidDate()" data-format="MM/dd/yyyy" type="text" name="${field.name}" id="startTime" size="16" value="${startTime}">
+				            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
+				        </div>
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		        <script type="text/javascript">
+				  $(function() {
+				    $('#datetimepicker1').datetimepicker({
+				      pickTime: false
+				    });
+				  });
+		        </script>
+		    #{/field}
+		    #{field 'endTime'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputImage">End Time:</label>
+			        <div class="controls" id="datetimepicker2">
+			            <div class="input-append">
+				            <input onchange="checkValidDate()" data-format="MM/dd/yyyy" type="text" name="${field.name}" id="endTime" size="16" value="${endTime}">
+				            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
+				        </div>
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		        <script type="text/javascript">
+				  $(function() {
+				    $('#datetimepicker2').datetimepicker({
+				      pickTime: false
+				    });
+				  });
+		        </script>
+		    #{/field}
+		    
+		    #{field 'adjustedPrice'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputImage">Calculated price:</label>
+			        <div class="controls">
+			            <input type="text" readonly="readonly" id="calculatedPrice" name="${field.name}" size="5" value="">
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		        
+		    #{/field}
+		    <div class="control-group ">
+			        <label class="control-label" for="inputImage"></label>
+			        <div class="controls">
+			            <input class="btn" id="sendrequestbutton" style="display:none;" type="submit" value="Send request!">
+			        </div>
+			    </div>
+
+		#{/form}
+  </div>
+
+
 
 
 
