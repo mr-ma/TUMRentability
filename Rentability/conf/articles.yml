@@ -1,5 +1,23 @@
 Article(a1):
  name: K2 Skis
- description: 2007 model
+ description: 2007 Model, 167 cm length, in top condition.
  owner: [u1]
  category: [cat2]
+ 
+Article(a2):
+ name: Nordic Skates
+ description: Only used them once, almost new!
+ owner: [u2]
+ category: [cat1]
+ 
+Article(a3):
+ name: Crampon
+ description: A crampon for mountain climbing
+ owner: [u1]
+ category: [cat2]
+ 
+Article(a4):
+ name: Karcher Mountainbike
+ description: 21 gear mountainbike
+ owner: [u2]
+ category: [cat1]
