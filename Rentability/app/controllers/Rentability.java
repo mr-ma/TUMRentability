@@ -101,4 +101,37 @@ public class Rentability extends Controller {
 			}
     	}
     }
+    
+    // Creating a new request:
+    public static void saveRequest(double adjustedPrice, String startTime, String endTime, Long offerID) {    	
+    	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		try {
+			Date start = sdf.parse(startTime);
+			Date end = sdf.parse(endTime);
+			User requestingUser;
+	        if(renderArgs.get("user") != null) {
+	        	requestingUser = renderArgs.get("user", User.class);
+	        }
+	        else {
+	        	String username = session.get("user");
+	            if(username != null) {
+	            	requestingUser = User.find("byUsername", username).first();
+	            } 
+	            else requestingUser = null;
+	        }
+	        
+	        short state = 1;
+	        Offer offer = Offer.findById(offerID);
+			Request requested = new Request(state,adjustedPrice,start,end,offer,requestingUser);
+			showRequest(requested);
+
+			
+		} catch (Exception ex) {
+			flash.error("Sorry an error occured, please try again!");
+		}
+    }
+    
+    public static void showRequest(Request requested){
+    	render(requested);
+    }
 }
