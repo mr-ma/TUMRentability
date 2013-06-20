@@ -1,0 +1,69 @@
+#{extends 'main.html' /}
+#{set title:"Request sended" /}
+
+#{set 'moreStyles'}
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}">
+#{/set}
+
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+<br />
+<br />
+<b>Congratulation, you successfully send the request. The owner of the article is informed, too. Please get in contact, to finish the transaction. All information you need is listed below.</b><br />
+<br />
+<b>Contact informations:</b>
+<table>
+  <tr>
+		<td>Name:</td>
+		<td>${requested.offer.article.owner.first_name} ${requested.offer.article.owner.last_name}</td>
+	</tr>
+	<tr>
+		<td>E-Mail:</td>
+		<td>${requested.offer.article.owner.email}</td>
+	</tr>
+</table>
+<br />
+<b>Article and offer informations:</b><br />
+
+<table>
+	<tr>
+		<td>Article name:</td>
+		<td>${requested.offer.article.name}</td>
+	</tr>
+	<tr>
+		<td>Article description:</td>
+		<td>${requested.offer.article.description}</td>
+	</tr>
+	<tr>
+		<td>Offer description:</td>
+		<td>${requested.offer.description}</td>
+	</tr>
+	<tr>
+		<td>Insurance:</td>
+		<td>${requested.offer.insurance}</td>
+	</tr>
+	<tr>
+		<td>Pick-up address:</td>
+		<td>${requested.offer.pick_up_address}</td>
+	</tr>
+	<tr>
+		<td>Price per day:</td>
+		<td>${requested.offer.price}</td>
+	</tr>
+	<tr>
+		<td>Price total:</td>
+		<td>${requested.adjustedPrice}</td>
+	</tr>
+	<tr>
+		<td>Rent starts at:</td>
+		<td>${requested.startTime.format('MM/dd/yyyy')}</td>
+	</tr>
+	<tr>
+		<td>Rent ends at:</td>
+		<td>${requested.endTime.format('MM/dd/yyyy')}</td>
+	</tr>
+</table>
+<br />
+<b>You can find all these information in your user-account anytime.</b>
+<img src = "@{Inventory.articleImage(requested.offer.article.id)}" class="img-polaroid"><br />
