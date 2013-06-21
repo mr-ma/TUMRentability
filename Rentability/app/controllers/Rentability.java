@@ -106,8 +106,17 @@ public class Rentability extends Controller {
     public static void saveRequest(double adjustedPrice, String startTime, String endTime, Long offerID) {    	
     	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		try {
+	        Offer offer = Offer.findById(offerID);
+	        boolean duplicate = false;
+	        Request duplicatedRequest = null;
 			Date start = sdf.parse(startTime);
 			Date end = sdf.parse(endTime);
+			for (Request oldRequest : Offer.getAllRequests(offer)){
+				if (oldRequest.startTime.equals(start)){
+					duplicate = true;
+					duplicatedRequest = oldRequest;
+				}
+			}
 			User requestingUser;
 	        if(renderArgs.get("user") != null) {
 	        	requestingUser = renderArgs.get("user", User.class);
@@ -119,10 +128,12 @@ public class Rentability extends Controller {
 	            } 
 	            else requestingUser = null;
 	        }
-	        
+	        Request requested;
 	        short state = 1;
-	        Offer offer = Offer.findById(offerID);
-			Request requested = new Request(state,adjustedPrice,start,end,offer,requestingUser);
+			if (!duplicate) {requested = new Request(state,adjustedPrice,start,end,offer,requestingUser);}
+			else {
+				requested = duplicatedRequest;
+			}
 			showRequest(requested);
 
 			
