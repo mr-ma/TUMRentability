@@ -5,9 +5,13 @@ import play.mvc.*;
 import play.data.validation.*;
 import play.libs.*;
 import play.cache.*;
+import tools.Mailing;
 
 import java.util.*;
 import java.security.*;
+
+import org.apache.commons.mail.*;
+import org.apache.commons.mail.Email;
 
 import models.*;
 
@@ -90,6 +94,10 @@ public class Application extends Controller {
         if(Security.authenticate(user.email, user.password)){
         	flash.success("Registration success! Please login and start renting Sports equipment right away!");  
         }
+        
+        user.confirmationCode = Codec.UUID();
+        Mailing.sendConfirmationMail(user);
+        
         index();
         
     }
@@ -101,6 +109,11 @@ public class Application extends Controller {
         String code = captcha.getText("#000000");
         Cache.set(id, code, "10mn");
         renderBinary(captcha);
+    }
+    
+    public static void confirm(String code)
+    {
+    	System.out.println(code);
     }
     
     //Generating a hash value using a given method for some data

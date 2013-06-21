@@ -44,6 +44,8 @@ public class User extends Model {
 	@MinSize(8)
 	public String password; //SHA-256 Hash
 	
+	public String confirmationCode;
+	
 	public User(String first_name, String last_name, String email, String phone, String nick_name, String passwordHash) {
 		super();
 		this.first_name = first_name;

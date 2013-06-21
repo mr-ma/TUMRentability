@@ -6,10 +6,17 @@ import java.util.*;
 
 import javax.validation.*;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.SimpleEmail;
+
 import play.db.jpa.Blob;
+import play.libs.Mail;
 import play.mvc.*;
+import tools.Mailing;
 
 import models.*;
+
 @With(Secure.class)
 public class Rentability extends Controller {
 
@@ -134,6 +141,10 @@ public class Rentability extends Controller {
 			else {
 				requested = duplicatedRequest;
 			}
+			
+			//Sending the newRequest Email
+			Mailing.newRequest(requestingUser, requested);
+			
 			showRequest(requested);
 
 			

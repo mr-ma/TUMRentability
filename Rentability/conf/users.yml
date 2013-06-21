@@ -7,9 +7,9 @@ User(u1):
  password: nothing
 
 User(u2):
- first_name: Demo
- last_name: Demo
- email: demo@tum.de
+ first_name: Marcel
+ last_name: Altendeitering
+ email: m.altendeitering@tum.de
  phone: 08999999
  nick_name: Demo Buddy
- password: demo
+ password: test
