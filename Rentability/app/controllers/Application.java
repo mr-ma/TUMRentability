@@ -80,7 +80,7 @@ public class Application extends Controller {
     
     //Registration of a new User
     public static void saveUser(@Valid User user, String verifyPassword, @IsTrue String policyAgreement, @Required String code, String randomID) {
-        validation.required(verifyPassword);
+    	validation.required(verifyPassword);
         validation.equals(verifyPassword, user.password).message("Your password doesn't match");
         //Email must end with the string "tum.de"
         validation.match(user.email, ".+tum.de").message("Sorry, only TUM Mail Addresses are valid!");

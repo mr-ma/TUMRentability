@@ -1,6 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Registration' /}
 
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/passwordStrength.css'}">
+
+<script src="@{'/public/javascripts/coffee-script.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/javascripts/passwordStrength.coffee'}" type="text/coffeescript"></script>
+
 <h3>Create your account and start renting sports equipment!</h3>
 <p>All required fields are marked with an asterisk (*)</p>
 
@@ -60,8 +65,9 @@
         <div class="control-group ${field.errorClass}">
 	        <label class="control-label" for="inputName">Password:</label>
 	        <div class="controls">
-	            <input type="password" name="${field.name}" size="16" value="${user?.password}"> *
-	            <span class="error">${field.error}</span>
+	            <input type="password" id="passwordStrength" name="${field.name}" class="span3 passwordTarget control-group" size="16" value="${user?.password}" > *
+	            <label  for ="passwordStrength" class="help-inline" name="passwordStrengthLabel" id="passwordStrengthLabel" />
+	        	<span class="error">${field.error}</span>
 	        </div>
 	    </div>
     #{/field}
@@ -69,7 +75,7 @@
         <div class="control-group ${field.errorClass}">
 	        <label class="control-label" for="inputName">Verify password:</label>
 	        <div class="controls">
-	            <input type="password" name="${field.name}" size="16" value="${verifyPassword}"> *
+	            <input type="password" name="${field.name}" class="span3 passwordTarget control-group" size="16" value="${verifyPassword}"> *
 	            <span class="error">${field.error}</span>
 	        </div>
 	    </div>
