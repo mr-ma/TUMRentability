@@ -57,24 +57,24 @@ public class Application extends Controller {
     	render(offer,requests,insurance,reservedDatesEmpty);
     }
     
-    
-    
-    
     //Rendering the registration page (and generating a unique ID for the captcha image)
     public static void register() {
     	String randomID = Codec.UUID();
         render(randomID);
     }
     
+    //Rendering the Pending page
+    public static void pending() {
+    	render();
+    }
+    
     //Rendering the Privacy Policy page
-    public static void privacyPolicy()
-    {
+    public static void privacyPolicy() {
     	render();
     }
     
     //Rendering the About Us page
-    public static void aboutUs()
-    {
+    public static void aboutUs() {
     	render();
     }
     
@@ -86,19 +86,29 @@ public class Application extends Controller {
         validation.match(user.email, ".+tum.de").message("Sorry, only TUM Mail Addresses are valid!");
         //Comparing the entered validation code with the one from cache using the given randomID
         validation.equals(code, Cache.get(randomID)).message("Invalid Code, please type again!");
+        
+        //Check if all required fields are correct
         if(validation.hasErrors()) {
             render("@register", user, verifyPassword, randomID);
         }
-        user.create();
-        session.put("user", user.email);
-        if(Security.authenticate(user.email, user.password)){
-        	flash.success("Registration success! Please login and start renting Sports equipment right away!");  
-        }
+        
+//        //Check if User already exists
+//        if(User.getUserByEmail(user.email) != null) {
+//        	flash.error("You have already registered, please log in!");
+//        	index();
+//        }
         
         user.confirmationCode = Codec.UUID();
+        user.activated = false;
+        user.create();
+//        session.put("user", user.email);
+//        if(Security.authenticate(user.email, user.password)){
+//        	flash.success("Registration success! Please login and start renting Sports equipment right away!");  
+//        }
+        
         Mailing.sendConfirmationMail(user);
         
-        index();
+        pending();
         
     }
     
@@ -111,9 +121,19 @@ public class Application extends Controller {
         renderBinary(captcha);
     }
     
+    //Is invoked when the user clicks the confirmation link
     public static void confirm(String code)
     {
-    	System.out.println(code);
+    	User user = User.getUserByConfirmCode(code);
+    	if(user != null) {
+    		flash.success("Your Registration has been confirmed! Please login and start renting Sports equipment right away!");
+    		user.confirmationCode = "";
+    		user.activated = true;
+    	}
+    	else
+    		flash.error("Sorry, no account has been found!");
+    	
+    	index();
     }
     
     //Generating a hash value using a given method for some data

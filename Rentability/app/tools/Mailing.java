@@ -56,7 +56,6 @@ public class Mailing {
 			Map<String, Object> args = new HashMap<String, Object>();
 			args.put("code", user.confirmationCode);
 			String confirmation_link = Router.getFullUrl("Application.confirm", args);
-			System.out.println(confirmation_link);
 			HtmlEmail email = new HtmlEmail();
 			email.setHostName(SMTP);
 			email.setSmtpPort(PORT);
@@ -67,7 +66,7 @@ public class Mailing {
 			email.addTo(user.email);
 			email.setHtmlMsg("<html><body><p>Dear " + user.nick_name + "" +
 					",</p><p>please verify your account by clicking the link below:</p>" +
-					"<p><a href='"+ confirmation_link + "'>" + confirmation_link + "</a></p>" +
+					"<p><a href=\""+ confirmation_link + "\">" + confirmation_link + "</a></p>" +
 							"<p>Thanks! Your Rentability Team!</p></body></html>");
 			email.send();
 		} catch (EmailException e) {

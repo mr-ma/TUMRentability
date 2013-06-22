@@ -46,6 +46,8 @@ public class User extends Model {
 	
 	public String confirmationCode;
 	
+	public boolean activated;
+	
 	public User(String first_name, String last_name, String email, String phone, String nick_name, String passwordHash) {
 		super();
 		this.first_name = first_name;
@@ -81,8 +83,16 @@ public class User extends Model {
 		return Request.find("byUser",user).fetch();
 	}
 	
+	public static User getUserByConfirmCode(String code) {
+		return (User)User.find("byConfirmationCode", code).fetch().get(0);
+	}
 	
-	
-	
-    
+	public static User getUserByEmail(String email) {
+		try	{
+			User u = (User)User.find("byEmail", email).fetch().get(0);
+			return u;
+		} catch(IndexOutOfBoundsException ex) {
+			return null;
+		}
+	}
 }
