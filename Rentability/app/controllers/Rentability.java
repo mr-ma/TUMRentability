@@ -16,7 +16,7 @@ import play.mvc.*;
 import tools.Mailing;
 
 import models.*;
-
+import play.data.validation.*;
 @With(Secure.class)
 public class Rentability extends Controller {
 
@@ -156,4 +156,62 @@ public class Rentability extends Controller {
     public static void showRequest(Request requested){
     	render(requested);
     }
+    
+  //go to user Management page
+    public static void userManagement()
+    {
+    	render();
+    }
+    //go to user Management page
+    public static void userManagement2(long id)
+    {
+    	User user = User.find("byId", id).first();
+    	renderArgs.put("nick_name",user.nick_name );
+    	renderArgs.put("first_name", user.first_name);
+    	renderArgs.put("last_name", user.last_name);
+    	renderArgs.put("phone", user.phone);
+    	render("@userManagement");
+    }
+    public static void updateUser(@Required String nick_name, @Required String first_name, @Required String last_name,String phone)
+    {
+    	
+    	validation.required(nick_name).message("Field is required");
+    	validation.required(first_name);
+    	validation.required(last_name);
+    	   if(validation.hasErrors()){
+        
+//        	render("@userManagement",nick_name,first_name,last_name,phone);
+        	render("@userProfile",nick_name,first_name,last_name,phone);
+    	   }
+            else
+            {
+            User user = User.find("byEmail", Security.connected()).first();     
+            user.nick_name = nick_name;
+            user.first_name = first_name;
+            user.last_name= last_name;
+            user.phone= phone;
+            user.save();
+            flash.success("Successfully updated profile");
+//            userManagement2(user.id);
+            userProfile2(user.id);
+            }
+           
+        }
+  //go to user Management page
+    public static void userProfile()
+    {
+    	render();
+    }
+    //go to user Management page
+    public static void userProfile2(long id)
+    {
+    	User user = User.find("byId", id).first();
+    	renderArgs.put("nick_name",user.nick_name );
+    	renderArgs.put("first_name", user.first_name);
+    	renderArgs.put("last_name", user.last_name);
+    	renderArgs.put("phone", user.phone);
+    	render("@userProfile");
+    }
+
+    
 }
