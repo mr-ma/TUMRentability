@@ -1,0 +1,79 @@
+
+#{extends 'main.html' /}
+Wellcome to user management page!
+
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Profile</a></li>
+    <li><a href="#tab2" data-toggle="tab">My Offers</a></li>
+    <li><a href="#tab3" data-toggle="tab">My Requests</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+    
+    <!--   -------------------- User Profile Tab -- -- --------------->
+    <p>All required fields are marked with an asterisk (*)</p>
+
+    #{form @updateUser(), class:'form-horizontal'} 
+#{field 'nick_name'}
+<div class="control-group ${field.errorClass}"><label class="control-label" for="inputName">Nick Name:</label>
+<div class="controls"><input name="${field.name}" size="16" value="${nick_name}" type="text">
+*
+<span class="error">${field.error}</span>
+</div>
+</div>
+#{/field}
+#{field 'first_name'}
+<div class="control-group ${field.errorClass}"><label class="control-label" for="inputName">First Name:</label>
+<div class="controls"><input name="${field.name}" size="16" value="${first_name}" type="text">
+*
+<span class="error">${field.error}</span>
+</div>
+</div>
+#{/field}
+#{field 'last_name'}
+<div class="control-group ${field.errorClass}"><label class="control-label" for="inputName">Last Name:</label>
+<div class="controls"><input name="${field.name}" size="16" value="${last_name}" type="text">
+*
+<span class="error">${field.error}</span>
+</div>
+</div>
+#{/field}
+#{field 'phone'}
+<div class="control-group ${field.errorClass}"><label class="control-label" for="inputName">Phone:</label>
+<div class="controls"><input name="${field.name}" size="16" value="${phone}" type="text">
+<span class="error">${field.error}</span>
+</div>
+</div>
+#{/field}
+<div class="control-group">
+<div class="controls"><input value="Update" class="btn" type="submit"> </div>
+</div>
+<a ="">
+#{/form}
+
+
+
+<!-------------       End of User profile tab ---------------------------->
+
+
+    </div>
+    <div class="tab-pane" id="tab2">
+     <p>I'm second tab </p>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <p>I'm the third tab </p> 
+    </div>
+  </div>
+</div>
+
+
+
+
+

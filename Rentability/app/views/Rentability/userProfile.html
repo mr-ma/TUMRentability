@@ -1,0 +1,87 @@
+#{extends 'main.html' /}
+Wellcome to user management page!
+
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Profile</a></li>
+    <li><a href="#tab2" data-toggle="tab">My Offers</a></li>
+    <li><a href="#tab3" data-toggle="tab">My Requests</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+
+   #{form @updateUser(), class:'form-horizontal'} 
+
+<form id="profileform" class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<!--<legend>Update your personal information</legend>-->
+#{field 'nick_name'}
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="nick_name">Nick name:</label>
+  <div class="controls">
+    <input id="nick_name" name="nick_name" type="text" value="${nick_name}" placeholder="Your nick name" class="input-xlarge" required="">
+    
+  </div>
+</div>
+#{/field}
+#{field 'first_name'}
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="first_name">First name:</label>
+  <div class="controls">
+    <input id="first_name" name="first_name" type="text" value="${first_name}" placeholder="Your first name" class="input-xlarge" required="">
+    
+  </div>
+</div>
+#{/field}
+#{field 'last_name'}
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="last_name">Last name:</label>
+  <div class="controls">
+    <input id="last_name" name="last_name" type="text" value="${last_name}" placeholder="Your last name" class="input-xlarge" required="">
+    
+  </div>
+</div>
+#{/field}
+#{field 'phone_name'}
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="phone">Phone:</label>
+  <div class="controls">
+    <input id="phone" name="phone" type="text" value="${phone}" placeholder="Your phone number" class="input-xlarge">
+    
+  </div>
+</div>
+#{/field}
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="singlebutton"></label>
+  <div class="controls">
+ <button id="singlebutton" name="singlebutton" type="submit" class="btn btn-primary">Update</button>
+</div>
+</div>
+
+</fieldset>
+</form>
+#{/form}
+
+</div>
+    <div class="tab-pane" id="tab2">
+     <p>I'm second tab </p>
+    </div>
+    <div class="tab-pane" id="tab3">
+      <p>I'm the third tab </p> 
+    </div>
+  </div>
+</div>

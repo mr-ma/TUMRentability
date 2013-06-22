@@ -48,7 +48,7 @@
                         <a href="@{Application.register()}">Registration</a>
                        #{/if}
                         #{secure.check  'user'}
-                        ${user.nick_name} 
+                         <a href=/userProfile/${user.id}> ${user.nick_name} </a> 
 						&nbsp;&#124;&nbsp;
                         <a href=@{secure.logout()} role="button" >Log out</a>
                         &nbsp;&nbsp;

@@ -12,7 +12,10 @@ GET  	  /offers/{id}							Application.offerDetails
 POST  /request									Rentability.saveRequest
 GET		/request								Rentability.showRequest
 GET    	/confirm/{code}               			Application.confirm
-
+GET     /userManagement/{id}                    Rentability.userManagement2
+POST    /userManagement                         Rentability.updateUser
+GET     /userProfile/{id}                       Rentability.userProfile2
+POST    /userProfile/{id}*                      Rentability.updateUser
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
