@@ -43,7 +43,7 @@ public class Rentability extends Controller {
     
 	//Rendering the create offer page using all existing categories
     public static void createOffer() {
-    	List<Category> categories = Category.findAll();
+    	List<Category> categories = Inventory.getAllSubCategories();
     	render(categories);
     }
     
