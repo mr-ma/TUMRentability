@@ -3,6 +3,15 @@ Category(cat1):
 
 Category(cat2):
  name: Winter Sports
+ 
+Category(cat3):
+ name: Water Sports
+ 
+Category(cat4):
+ name: Indoor Sports
+ 
+Category(cat5):
+ name: Outdoor Sports
 
 Category(cat21):
  name: Skis
@@ -12,6 +21,30 @@ Category(cat22):
  name: Sleds
  parent_category: [cat2]
  
+Category(cat12):
+ name: Skates
+ parent_category: [cat1]
+ 
 Category(cat11):
  name: Bikes
  parent_category: [cat1]
+ 
+Category(cat31):
+ name: Boating
+ parent_category: [cat3]
+ 
+Category(cat32):
+ name: Water Accessories
+ parent_category: [cat3]
+ 
+Category(cat41):
+ name: Indoor Accessories
+ parent_category: [cat4]
+ 
+Category(cat51):
+ name: Hiking
+ parent_category: [cat5]
+ 
+Category(cat52):
+ name: Climbing
+ parent_category: [cat5]
