@@ -21,3 +21,11 @@ User(u3):
  phone: 08999999
  nick_name: Demo Mann
  password: demodemo
+
+User(u4):
+ first_name: Test
+ last_name: Test
+ email: test@tum.de
+ phone: 08999999
+ nick_name: Test Mann
+ password: testtest

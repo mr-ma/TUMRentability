@@ -10,6 +10,9 @@ import javax.validation.*;
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
+import org.hamcrest.core.IsEqual;
+
+import com.sun.org.apache.xpath.internal.operations.Equals;
 
 import play.db.jpa.Blob;
 import play.libs.Mail;
@@ -266,13 +269,16 @@ public class Rentability extends Controller {
   public static void createOfferWithArticle(long articleId) {
   	List<Category> categories = Category.findAll();
   	Article article= Article.findById(articleId);
+  	session.put("article", articleId);
   	renderArgs.put("article", article);
   	render(categories);
   }
   //Creating a new Offer
-  public static void saveOfferOfArticle(@Valid Article article, String description, String name, 
+  public static void saveOfferOfArticle(String description, String name, 
   		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
   	
+	  
+	Article article =Article.findById(Long.parseLong(session.get("article"))); 
   	validation.required(description);
   	validation.required(pickUpAddress);
   	validation.required(startTime);
@@ -286,7 +292,6 @@ public class Rentability extends Controller {
   	
   	if(validation.hasErrors())
   	{
-//  		System.out.println(image.getFile().getAbsolutePath());
   		List<Category> categories = Category.findAll();
   		render("@createOfferWithArticle" ,article, description, categories, pickUpAddress,
   				startTime, endTime, price, insurance);
@@ -294,17 +299,6 @@ public class Rentability extends Controller {
   	else
   	{
   		boolean insuranceRequired;
-  		
-//  		List<Category> categories = Category.findAll();
-//      	Category c = categories.get(Integer.valueOf(name) - 1);
-      	
-      	//Retrieving the logged in user
-//      	User u = new User("","","","","","");
-      	//User u = (User)renderArgs.get("user");
-      	
-      	//null value to be implemented - represents the user (ie owner)
-//      	Article a = new Article(articleName, description, u, c, image);
-      	
       	//Conversion of String Values to Dates, Boolean, etc.
       	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 			try {
@@ -319,7 +313,7 @@ public class Rentability extends Controller {
 				double doublePrice = Double.parseDouble(price);
 				
 				//null value to be implemented - represents the description
-	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, null, start, end, article);
+	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, description, start, end, article);
 	        	
 	        	flash.success("Your offer has successfully been created!");
 	        	Application.index();
@@ -329,5 +323,85 @@ public class Rentability extends Controller {
 			}
   	}
   }
+
+  public static void removeOffer(long offerId,long articleId)
+  {
+	  //if offer has requests can not be deleted
+		Offer offer= Offer.findById(offerId);
+		int requestssize=offer.getAllRequests(offer).size();
+		if(requestssize>0)
+		{
+			flash.error("This offer has "+requestssize +" rent requests(s)! Can not be removed" );
+		}
+		else
+		{
+		///remove offer
+			offer.delete();
+		}
+			
+		articleOffers(articleId); 
+  }
+  public static void removeArticle(long articleId)
+  {
+	  //if article has offer can not be deleted
+		Article article= Article.findById(articleId);
+		int offerssize=article.getOffers().size();
+		if(offerssize>0)
+		{
+			flash.error("This article has "+offerssize +" offer(s)! First remove offers in order to be able remove the article" );
+		}
+		else
+		{
+		///remove article
+			article.delete();
+		}
+		userArticles();
+  }
   
+  
+  ///Provide requests of current user and their state approved or pending
+  public static void userRequests()
+  {
+	  if(Security.isConnected()) {
+          User user = User.find("byEmail", Security.connected()).first();
+          List<Request> userRequest=  Request.find("user.id", user.id).fetch();
+          renderArgs.put("requests", userRequest);
+          render();
+  	}
+  }
+  
+  
+  public static void changePassword()
+  {
+	  
+	  render();
+  }
+  
+  public static void updatePassword(@Required String currentpassword,@Required String newpassword,@Required String verifypassword)
+  {
+		validation.required(currentpassword).message("Field is required");
+    	validation.required(newpassword).message("Field is required");
+    	validation.required(verifypassword).message("Field is required");
+    	 validation.equals(verifypassword, newpassword).message("Your password doesn't match");
+    	   if(validation.hasErrors()){
+        	render("@changePassword",currentpassword);
+    	   }
+            else
+            {
+            	User user = User.find("byEmail", Security.connected()).first();     
+            	if( user.password.equals(currentpassword)) {
+            		user.password= newpassword;
+            		user.save();
+            		flash.success("Successfully updated your password");
+            		changePassword();
+            	}
+            	else
+            	{
+            		flash.error("Entered password is not correct ");
+            		render("@changePassword",currentpassword);
+            	}
+            }
+  }
 }
+  
+

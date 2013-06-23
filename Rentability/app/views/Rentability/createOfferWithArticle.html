@@ -14,20 +14,10 @@
 <p>All required fields are marked with an asterisk (*)</p>
 
 #{form @saveOfferOfArticle(), enctype:'multipart/form-data', class:'form-horizontal'}
-	#{field 'article.name'}
-	    <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Article Name:</label>
-	        <div class="controls">
-	            <input type="text" name="${field.name}" size="16" value="${article.name}"> *
-	            <span class="error">${field.error}</span>
-	        </div>
-	    </div>
-        
-    #{/field}
 
-	<img src="@{Inventory.articleImage(article.id)}" class="img-rounded">  
-	     
-
+	    
+	    <label class="control-label" >Article Name: ${article.name}</label>
+		<img src="@{Inventory.articleImage(article.id)}" width="15%" height="15%" class="img-rounded">  	     
     #{field 'description'}
         <div class="control-group ${field.errorClass}">
 	        <label class="control-label" for="inputDescription">Description:</label>

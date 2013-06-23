@@ -13,3 +13,11 @@ Request(r2):
  offer: [o4]
  state: 0
  user: [u1]
+
+Request(r3):
+ adjustedPrice: 51.98
+ startTime: 2013-06-08
+ endTime: 2013-06-06
+ offer: [o4]
+ state: 0
+ user: [u4]

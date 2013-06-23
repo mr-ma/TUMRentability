@@ -17,7 +17,9 @@ POST    /userManagement                         Rentability.updateUser
 GET     /userProfile/{id}                       Rentability.userProfile2
 POST    /userProfile/{id}*                      Rentability.updateUser
 GET     /userArticles                           Rentability.userArticles 
-
+GET     /userRequests                           Rentability.userRequests
+GET     /changePassword                         Rentability.changePassword 
+POST    /changePassword                         Rentability.updatePassword
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

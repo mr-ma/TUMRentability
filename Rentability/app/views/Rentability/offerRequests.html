@@ -4,10 +4,12 @@
   #{if alreadyApproved}
   <h3>This offer has been closed!</h3>
   #{/if}
-   <p>You have ${requests.size()} requests for this offer<p>
-   <p> ${offer.description} </p>
-   <p> ${offer.pick_up_address} </p>
-
+   
+   <h4> Offer details: </h4>
+   <p><strong>Description:</strong> ${offer.description} </p>
+   <p><strong>Pickup Address: </strong> ${offer.pick_up_address} </p>
+   <p><strong>Valid from: </strong>${offer.startTime}<strong> until:</strong> ${offer.endTime}
+   <p>You have ${requests.size()} request(s) for this offer<p>
 #{ifErrors}
     <p class="error">
         ${errors[0]}

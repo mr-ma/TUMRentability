@@ -37,13 +37,3 @@ Offer(o4):
  startTime: 2013-06-06
  endTime: 2013-08-08
  article: [a4]
- 
- 
-Request(r1):
- adjustedPrice: 51.98
- startTime: 2013-06-08
- endTime: 2013-06-06
- offer: [o4]
- state: 0
- user: [u2]
- 
