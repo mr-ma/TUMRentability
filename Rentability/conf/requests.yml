@@ -1,0 +1,15 @@
+Request(r1):
+ adjustedPrice: 51.98
+ startTime: 2013-06-06
+ endTime: 2013-06-08
+ offer: [o4]
+ state: 0
+ user: [u2]
+ 
+Request(r2):
+ adjustedPrice: 110.30
+ startTime: 2013-06-06
+ endTime: 2013-06-012
+ offer: [o4]
+ state: 0
+ user: [u1]

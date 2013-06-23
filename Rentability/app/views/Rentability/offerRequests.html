@@ -1,0 +1,62 @@
+#{extends 'userHome.html' /}
+
+  <!--------------------- Offer requests---------------------->
+  #{if alreadyApproved}
+  <h3>This offer has been closed!</h3>
+  #{/if}
+   <p>You have ${requests.size()} requests for this offer<p>
+   <p> ${offer.description} </p>
+   <p> ${offer.pick_up_address} </p>
+
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+
+     
+     <ul>
+      	<table class="table table-hover">
+      	<thead>
+    	<tr>
+      		<th>Start</th>
+      		<th>End</th>
+      		<th>Total</th>
+      		<th>Name</th>
+      		<th>Email</th>
+      		<th>Phone</th>
+    	</tr>
+  		</thead>
+      	#{list items:requests, as:'request' }
+		<tr #{if request.state==5} class="success" #{/if}>
+    		<td>
+    		${request.startTime}
+    		</td>
+    		<td>
+    		${request.endTime}
+    		</td>
+    		<td>
+    		${request.adjustedPrice} €
+    		</td>
+    		<td>
+    		${request.user.first_name +' '+ request.user.last_name}
+    		</td>
+    		<td>
+    		 	${request.user.email} 
+    		</td>
+    		<td>
+    			${request.user.phone}
+    		</td>
+    		#{ifnot alreadyApproved}
+    		<td>
+    			<div class="btn-toolbar">
+  				<div class="btn-group">
+    			<a class="btn btn-mini btn-primary" href=@{Rentability.approveRequest(request.id,offer.id)}>Approve<i class="icon-ok icon-white"></i></a>
+  				</div>
+				</div>
+    		</td>
+    		#{/ifnot}
+		 	</tr>
+    #{/list}
+	</table>
+	</ul>   

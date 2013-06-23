@@ -37,7 +37,9 @@ public class Bootstrap extends Job {
 			
 			
 		}
-		
+	if(Request.count() == 0){
+			Fixtures.loadModels("requests.yml");	
+		}
 		
 	}
 	

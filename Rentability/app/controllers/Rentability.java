@@ -1,6 +1,7 @@
 package controllers;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -17,6 +18,7 @@ import tools.Mailing;
 
 import models.*;
 import play.data.validation.*;
+import play.data.validation.Valid;
 @With(Secure.class)
 public class Rentability extends Controller {
 
@@ -24,11 +26,13 @@ public class Rentability extends Controller {
     static void setConnectedUser() {
         if(Security.isConnected()) {
             User user = User.find("byEmail", Security.connected()).first();
-
+//            List<Article> userArticles=  Article.find("owner.id", user.id).fetch();
+//            renderArgs.put("articles", userArticles);
 //            if(user!= null)
                 renderArgs.put("user", user);
 //            else 
 //            	renderArgs.put("user", "guest");
+           
         }
     }
 
@@ -213,5 +217,117 @@ public class Rentability extends Controller {
     	render("@userProfile");
     }
 
+    public static void userArticles()
+    {
+    	if(Security.isConnected()) {
+            User user = User.find("byEmail", Security.connected()).first();
+            List<Article> userArticles=  Article.find("owner.id", user.id).fetch();
+            renderArgs.put("articles", userArticles);
+            render();
+    	}
+    }
     
+    public static void articleOffers(long articleId)
+    {
+    	Article article= Article.findById(articleId);
+    	List<Offer> offers= Article.getAllOffers(article);
+    	renderArgs.put("article", article);
+    	renderArgs.put("offers", offers);
+    	render();
+    }
+    
+  public static void offerRequests(long offerId)
+  {
+	Offer offer= Offer.findById(offerId);
+  	List<Request> requests= Offer.getAllRequests(offer);
+  	boolean alreadyApproved=false;
+  	for(int i=0;i<requests.size();i++)
+  	{
+  	if(requests.get(i).state ==5) alreadyApproved=true; 
+  	}
+  	renderArgs.put("alreadyApproved",alreadyApproved);
+  	renderArgs.put("offer", offer);
+  	renderArgs.put("requests", requests);
+  	render();
+  }
+  
+  public static void approveRequest(long requestId,long offerId)
+  {
+	  Request request= Request.findById(requestId);
+	  request.state=5;
+	  request.save();
+	  Offer offer= Offer.findById(offerId);
+	  offer.state= -1;
+	  offerRequests(offerId);
+	  
+  }
+  
+//Rendering the create offer page using all existing categories
+  public static void createOfferWithArticle(long articleId) {
+  	List<Category> categories = Category.findAll();
+  	Article article= Article.findById(articleId);
+  	renderArgs.put("article", article);
+  	render(categories);
+  }
+  //Creating a new Offer
+  public static void saveOfferOfArticle(@Valid Article article, String description, String name, 
+  		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
+  	
+  	validation.required(description);
+  	validation.required(pickUpAddress);
+  	validation.required(startTime);
+  	//Make sure the date is entered in this format DD.MM.YYYY
+  	validation.match(startTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
+  	validation.required(endTime);
+  	validation.match(endTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
+  	validation.required(price);
+  	//Ensures that the price field is followed by 2 digits after the point
+  	validation.match(price, "\\d+\\.\\d{2}").message("Please indicate the Price in the given format!");
+  	
+  	if(validation.hasErrors())
+  	{
+//  		System.out.println(image.getFile().getAbsolutePath());
+  		List<Category> categories = Category.findAll();
+  		render("@createOfferWithArticle" ,article, description, categories, pickUpAddress,
+  				startTime, endTime, price, insurance);
+  	}
+  	else
+  	{
+  		boolean insuranceRequired;
+  		
+//  		List<Category> categories = Category.findAll();
+//      	Category c = categories.get(Integer.valueOf(name) - 1);
+      	
+      	//Retrieving the logged in user
+//      	User u = new User("","","","","","");
+      	//User u = (User)renderArgs.get("user");
+      	
+      	//null value to be implemented - represents the user (ie owner)
+//      	Article a = new Article(articleName, description, u, c, image);
+      	
+      	//Conversion of String Values to Dates, Boolean, etc.
+      	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+			try {
+				Date start = sdf.parse(startTime);
+				Date end = sdf.parse(endTime);
+				
+				if(insurance == null || !insurance.equals("true"))
+					insuranceRequired = false;
+				else
+					insuranceRequired = true;
+				
+				double doublePrice = Double.parseDouble(price);
+				
+				//null value to be implemented - represents the description
+	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, null, start, end, article);
+	        	
+	        	flash.success("Your offer has successfully been created!");
+	        	Application.index();
+	        	
+			} catch (Exception ex) {
+				flash.error("Sorry an error occured, please try again!");
+			}
+  	}
+  }
+  
 }

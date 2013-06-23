@@ -45,4 +45,8 @@ public class Article extends Model {
     	}
     	return requests;
 	}
+	
+	public  List<Offer> getOffers(){
+		return Offer.find("byArticle",this).fetch();
+	}
 }

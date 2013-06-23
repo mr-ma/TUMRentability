@@ -13,11 +13,11 @@ Article(a2):
 Article(a3):
  name: Crampon
  description: A crampon for mountain climbing
- owner: [u1]
+ owner: [u3]
  category: [cat2]
  
 Article(a4):
  name: Karcher Mountainbike
  description: 21 gear mountainbike
- owner: [u2]
+ owner: [u3]
  category: [cat1]

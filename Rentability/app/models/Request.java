@@ -11,6 +11,7 @@ import java.util.*;
 @Entity
 public class Request extends Model {
 
+	
 	@Required
 	public short state;
 	
@@ -46,6 +47,7 @@ public class Request extends Model {
 	}
 	
 	
+
 	
 	
 	

@@ -1,0 +1,120 @@
+#{extends 'main.html' /}
+#{set title:'Creating an Offer' /}
+
+#{set 'moreStyles'}
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}">
+#{/set}
+
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+    <script src="@{'/public/javascripts/create_offer.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+
+<h3>Offer your equipment!</h3>
+<p>All required fields are marked with an asterisk (*)</p>
+
+#{form @saveOfferOfArticle(), enctype:'multipart/form-data', class:'form-horizontal'}
+	#{field 'article.name'}
+	    <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputName">Article Name:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${article.name}"> *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+        
+    #{/field}
+
+	<img src="@{Inventory.articleImage(article.id)}" class="img-rounded">  
+	     
+
+    #{field 'description'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputDescription">Description:</label>
+	        <div class="controls">
+	            <textarea name="${field.name}" cols="15" rows="3"></textarea> *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+    #{/field} 
+    #{field 'pickUpAddress'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputAddress">Pick Up Address:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${pickUpAddress}"> *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+    #{/field}
+    
+    #{field 'startTime'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputStartTime">Start Time:</label>
+	        <div class="controls" id = "datetimepicker3">
+	            <div class="input-append">
+	            <input type="text" data-format="dd.MM.yyyy" name="${field.name}" size="16" value="${startTime}">
+	            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
+	            </div>
+	            *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+	    <script type="text/javascript">
+		  $(function() {
+		    $('#datetimepicker3').datetimepicker({
+		      pickTime: false
+		    });
+		  });
+		</script>
+    #{/field}
+    
+    #{field 'endTime'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputEndTime">End Time:</label>
+	        <div class="controls " id="datetimepicker4">
+	            <div class="input-append">
+	            <input type="text" data-format="dd.MM.yyyy" name="${field.name}" size="16" value="${endTime}"> 
+	            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
+	            </div>
+	            *
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+	    <script type="text/javascript">
+		  $(function() {
+		    $('#datetimepicker4').datetimepicker({
+		      pickTime: false
+		    });
+		  });
+		</script>
+    #{/field}
+    #{field 'price'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputPrice">Price:</label>
+	        <div class="controls">
+	            <input type="text" name="${field.name}" size="16" value="${price}"> * Format: 12.34
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+    #{/field}
+    #{field 'insurance'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputInsurance">Insurance required?</label>
+	        <div class="controls">
+	            <input type="checkbox" name="${field.name}" value="true">
+	            <span class="error">${field.error}</span>
+	            
+	        </div>
+	        
+	    </div>
+    #{/field}
+    <div class="control-group ${field.errorClass}">
+        <div class="controls">
+        <input class="btn" type="submit" value="Create Offer"> <a href="@{Rentability.articleOffers(article.id)}">Cancel</a>
+        </div>
+    </div>
+    
+    
+     
+
+#{/form}

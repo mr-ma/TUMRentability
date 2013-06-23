@@ -39,8 +39,7 @@
                             <button type="submit" class="btn">Search</button>
                         </form>
                     </div>
-                    <p id="login" class="span4 pull-right">
-                        
+                    
                        #{if user == NULL }
                       <!--  <a href="#loginModal" role="button" data-toggle="modal">Log in</a> -->
                       <a href=@{secure.login()} role="button" data-toggle="modal">Log in</a>
@@ -48,17 +47,34 @@
                         <a href="@{Application.register()}">Registration</a>
                        #{/if}
                         #{secure.check  'user'}
-                         <a href=/userProfile/${user.id}> ${user.nick_name} </a> 
-						&nbsp;&#124;&nbsp;
-                        <a href=@{secure.logout()} role="button" >Log out</a>
-                        &nbsp;&nbsp;
+                         <div class="span4 pull-right">
+                         <br>
+                         <br>
+                         <div class="btn-group">
+  							<a class="btn btn btn-success" href="#"><i class="icon-user icon-white"></i> ${user.nick_name}</a>
+  							<a class="btn btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+  							<ul class="dropdown-menu">
+    							<li><a href=/userProfile/${user.id}><i class="icon-pencil"></i> Edit Profile</a></li>
+    							<li><a href=/userArticles><i class="icon-th-large"></i> Articles</a></li>
+    							<li><a href=/userRequests><i class="icon-envelope"></i> Requests</a></li>
+    							<li class="divider"></li>
+    							<li><a href="#"><i class="icon-flag"></i>0 New request(s)!</a></li>
+    							<li class="divider"></li>
+    							<li><a href=@{secure.logout()}><i class="icon-off"></i>Logout</a></li>
+  							</ul>
+						</div>
+						<div class="btn-group">
+  							<a class="btn btn btn-info" href="#"><i class="icon-globe icon-white"></i> English</a>
+  							<a class="btn btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+  							<ul class="dropdown-menu">
+  								<li><a href="#"><i class="i"></i> English</a></li>
+    							<li><a href="#"><i class="i"></i> Deutsch</a></li>
+  							</ul>
+						</div>
+						</div>
                         #{/secure.check}
                         
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a>English</a>
-                        &nbsp;&#124;&nbsp;
-                        <a>Deutsch</a>
-                   </p>
+                 
                    <div id="loginModal" class="modal hide fade">
 					  <div class="modal-header">
 					    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
