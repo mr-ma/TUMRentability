@@ -34,10 +34,10 @@
                     </div>
                     
                     <div class="span5">
-                        <form id="search" class="form-search">
-                            <input type="text" class="input-medium search-query span9">
+                        #{form @Search.index(), id:'search', class:'form-horizontal'}
+                            <input type="text" name="search_string" class="input-medium search-query span9">
                             <button type="submit" class="btn">Search</button>
-                        </form>
+                        #{/form}
                     </div>
                     <p id="login" class="span4 pull-right">
                         
