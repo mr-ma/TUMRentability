@@ -15,6 +15,9 @@ public class Request extends Model {
 	public short state;
 	
 	@Required
+	public boolean seen;
+	
+	@Required
 	@Column(precision=6, scale=2)
 	public double adjustedPrice;
 	
@@ -35,7 +38,8 @@ public class Request extends Model {
 	public Request(short state, double adjustedPrice, Date startTime, Date endTime, Offer offer, User user) {
 		super();
 		
-		this.state = state;		
+		this.state = state;	
+		this.seen = false;
 		this.adjustedPrice = adjustedPrice;		
 		this.startTime = startTime;		
 		this.endTime = endTime;		
