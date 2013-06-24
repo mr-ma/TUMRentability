@@ -16,6 +16,7 @@ GET     /userManagement/{id}                    Rentability.userManagement2
 POST    /userManagement                         Rentability.updateUser
 GET     /userProfile/{id}                       Rentability.userProfile2
 POST    /userProfile/{id}*                      Rentability.updateUser
+GET		/search/{search_string}					Search.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -24,7 +25,7 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 *       /admin									module:crud
-
+*		/es-admin								module:elasticsearch
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
 

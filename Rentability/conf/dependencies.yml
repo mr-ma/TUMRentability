@@ -4,3 +4,17 @@ require:
     - play
     - play -> crud
     - play -> secure
+    - play -> elasticsearch 0.4
+    - org.elasticsearch -> elasticsearch 0.17.8
+    - se.scalablesolutions.akka -> akka-amqp 1.2
+repositories:
+- akka:
+    type: iBiblio
+    root: "http://repo.akka.io/releases"
+    contains:
+    - se.scalablesolutions.akka -> *
+- elasticsearch:
+    type: iBiblio
+    root: "http://oss.sonatype.org/content/repositories/releases/"
+    contains:
+    - org.elasticsearch -> *

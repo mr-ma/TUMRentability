@@ -1,14 +1,20 @@
 package models;
 
 import play.*;
+
 import play.data.validation.*;
 import play.db.jpa.*;
+import play.modules.elasticsearch.annotations.ElasticSearchEmbedded;
+import play.modules.elasticsearch.annotations.ElasticSearchable;
+
+import org.elasticsearch.*;
 
 import javax.persistence.*;
 
 import java.util.*;
 
 @Entity
+@ElasticSearchable
 public class Offer extends Model {
 
 	@Required
@@ -35,6 +41,7 @@ public class Offer extends Model {
 	@Temporal(TemporalType.DATE) 
 	public Date endTime;
 	
+	@ElasticSearchEmbedded(fields={"name", "description"})
 	@ManyToOne(optional = false)
 	public Article article;
 
