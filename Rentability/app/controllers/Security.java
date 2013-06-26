@@ -6,7 +6,10 @@ public class Security extends Secure.Security {
 	
     static boolean authenticate(String username, String password) {
     	 User user = User.find("byEmail", username).first();
-         return user != null && user.password.equals(password);
+    	 if(user != null && user.activated == true)
+    		 return user.password.equals(Application.getHash(password, "SHA-256"));
+    	 else
+    		 return false;
     }
 
     static void onDisconnected() {

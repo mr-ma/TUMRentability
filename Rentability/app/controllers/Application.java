@@ -98,6 +98,8 @@ public class Application extends Controller {
 //        	index();
 //        }
         
+        //Hash the password
+        user.password = getHash(user.password, "SHA-256");
         user.confirmationCode = Codec.UUID();
         user.activated = false;
         user.create();
@@ -129,6 +131,7 @@ public class Application extends Controller {
     		flash.success("Your Registration has been confirmed! Please login and start renting Sports equipment right away!");
     		user.confirmationCode = "";
     		user.activated = true;
+    		user.save();
     	}
     	else
     		flash.error("Sorry, no account has been found!");
@@ -142,7 +145,7 @@ public class Application extends Controller {
     	MessageDigest md;
 		try {
 			//Setting the Hashfunction to SHA-256 (MD5 and others are available as well)
-			md = MessageDigest.getInstance("SHA-256");
+			md = MessageDigest.getInstance(hashMethod);
 			
 			//Setting the data --> can be done more than once
 			md.update(data.getBytes());
@@ -161,7 +164,7 @@ public class Application extends Controller {
 			
 		} 
 		catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			e.getMessage();
 			return "";
 		}
     }
