@@ -45,7 +45,7 @@ public class Search extends Controller {
 		for(SearchHit hit : response.getHits()){
 			
 			//Offer o =Offer.findById(hit.getId());
-			System.out.println(hit.getScore());
+			//System.out.println(hit.getScore());
 			long id = Long.parseLong(hit.getId());
 			List<Offer> temp = Offer.find("select o from Offer o where o.id =" +id).fetch();
 			offers.addAll(temp);
