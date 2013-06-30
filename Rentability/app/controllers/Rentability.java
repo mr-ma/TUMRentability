@@ -47,8 +47,15 @@ public class Rentability extends Controller {
     
 	//Rendering the create offer page using all existing categories
     public static void createOffer() {
-    	List<Category> categories = Inventory.getAllSubCategories();
+    	List<Category> categories = Inventory.getAllMainCategories();
     	render(categories);
+    }
+    
+    public static void reloadSubCate(String name) {
+    	long cateID = Long.parseLong(name);
+    	List<Category> subCates = Inventory.getSubCategories(cateID);
+
+        render("@selectSubCate", subCates);
     }
     
     //Creating a new Offer

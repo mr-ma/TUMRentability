@@ -9,6 +9,7 @@ import java.util.Map;
 import models.Category;
 import play.templates.FastTags;
 import play.templates.GroovyTemplate.ExecutableTemplate;
+import play.templates.TagContext;
 import controllers.Inventory;
 
 @FastTags.Namespace("mytags")
@@ -21,4 +22,6 @@ public class MyTags extends play.templates.FastTags {
 			out.println("<li><a href=\"/search/"+subCates.get(i).name+"\">"+subCates.get(i).name+"</a></li>");
 		}
 	}
+	
+	
 }

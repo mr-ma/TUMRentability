@@ -10,6 +10,16 @@
     <script src="@{'/public/javascripts/create_offer.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 #{/set}
 
+<script>
+$(document).ready(function(){
+  $('#selectMainCate').change(function() {
+    var selectAction = #{jsAction @reloadSubCate(':name') /};
+    $('#selectSubCate').load(selectAction({name: $(this).val()}));
+  });
+});
+
+</script>
+
 <h3>Offer your equipment!</h3>
 <p>All required fields are marked with an asterisk (*)</p>
 
@@ -47,7 +57,10 @@
     <div class="control-group ${field.errorClass}">
         <label class="control-label" for="inputCategory">Category Name:</label>
         <div class="controls">
-            #{select 'name', items:categories, valueProperty:'id', labelProperty:'name' /}
+            #{select 'name', items:categories, valueProperty:'id', labelProperty:'name', id: 'selectMainCate'/}
+            <span id="selectSubCate">
+              #{include 'Rentability/selectSubCate.html' /}
+            </span>
             <span class="error">${field.error}</span>
         </div>
     </div>
