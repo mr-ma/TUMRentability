@@ -386,8 +386,8 @@ public class Rentability extends Controller {
             else
             {
             	User user = User.find("byEmail", Security.connected()).first();     
-            	if( user.password.equals(currentpassword)) {
-            		user.password= newpassword;
+            	if( user.password.equals(Application.getHash(currentpassword, "SHA-256"))) {
+            		user.password= Application.getHash(newpassword,"SHA-256");
             		user.save();
             		flash.success("Successfully updated your password");
             		changePassword();
