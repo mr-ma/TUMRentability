@@ -5,6 +5,7 @@ User(u1):
  phone: 08999999
  nick_name: BobbyP
  password: 1785cfc3bc6ac7738e8b38cdccd1af12563c2b9070e07af336a1bf8c0f772b6a
+ activated: true
 # password = nothing
 
 User(u2):
@@ -14,6 +15,7 @@ User(u2):
  phone: 08999999
  nick_name: Demo Buddy
  password: 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
+ activated: true
 # password = test
 
 User(u3):
@@ -24,4 +26,5 @@ User(u3):
  nick_name: Demo Mann
  activated: True
  password: 4011ba02e51104c678c31a76a444485b38f3865e504d89c3a0a80b439bb1a237
+ activated: true
 # demodemo
