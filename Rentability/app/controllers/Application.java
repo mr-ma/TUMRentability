@@ -12,6 +12,7 @@ import java.security.*;
 
 import org.apache.commons.mail.*;
 import org.apache.commons.mail.Email;
+import org.hibernate.Query;
 
 import models.*;
 
@@ -24,7 +25,16 @@ public class Application extends Controller {
             User user = User.find("byEmail", Security.connected()).first();
          // I'm passing nickname change if you need something else
             if(user!= null)
-            { renderArgs.put("user", user);
+            { 
+            	renderArgs.put("user", user);
+            	
+            	///Find unseen requests and put count of it to the response
+            	List<Request> userrequests=  Request.find("offer.article.owner.id", user.id).fetch();
+            	int unseenRequests=0;
+            	for(int i=0;i<userrequests.size();i++){
+            		if(!userrequests.get(i).seen) unseenRequests++;
+            	}
+            	renderArgs.put("unseenRequests", unseenRequests);
             }
         }
         else 

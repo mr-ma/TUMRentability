@@ -66,9 +66,9 @@
     							<li><a href=/userProfile/${user.id}><i class="icon-pencil"></i> Edit Profile</a></li>
     							<li><a href=/changePassword><i class="icon-lock"></i> Change Password</a></li>
     							<li><a href=/userArticles><i class="icon-th-large"></i> Articles</a></li>
-    							<li><a href=/userRequests><i class="icon-envelope"></i> Requests</a></li>
+    							<li><a href=/userRequests><i class="icon-envelope"></i> Sent Requests</a></li>
     							<li class="divider"></li>
-    							<li><a href="#"><i class="icon-flag"></i>0 New request(s)!</a></li>
+    							<li><a href=@{Rentability.userReceivedRequests()}><i class="icon-flag"></i>#{if unseenRequests}${unseenRequests} new #{/if} Received request(s)!</a></li>
     							<li class="divider"></li>
     							<li><a href=@{secure.logout()}><i class="icon-off"></i> Logout</a></li>
   							</ul>

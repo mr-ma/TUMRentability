@@ -367,7 +367,26 @@ public class Rentability extends Controller {
   	}
   }
   
-  
+  ///Provide requests which have been sent to current user equipments from other users
+  public static void userReceivedRequests()
+  {
+	  if(Security.isConnected()) {
+          User user = User.find("byEmail", Security.connected()).first();
+          List<Request> userRequest=  Request.find("offer.article.owner.id", user.id).fetch();
+       
+          ///iterate to change seen to true so that, notification in main page will be removed 
+          for(int i=0;i<userRequest.size();i++)
+         {
+        	 if(!userRequest.get(i).seen) 
+        		 {
+        		 	userRequest.get(i).seen=true;
+        		 	userRequest.get(i).save();
+        		 }
+         }
+          renderArgs.put("requests", userRequest);
+          render();
+  	}
+  }
   public static void changePassword()
   {
 	  
