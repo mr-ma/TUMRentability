@@ -22,5 +22,6 @@ User(u3):
  email: demo@tum.de
  phone: 08999999
  nick_name: Demo Mann
+ activated: True
  password: 4011ba02e51104c678c31a76a444485b38f3865e504d89c3a0a80b439bb1a237
 # demodemo

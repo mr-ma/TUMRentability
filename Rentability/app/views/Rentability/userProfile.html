@@ -1,4 +1,4 @@
-#{extends 'main.html' /}
+#{extends 'userHome.html' /}
 Wellcome to user management page!
 
 #{ifErrors}
@@ -11,8 +11,6 @@ Wellcome to user management page!
 <div class="tabbable"> <!-- Only required for left/right tabs -->
   <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Profile</a></li>
-    <li><a href="#tab2" data-toggle="tab">My Offers</a></li>
-    <li><a href="#tab3" data-toggle="tab">My Requests</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -77,11 +75,8 @@ Wellcome to user management page!
 #{/form}
 
 </div>
-    <div class="tab-pane" id="tab2">
-     <p>I'm second tab </p>
-    </div>
-    <div class="tab-pane" id="tab3">
-      <p>I'm the third tab </p> 
-    </div>
+
+	
+	
   </div>
 </div>

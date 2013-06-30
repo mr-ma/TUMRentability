@@ -2,11 +2,39 @@
 <classpath>
 	<classpathentry excluding="views/**" kind="src" path="app"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="elasticsearch-0.4"/>
 	<classpathentry kind="src" path="secure"/>
 	<classpathentry kind="src" path="crud"/>
 	
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="D:\play\framework\play-1.2.5.jar" sourcepath="D:/play/framework/src" />
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\akka-actor-1.2.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\akka-amqp-1.2.jar" sourcepath="C:\Users\Kasra\.ivy2\cache\se.scalablesolutions.akka\akka-amqp\sources\akka-amqp-1.2-sources.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\amqp-client-2.5.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\commons-cli-1.1.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\elasticsearch-0.18.5.jar" sourcepath="C:\Users\Kasra\.ivy2\cache\org.elasticsearch\elasticsearch\sources\elasticsearch-0.18.5-sources.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\jakarta-regexp-1.4.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\lucene-analyzers-3.5.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\lucene-core-3.5.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\lucene-highlighter-3.5.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\lucene-memory-3.5.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\lucene-queries-3.5.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\protobuf-java-2.4.1.jar"/>
+	<classpathentry kind="lib" path="D:\play\TUMRentability\Rentability\lib\scala-library-2.9.1.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\akka-actor-1.1.2.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\akka-amqp-1.1.2.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\amqp-client-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\commons-cli-1.1.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\elasticsearch-0.17.6.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\jakarta-regexp-1.4.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\lucene-analyzers-3.3.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\lucene-core-3.3.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\lucene-highlighter-3.3.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\lucene-memory-3.3.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\lucene-queries-3.3.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\play-elasticsearch.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\protobuf-java-2.3.0.jar"/>
+	<classpathentry kind="lib" path="D:\play\modules\elasticsearch-0.4\lib\scala-library-2.9.0-1.jar"/>
 	<classpathentry kind="lib" path="D:\play\framework\lib\activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="D:\play\framework\lib\antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="D:\play\framework\lib\asm-all-3.3.1.jar"/>

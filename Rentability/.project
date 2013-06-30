@@ -15,7 +15,10 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.playframework.playclipse.playNature</nature>
 	</natures>
-	<linkedResources><link><name>secure</name><type>2</type><location>D:/play/modules/secure/app</location></link>
+	<linkedResources><link><name>elasticsearch-0.4</name><type>2</type><location>D:/play/modules/elasticsearch-0.4/app</location></link>
+<link><name>conf/elasticsearch-0.4</name><type>2</type><location>D:/play/modules/elasticsearch-0.4/conf</location></link>
+<link><name>public/elasticsearch-0.4</name><type>2</type><location>D:/play/modules/elasticsearch-0.4/public</location></link>
+<link><name>secure</name><type>2</type><location>D:/play/modules/secure/app</location></link>
 <link><name>conf/secure</name><type>2</type><location>D:/play/modules/secure/conf</location></link>
 <link><name>public/secure</name><type>2</type><location>D:/play/modules/secure/public</location></link>
 <link><name>crud</name><type>2</type><location>D:/play/modules/crud/app</location></link>

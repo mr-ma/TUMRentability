@@ -1,0 +1,59 @@
+#{extends 'userHome.html' /}
+
+
+<p>In this page you can review your requests!</p>
+
+#{ifErrors}
+    <p class="error">
+        ${errors[0]}
+    </p>
+#{/ifErrors}
+
+
+ <!--------------------- User requests---------------------->
+   
+   <h4> Your requests details: </h4>
+   <p>You have ${requests.size()} request(s)<p>
+
+     
+     <ul>
+      	<table class="table table-hover">
+      	<thead>
+    	<tr>
+      		<th>Equipment</th>
+      		<th>Start Date</th>
+      		<th>End Date</th>
+      		<th>Owner</th>
+      		<th>Email</th>
+      		<th>Phone</th>
+      		<th>State</th>
+    	</tr>
+  		</thead>
+      	#{list items:requests, as:'request' }
+		<tr #{if request.state==5} class="success" #{/if} #{else}class="warning" #{/else}>
+    		<td>
+    		${request.offer.article.name}
+    		</td>
+    		<td>
+    		${request.startTime}
+    		</td>
+    		<td>
+    		${request.endTime}
+    		</td>
+    		
+    		<td>
+    		${request.offer.article.owner.nick_name}
+    		</td>
+    		<td>
+    		${request.offer.article.owner.email} 
+    		</td>
+    		<td>
+    		 	#{if request.state==5} ${request.offer.article.owner.phone} #{/if} #{else}Not applicable#{/else} 
+    		</td>
+    		<td>
+    		#{if request.state==5} Approved #{/if} #{else} Pending #{/else}
+    		</td>
+		 	</tr>
+    #{/list}
+	</table>
+	</ul>   

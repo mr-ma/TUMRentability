@@ -16,6 +16,10 @@ GET     /userManagement/{id}                    Rentability.userManagement2
 POST    /userManagement                         Rentability.updateUser
 GET     /userProfile/{id}                       Rentability.userProfile2
 POST    /userProfile/{id}*                      Rentability.updateUser
+GET     /userArticles                           Rentability.userArticles 
+GET     /userRequests                           Rentability.userRequests
+GET     /changePassword                         Rentability.changePassword 
+POST    /changePassword                         Rentability.updatePassword
 GET		/search/{search_string}					Search.index
 
 # Ignore favicon requests
