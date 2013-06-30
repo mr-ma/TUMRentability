@@ -32,12 +32,16 @@ public class Application extends Controller {
     	}
     }
 	
+	@Before
+	static void addDefaults() {
+	    renderArgs.put("mainCates", Inventory.getAllMainCategories());
+	}
+	
 
 	//Rendering the index page
     public static void index() {
     	
     	List<Offer> offers = Inventory.getAllOffers();
-    	
     	render(offers);
     }
     

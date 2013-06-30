@@ -26,6 +26,11 @@ import play.modules.elasticsearch.search.SearchResults;
 
 
 public class Search extends Controller {
+	
+	@Before
+	static void addDefaults() {
+	    renderArgs.put("mainCates", Inventory.getAllMainCategories());
+	}
 
 	/**
 	 * Generates a "fuzzy like this query" with the provided search string, and renders a list of the result offers to the index page.

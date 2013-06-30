@@ -31,6 +31,11 @@ public class Rentability extends Controller {
 //            	renderArgs.put("user", "guest");
         }
     }
+	
+	@Before
+	static void addDefaults() {
+	    renderArgs.put("mainCates", Inventory.getAllMainCategories());
+	}
 
 	
 	//Rendering the (personalized) index page

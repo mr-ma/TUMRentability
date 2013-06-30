@@ -101,35 +101,11 @@
 						<div class="row-fluid menu-wrapper">
 							<ul class="obsm">
 								<li><a href="@{Application.index()}">Home</a></li>
-								<li><a>Summer Sports</a>
-									<ul>
-										<li><a>Sports A</a></li>
-										<li><a>Sports B</a></li>
-										<li><a>Sports C</a></li>
-									</ul>
-								</li>
-								<li><a>Winter Sports</a>
-									<ul>
-										<li><a>Skiing</a></li>
-										<li><a>Snowboarding</a></li>
-										<li><a>Cross-Country</a></li>
-										<li><a>Sledding</a></li>
-									</ul>
-								</li>
-								<li><a>Water Sports</a>
-									<ul>
-										<li><a>Sports A</a></li>
-										<li><a>Sports B</a></li>
-										<li><a>Sports C</a></li>
-									</ul>
-								</li>
-								<li><a>Indoor Sports</a>
-									<ul>
-										<li><a>Sports A</a></li>
-										<li><a>Sports A</a></li>
-										<li><a>Sports A</a></li>
-									</ul>
-								</li>
+								#{list items:mainCates, as:'mainCate'}
+									<li><a href="@{Search.index(mainCate.name)}">${mainCate.name}</a>
+									    <ul>#{mytags.getSubCate mainCate.id/}</ul>
+									</li>
+								#{/list}
 								<li><a href="@{Application.aboutUs()}">About us</a></li>
 								
 							</ul>
