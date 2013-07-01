@@ -59,11 +59,12 @@ public class Rentability extends Controller {
     }
     
     //Creating a new Offer
-    public static void saveOffer(Blob image, String articleName, String description, String name, 
+    public static void saveOffer(Blob image, String articleName, String description, String name, String subName, 
     		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
     	
     	validation.required(articleName);
     	validation.required(description);
+    	validation.required(subName).message("Please specify a Subcategory");
     	validation.required(pickUpAddress);
     	validation.required(startTime);
     	//Make sure the date is entered in this format DD.MM.YYYY
@@ -76,7 +77,6 @@ public class Rentability extends Controller {
     	
     	if(validation.hasErrors())
     	{
-    		System.out.println(image.getFile().getAbsolutePath());
     		List<Category> categories = Category.findAll();
     		render("@createOffer", articleName, description, categories, pickUpAddress,
     				startTime, endTime, price, insurance);
@@ -86,11 +86,10 @@ public class Rentability extends Controller {
     		boolean insuranceRequired;
     		
     		List<Category> categories = Category.findAll();
-        	Category c = categories.get(Integer.valueOf(name) - 1);
-        	
+    		Category c = categories.get(Integer.valueOf(subName) - 1);
+
         	//Retrieving the logged in user
-        	User u = new User("","","","","","");
-        	//User u = (User)renderArgs.get("user");
+        	User u = (User)renderArgs.get("user");
         	
         	//null value to be implemented - represents the user (ie owner)
         	Article a = new Article(articleName, description, u, c, image);
