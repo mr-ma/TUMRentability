@@ -25,45 +25,65 @@ $(document).ready(function(){
 
 #{form @saveOffer(), enctype:'multipart/form-data', class:'form-horizontal'}
 
-	#{field 'image'}
-	    <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputImage">Article Image:</label>
-	        <div class="controls">
-	            <input type="file" name="${field.name}">
-	            <span class="error">${field.error}</span>
-	        </div>
-	    </div>
-	#{/field}
-	#{field 'articleName'}
-	    <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Article Name:</label>
-	        <div class="controls">
-	            <input type="text" name="${field.name}" size="16" value="${articleName}"> *
-	            <span class="error">${field.error}</span>
-	        </div>
-	    </div>
-        
-    #{/field}
-    #{field 'description'}
-        <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputDescription">Description:</label>
-	        <div class="controls">
-	            <textarea name="${field.name}" cols="15" rows="3"></textarea> *
-	            <span class="error">${field.error}</span>
-	        </div>
-	    </div>
-    #{/field}
-    
-    <div class="control-group ${field.errorClass}">
-        <label class="control-label" for="inputCategory">Category Name:</label>
+	<div class="control-group">
+        <label class="control-label" for="inputArticle">My articles:</label>
         <div class="controls">
-            #{select 'name', items:categories, valueProperty:'id', labelProperty:'name', id: 'selectMainCate'/}
-            <span id="selectSubCate">
-              #{include 'Rentability/selectSubCate.html' /}
-            </span>
-            <span class="error">${field.error}</span>
+            #{select 'article', items:articles, valueProperty:'id', labelProperty:'name'/}
+            <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">New article</button>
         </div>
     </div>
+    
+		<div id="demo" class="collapse">
+			#{field 'image'}
+		    <div class="control-group ${field.errorClass}">
+		        <label class="control-label" for="inputImage">Article Image:</label>
+		        <div class="controls">
+		            <input type="file" name="${field.name}">
+		            <span class="error">${field.error}</span>
+		        </div>
+		    </div>
+		#{/field}
+		#{field 'articleName'}
+		    <div class="control-group ${field.errorClass}">
+		        <label class="control-label" for="inputName">Article Name:</label>
+		        <div class="controls">
+		            <input type="text" name="${field.name}" size="16" value="${articleName}"> *
+		            <span class="error">${field.error}</span>
+		        </div>
+		    </div>
+	        
+	    #{/field}
+	    #{field 'articleDescription'}
+	        <div class="control-group ${field.errorClass}">
+		        <label class="control-label" for="inputDescription">Article Description:</label>
+		        <div class="controls">
+		            <textarea name="${field.name}" cols="15" rows="3"></textarea> *
+		            <span class="error">${field.error}</span>
+		        </div>
+		    </div>
+	    #{/field}
+	    
+	    <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputCategory">Category Name:</label>
+	        <div class="controls">
+	            #{select 'name', items:categories, valueProperty:'id', labelProperty:'name', id: 'selectMainCate'/}
+	            <span id="selectSubCate">
+	              #{include 'Rentability/selectSubCate.html' /}
+	            </span>
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+		</div>
+    
+    #{field 'offerDescription'}
+        <div class="control-group ${field.errorClass}">
+		        <label class="control-label" for="inputDescription">Offer Description:</label>
+		        <div class="controls">
+		        	<textarea name="${field.name}" cols="15" rows="3"></textarea> *
+		    	<span class="error">${field.error}</span>
+			</div>
+		</div>
+    #{/field}
     
     #{field 'pickUpAddress'}
         <div class="control-group ${field.errorClass}">

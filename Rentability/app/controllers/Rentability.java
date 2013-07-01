@@ -16,6 +16,7 @@ import tools.Mailing;
 
 import models.*;
 import play.data.validation.*;
+import play.data.validation.Error;
 @With(Secure.class)
 public class Rentability extends Controller {
 
@@ -47,8 +48,12 @@ public class Rentability extends Controller {
     
 	//Rendering the create offer page using all existing categories
     public static void createOffer() {
+    	User u = (User)renderArgs.get("user");
+    	
     	List<Category> categories = Inventory.getAllMainCategories();
-    	render(categories);
+    	List<Article> articles = Inventory.getArticlesByOwner(u.id);
+    	
+    	render(categories, articles);
     }
     
     public static void reloadSubCate(String name) {
@@ -59,12 +64,22 @@ public class Rentability extends Controller {
     }
     
     //Creating a new Offer
-    public static void saveOffer(Blob image, String articleName, String description, String name, String subName, 
-    		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
+    public static void saveOffer(String article, Blob image, String articleName, String articleDescription, String name, String subName, 
+    		String offerDescription, String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
     	
-    	validation.required(articleName);
-    	validation.required(description);
-    	validation.required(subName).message("Please specify a Subcategory");
+    	Article a = null;
+    	Category c = null;
+    	User u = (User)renderArgs.get("user");
+    	
+    	//An existing article has been choosen
+    	if(!articleName.isEmpty()){
+    		
+    		validation.required(articleName);
+        	validation.required(articleDescription);
+        	validation.required(subName).message("Please specify a Subcategory");
+    	}
+    	
+    	validation.required(offerDescription);
     	validation.required(pickUpAddress);
     	validation.required(startTime);
     	//Make sure the date is entered in this format DD.MM.YYYY
@@ -78,21 +93,23 @@ public class Rentability extends Controller {
     	if(validation.hasErrors())
     	{
     		List<Category> categories = Category.findAll();
-    		render("@createOffer", articleName, description, categories, pickUpAddress,
+    		List<Article> articles = Inventory.getArticlesByOwner(u.id);
+    		render("@createOffer", articles, articleName, articleDescription, categories, offerDescription, pickUpAddress,
     				startTime, endTime, price, insurance);
     	}
     	else
     	{
     		boolean insuranceRequired;
     		
-    		List<Category> categories = Category.findAll();
-    		Category c = categories.get(Integer.valueOf(subName) - 1);
-
-        	//Retrieving the logged in user
-        	User u = (User)renderArgs.get("user");
-        	
-        	//null value to be implemented - represents the user (ie owner)
-        	Article a = new Article(articleName, description, u, c, image);
+        	//Create new article or retrieve existing one
+    		if(!articleName.isEmpty()) {
+    			List<Category> categories = Category.findAll();
+        		c = categories.get(Integer.valueOf(subName) - 1);
+        		a = new Article(articleName, articleDescription, u, c, image);
+    		}
+    		else {
+    			a = Article.findById(Long.parseLong(article));
+    		}
         	
         	//Conversion of String Values to Dates, Boolean, etc.
         	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
