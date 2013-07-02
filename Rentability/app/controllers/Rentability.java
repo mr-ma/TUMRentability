@@ -78,14 +78,17 @@ public class Rentability extends Controller {
         	validation.required(articleDescription);
         	validation.required(subName).message("Please specify a Subcategory");
     	}
+    	else{
+    		validation.required(article);
+    	}
     	
     	validation.required(offerDescription);
     	validation.required(pickUpAddress);
     	validation.required(startTime);
     	//Make sure the date is entered in this format DD.MM.YYYY
-    	validation.match(startTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
+    	validation.match(startTime, "\\d{2}/\\d{2}/\\d{4}").message("Please indicate the Date in the given format!");
     	validation.required(endTime);
-    	validation.match(endTime, "\\d{2}\\.\\d{2}\\.\\d{4}").message("Please indicate the Date in the given format!");
+    	validation.match(endTime, "\\d{2}/\\d{2}/\\d{4}").message("Please indicate the Date in the given format!");
     	validation.required(price);
     	//Ensures that the price field is followed by 2 digits after the point
     	validation.match(price, "\\d+\\.\\d{2}").message("Please indicate the Price in the given format!");
@@ -112,7 +115,7 @@ public class Rentability extends Controller {
     		}
         	
         	//Conversion of String Values to Dates, Boolean, etc.
-        	SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 			try {
 				Date start = sdf.parse(startTime);
 				Date end = sdf.parse(endTime);
@@ -124,8 +127,8 @@ public class Rentability extends Controller {
 				
 				double doublePrice = Double.parseDouble(price);
 				
-				//null value to be implemented - represents the description
-	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, null, start, end, a);
+				//Insert new article - a=the choosen or created article
+	        	new Offer(pickUpAddress, insuranceRequired, 0, doublePrice, offerDescription, start, end, a);
 	        	
 	        	flash.success("Your offer has successfully been created!");
 	        	Application.index();

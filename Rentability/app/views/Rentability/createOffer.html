@@ -20,6 +20,18 @@ $(document).ready(function(){
 
 </script>
 
+<script type="text/javascript">
+function changeSelect() {
+	
+	if (document.getElementById("articles").disabled) {
+		document.getElementById("articles").disabled = '';
+	}
+	else {
+		document.getElementById("articles").disabled = 'disabled';
+	}
+}
+</script>
+
 <h3>Offer your equipment!</h3>
 <p>All required fields are marked with an asterisk (*)</p>
 
@@ -28,8 +40,8 @@ $(document).ready(function(){
 	<div class="control-group">
         <label class="control-label" for="inputArticle">My articles:</label>
         <div class="controls">
-            #{select 'article', items:articles, valueProperty:'id', labelProperty:'name'/}
-            <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">New article</button>
+            #{select 'article', id:"articles", items:articles, valueProperty:'id', labelProperty:'name'/}
+            <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" onclick="changeSelect()">New article</button>
         </div>
     </div>
     
@@ -100,7 +112,7 @@ $(document).ready(function(){
 	        <label class="control-label" for="inputStartTime">Start Time:</label>
 	        <div class="controls" id = "datetimepicker3">
 	            <div class="input-append">
-	            <input type="text" data-format="dd.MM.yyyy" name="${field.name}" size="16" value="${startTime}">
+	            <input type="text" data-format="MM/dd/yyyy" name="${field.name}" size="16" value="${startTime}">
 	            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
 	            </div>
 	            *
@@ -121,7 +133,7 @@ $(document).ready(function(){
 	        <label class="control-label" for="inputEndTime">End Time:</label>
 	        <div class="controls " id="datetimepicker4">
 	            <div class="input-append">
-	            <input type="text" data-format="dd.MM.yyyy" name="${field.name}" size="16" value="${endTime}"> 
+	            <input type="text" data-format="MM/dd/yyyy" name="${field.name}" size="16" value="${endTime}"> 
 	            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
 	            </div>
 	            *
