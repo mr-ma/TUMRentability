@@ -71,28 +71,38 @@ public class Application extends Controller {
     	render(offer,requests,insurance,reservedDatesEmpty);
     }
     
-    //Rendering the registration page (and generating a unique ID for the captcha image)
+    /**
+     * Rendering the registration page (and generating a unique ID for the captcha image)*/
     public static void register() {
     	String randomID = Codec.UUID();
         render(randomID);
     }
     
-    //Rendering the Pending page
+    /**
+     * Rendering the Pending page*/
     public static void pending() {
     	render();
     }
     
-    //Rendering the Privacy Policy page
+    /**
+     * Rendering the Privacy Policy page*/
     public static void privacyPolicy() {
     	render();
     }
     
-    //Rendering the About Us page
+    /**
+     * Rendering the About Us page*/
     public static void aboutUs() {
     	render();
     }
     
-    //Registration of a new User
+    /**
+     * Registration of a new User
+     * @param user the User including all inserted values
+     * @param verifyPassword The verification password
+     * @param policyAgreement true if the checkbox has been clicked
+     * @param code The inserted registration code
+     * @param randomID The random id used to generate the captcha*/
     public static void saveUser(@Valid User user, String verifyPassword, @IsTrue String policyAgreement, @Required String code, String randomID) {
     	validation.required(verifyPassword);
         validation.equals(verifyPassword, user.password).message("Your password doesn't match");
@@ -128,7 +138,11 @@ public class Application extends Controller {
         
     }
     
-    //Generation of captcha images using the play libraries
+    /**
+     * Generates a captcha image for the registration process
+     * 
+     * @param id A unique id needed to generate the captcha
+     * */
     public static void captcha(String id) {
         Images.Captcha captcha = Images.captcha();
         //#000000 (ie black) represents the color of the captcha text
@@ -137,7 +151,12 @@ public class Application extends Controller {
         renderBinary(captcha);
     }
     
-    //Is invoked when the user clicks the confirmation link
+    /**
+     * Confirmation of a user who has just registered.
+     * Is invoked whenever a user clicks the confirm link in the confirmation email.
+     * 
+     * @param code Confirmation code for the user
+     * */
     public static void confirm(String code)
     {
     	User user = User.getUserByConfirmCode(code);
@@ -153,7 +172,13 @@ public class Application extends Controller {
     	index();
     }
     
-    //Generating a hash value using a given method for some data
+    /**
+     * Creates a hash representation of a given input string
+     * 
+     * @param data The input string that should be hashed
+     * @param hashMethod The way in which the string should be hashed (e.g. SHA-256, MD5, etc.)
+     * @return A hash representation of the "data" String
+     * */
     public static String getHash(String data, String hashMethod)
     {
     	MessageDigest md;
