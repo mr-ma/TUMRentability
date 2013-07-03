@@ -104,6 +104,9 @@ function checkValidDate() {
         <dd>${request.startTime.format('MM/dd/yyyy')} to ${request.endTime.format('MM/dd/yyyy')}</dd>
         #{/list}
         <dd>${reservedDatesEmpty}</dd>
+        <br />
+        <dt>Offeror:</dt>
+        <dd>${offer.article.owner.nick_name}</dd>
       </dl>
     </div>
   </div>
