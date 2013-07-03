@@ -5,6 +5,7 @@ import play.*;
 import play.data.validation.*;
 import play.db.jpa.*;
 import play.modules.elasticsearch.annotations.ElasticSearchEmbedded;
+import play.modules.elasticsearch.annotations.ElasticSearchIgnore;
 import play.modules.elasticsearch.annotations.ElasticSearchable;
 
 import org.elasticsearch.*;
@@ -17,18 +18,23 @@ import java.util.*;
 @ElasticSearchable
 public class Offer extends Model {
 
+	@ElasticSearchIgnore
 	@Required
 	public String pick_up_address;
 	
+	@ElasticSearchIgnore
 	@Required
 	public boolean insurance;
 	
+	@ElasticSearchIgnore
 	@Required
 	public int state;
 	
+	@ElasticSearchIgnore
 	@Required
 	public int countReviews;
 	
+	@ElasticSearchIgnore
 	@Required
 	@Column(precision=6, scale=2)
 	public double price;
@@ -36,14 +42,17 @@ public class Offer extends Model {
 	@Required
 	public String description;
 	
+	@ElasticSearchIgnore
 	@Required
 	@Temporal(TemporalType.DATE) 
 	public Date startTime;
 	
+	@ElasticSearchIgnore
 	@Required
 	@Temporal(TemporalType.DATE) 
 	public Date endTime;
 	
+	@ElasticSearchIgnore
 	@Required
 	@Temporal(TemporalType.DATE) 
 	public Date publicationTime;
