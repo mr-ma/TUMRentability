@@ -27,6 +27,9 @@ public class Offer extends Model {
 	public int state;
 	
 	@Required
+	public int countReviews;
+	
+	@Required
 	@Column(precision=6, scale=2)
 	public double price;
 	
@@ -41,6 +44,10 @@ public class Offer extends Model {
 	@Temporal(TemporalType.DATE) 
 	public Date endTime;
 	
+	@Required
+	@Temporal(TemporalType.DATE) 
+	public Date publicationTime;
+	
 	@ElasticSearchEmbedded(fields={"name", "description"})
 	@ManyToOne(optional = false)
 	public Article article;
@@ -51,11 +58,13 @@ public class Offer extends Model {
 		
 		this.pick_up_address = pick_up_address;		
 		this.insurance = insurance;		
-		this.state = state;		
+		this.state = state;
+		this.countReviews = 0;		
 		this.price = price;		
 		this.description = description;		
 		this.startTime = startTime;		
-		this.endTime = endTime;		
+		this.endTime = endTime;	
+		this.publicationTime = new Date();	
 		this.article = article;	
 		
 		create();
