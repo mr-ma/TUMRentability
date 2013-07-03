@@ -50,9 +50,10 @@ public class Application extends Controller {
 
 	//Rendering the index page
     public static void index() {
-    	
+     	List<Offer> newestOffers = Offer.find("select o from Offer o where o.state != '-1' order by publicationTime desc").fetch(5);
+    	List<Offer> mostPopularOffers = Offer.find("select o from Offer o where o.state != '-1' order by countReviews desc").fetch(5);
     	List<Offer> offers = Inventory.getAllOffers();
-    	render(offers);
+    	render(offers,newestOffers,mostPopularOffers);
     }
     
     
