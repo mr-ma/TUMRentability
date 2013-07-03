@@ -14,6 +14,66 @@
 #{/set}
 
 <!-- Start: PRODUCT LIST -->
+<table>
+	<tr>
+		<th style="font-size:18pt;">
+			The newest offers:<br /><br />
+		</th>
+		<th style="width:15px;"> <br /><br />
+		</th>
+		<th style="font-size:18pt;">
+			The most popular offers:<br /><br />
+		</th>
+	</tr>
+	<tr>
+		<td style="width:49%;border:solid black 1px;">
+		#{list items:newestOffers, as:'offer'}
+		                <div style="border:solid grey 0px;">
+		                  <img style="width:300px;" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
+		                    <h4>${offer.article.name}</h4>
+		                    <p>
+		                      ${offer.price} EUR<br/>
+		                      ${offer.description}
+		                    </p>
+		                    <p >
+		                      <a href="@{offerDetails(offer.id)}" class="btn btn-warning ">Read more</a>
+		                    </p>
+		                </div>
+		                <hr />
+		                <br />
+            #{/list}
+		</td>
+		
+		<td></td>
+		
+		<td style="width:49%;border:solid black 1px;">
+		#{list items:mostPopularOffers, as:'offer'}
+		                <div style="border:solid grey 0px;">
+		                  <img style="width:300px;" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
+		                    <h4>${offer.article.name}</h4>
+		                    <p>
+		                      ${offer.price} EUR<br/>
+		                      ${offer.description}
+		                    </p>
+		                    <p >
+		                      <a href="@{offerDetails(offer.id)}" class="btn btn-warning ">Read more</a>
+		                    </p>
+		                </div>
+		                <hr />
+		                <br />
+            #{/list}
+		</td>
+	</tr>
+</table>
+<!-- End: PRODUCT LIST -->
+
+
+
+
+
+
+
+<!-- Start: PRODUCT LIST OLD !!!!!!!!
 <div class="container">
     
     
@@ -24,57 +84,54 @@
             #{list items:offers, as:'offer'}
                 
                 #{if (count%3 == 0)}
-	                  #{if (count != 0)}</ul><ul class="thumbnails">#{/if}
-	                  
-		              <li class="span3">
-		                <div class="thumbnail">
-		                  <img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
-		                  <div class="caption">
-		                    <h4>${offer.article.name}</h4>
-		                    <p>
-		                      ${offer.price} EUR<br/>
-		                      ${offer.description}
-		                    </p>
-		                  </div>
-		                  <div class="widget-footer">
-		                    <p >
-		                      <a href="@{offerDetails(offer.id)}" class="btn btn-warning ">Read more</a>
-		                    </p>
-		                  </div>
-		                </div>
-		              </li>
-	              
-	            #{/if}
-	            #{else}
-	              <li class="span3">
-	                <div class="thumbnail">
-	                  <img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
-	                  <div class="caption">
-	                    <h4>${offer.article.name}</h4>
-	                    <p>
-	                      ${offer.price} EUR<br/>
-	                      ${offer.description}
-	                    </p>
-	                  </div>
-	                  <div class="widget-footer">
-	                    <p>
-	                      <a href="@{offerDetails(offer.id)}" class="btn btn-warning ">Read more</a>
-	                    </p>
-	                  </div>
-	                </div>
-	              </li>
-	            #{/else}
-	            %{count = count + 1;}%
+#{if (count != 0)}</ul><ul class="thumbnails">#{/if}
+
+<li class="span3">
+<div class="thumbnail">
+<img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
+<div class="caption">
+<h4>${offer.article.name}</h4>
+<p>
+${offer.price} EUR<br/>
+${offer.description}
+</p>
+</div>
+<div class="widget-footer">
+<p >
+<a href="@{offerDetails(offer.id)}" class="btn btn-warning ">Read more</a>
+</p>
+</div>
+</div>
+</li>
+
+#{/if}
+#{else}
+<li class="span3">
+<div class="thumbnail">
+<img data-src="holder.js/300x200" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
+<div class="caption">
+<h4>${offer.article.name}</h4>
+<p>
+${offer.price} EUR<br/>
+${offer.description}
+</p>
+</div>
+<div class="widget-footer">
+<p>
+<a href="@{offerDetails(offer.id)}" class="btn btn-warning ">Read more</a>
+</p>
+</div>
+</div>
+</li>
+#{/else}
+%{count = count + 1;}%
             #{/list}
             
         </div>
         
     
-		<!--${offer.article.name} - ${offer.description} - ${offer.price} <br/>-->
-		<!--<img src = "@{Inventory.articleImage(offer.article.id)}"> <br/>-->
+<!--${offer.article.name} - ${offer.description} - ${offer.price} <br/>-->
+<!--<img src = "@{Inventory.articleImage(offer.article.id)}"> <br/>-->
    
 </div>
-<!-- End: PRODUCT LIST -->
-
-
-
+<!-- End: PRODUCT LIST  OLD !!!!!!!!-->
