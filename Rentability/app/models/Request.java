@@ -43,7 +43,9 @@ public class Request extends Model {
 		this.adjustedPrice = adjustedPrice;		
 		this.startTime = startTime;		
 		this.endTime = endTime;		
-		this.offer = offer;	
+		this.offer = offer;
+		offer.countReviews++;
+		offer.save();	
 		this.user = user;
 		
 		create();
