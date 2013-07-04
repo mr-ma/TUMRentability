@@ -1,0 +1,50 @@
+Category(cat1):
+ name: Summer Sports DE
+
+Category(cat2):
+ name: Winter Sports DE
+ 
+Category(cat3):
+ name: Water Sports DE
+ 
+Category(cat4):
+ name: Indoor Sports DE
+ 
+Category(cat5):
+ name: Outdoor Sports DE
+
+Category(cat21):
+ name: Skis
+ parent_category: [cat2]
+ 
+Category(cat22):
+ name: Sleds
+ parent_category: [cat2]
+ 
+Category(cat12):
+ name: Skates
+ parent_category: [cat1]
+ 
+Category(cat11):
+ name: Bikes
+ parent_category: [cat1]
+ 
+Category(cat31):
+ name: Boating
+ parent_category: [cat3]
+ 
+Category(cat32):
+ name: Water Accessories
+ parent_category: [cat3]
+ 
+Category(cat41):
+ name: Indoor Accessories
+ parent_category: [cat4]
+ 
+Category(cat51):
+ name: Hiking
+ parent_category: [cat5]
+ 
+Category(cat52):
+ name: Climbing
+ parent_category: [cat5]

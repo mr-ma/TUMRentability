@@ -6,8 +6,8 @@
 <script src="@{'/public/javascripts/coffee-script.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 <script src="@{'/public/javascripts/passwordStrength.coffee'}" type="text/coffeescript"></script>
 
-<h3>Create your account and start renting sports equipment!</h3>
-<p>All required fields are marked with an asterisk (*)</p>
+<h3>&{'view.register.header'}!</h3>
+<p>&{'view.register.instruct'} (*)</p>
 
 #{ifErrors}
     <p class="error">
@@ -18,7 +18,7 @@
 #{form @saveUser(), class:'form-horizontal'}
     #{field 'user.nick_name'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Nick Name:</label>
+	        <label class="control-label" for="inputName">&{'view.register.nickname'}:</label>
 	        <div class="controls">
 	            <input type="text" name="${field.name}" size="16" value="${user?.nick_name}"> *
 	            <span class="error">${field.error}</span>
@@ -27,7 +27,7 @@
     #{/field}
     #{field 'user.first_name'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">First Name:</label>
+	        <label class="control-label" for="inputName">&{'view.register.firstname'}:</label>
 	        <div class="controls">
 	            <input type="text" name="${field.name}" size="16" value="${user?.first_name}"> *
 	            <span class="error">${field.error}</span>
@@ -36,7 +36,7 @@
     #{/field}
     #{field 'user.last_name'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Last Name:</label>
+	        <label class="control-label" for="inputName">&{'view.register.lastname'}:</label>
 	        <div class="controls">
 	            <input type="text" name="${field.name}" size="16" value="${user?.last_name}"> *
 	            <span class="error">${field.error}</span>
@@ -45,7 +45,7 @@
     #{/field}
     #{field 'user.email'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Email:</label>
+	        <label class="control-label" for="inputName">&{'view.register.email'}:</label>
 	        <div class="controls">
 	            <input type="text" name="${field.name}" size="16" value="${user?.email}"> *
 	            <span class="error">${field.error}</span>
@@ -54,7 +54,7 @@
     #{/field}
     #{field 'user.phone'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Phone:</label>
+	        <label class="control-label" for="inputName">&{'view.register.phone'}:</label>
 	        <div class="controls">
 	            <input type="text" name="${field.name}" size="16" value="${user?.phone}">
 	            <span class="error">${field.error}</span>
@@ -63,7 +63,7 @@
     #{/field}
     #{field 'user.password'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Password:</label>
+	        <label class="control-label" for="inputName">&{'view.register.password'}:</label>
 	        <div class="controls">
 	            <input type="password" id="passwordStrength" name="${field.name}" class="span3 passwordTarget control-group" size="16" value="${user?.password}" > *
 	            <label  for ="passwordStrength" class="help-inline" name="passwordStrengthLabel" id="passwordStrengthLabel" />
@@ -73,7 +73,7 @@
     #{/field}
     #{field 'verifyPassword'}
         <div class="control-group ${field.errorClass}">
-	        <label class="control-label" for="inputName">Verify password:</label>
+	        <label class="control-label" for="inputName">&{'view.register.verifypassword'}:</label>
 	        <div class="controls">
 	            <input type="password" name="${field.name}" class="span3 passwordTarget control-group" size="16" value="${verifyPassword}"> *
 	            <span class="error">${field.error}</span>
@@ -84,7 +84,7 @@
         <div class="control-group ${field.errorClass}">
 	        
 	        <div class="controls">
-	            <strong>Do you agree to our <a href="@{privacyPolicy()}">Privacy Policy</a>?</strong> <input type="checkbox" name="${field.name}" value="true">
+	            <strong>&{'view.register.agree'} <a href="@{privacyPolicy()}">&{'view.main.privacypolicy'}</a>?</strong> <input type="checkbox" name="${field.name}" value="true">
 	            <span class="error">${field.error}</span>
 	        </div>
 	    </div>
@@ -93,7 +93,7 @@
     <div class="control-group">
 	    
 	    <div class="controls">
-	    <label for="code">Please type the code below to verfify your registration: </label>
+	    <label for="code">&{'view.register.verifcode'}: </label>
 	    <img src="@{Application.captcha(randomID)}" />
 	    <br />
 	    <input type="text" name="code" id="code" size="18" value="" /> *
@@ -102,7 +102,7 @@
 	</div> 
     <div class="control-group">
         <div class="controls">
-        <input type="submit" value="Create Account" class="btn"> <a href="@{index()}">Cancel</a>   
+        <input type="submit" value="Create Account" class="btn"> <a href="@{index()}">&{'view.register.cancel'}</a>   
         </div> 
     </div> 
 #{/form}

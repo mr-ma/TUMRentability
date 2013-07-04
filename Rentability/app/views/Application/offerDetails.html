@@ -87,33 +87,33 @@ function checkValidDate() {
     </div>
     <div class="span6">
       <dl class="dl-horizontal">
-        <dt>Article description:</dt>
+        <dt>&{'view.offerdetails.articledescription'}:</dt>
         <dd>${offer.article.description}</dd>
-        <dt>Offer description:</dt>
+        <dt>&{'view.offerdetails.offerdescription'}:</dt>
         <dd>${offer.description}</dd>
-        <dt>Insurance:</dt>
+        <dt>&{'view.offerdetails.insurance'}:</dt>
         <dd>${insurance}</dd>
-        <dt>Pick-up address:</dt>
+        <dt>&{'view.offerdetails.pickupaddress'}:</dt>
         <dd>${offer.pick_up_address}</dd>
-        <dt>Price per day:</dt>
+        <dt>&{'view.offerdetails.priceperday'}:</dt>
         <dd> ${offer.price} EUR</dd>
-        <dt>Availability</dt>
+        <dt>&{'view.offerdetails.availability'}:</dt>
         <dd> ${offer.startTime.format('MM/dd/yyyy')} to ${offer.endTime.format('MM/dd/yyyy')} </dd>
-        <dt>Already reserved:</dt>
+        <dt>&{'view.offerdetails.reserved'}:</dt>
         #{list items:requests, as:'request'}
         <dd>${request.startTime.format('MM/dd/yyyy')} to ${request.endTime.format('MM/dd/yyyy')}</dd>
         #{/list}
         <dd>${reservedDatesEmpty}</dd>
         <br />
-        <dt>Offeror:</dt>
+        <dt>&{'view.offerdetails.offeror'}:</dt>
         <dd>${offer.article.owner.nick_name}</dd>
       </dl>
     </div>
   </div>
   </br>
   <div class="row-fluid">
-      <p class="lead">You want to rent this item? Send a request for this offer:</p>
-      <span id="invalidDateMessage"><u>Please enter two valid dates that are in the timeperiod of the offer and doen't overlap with already reserved timeperiods. Then the price will be calculated and you are able to rent the item.</u><br /><br /></span>
+      <p class="lead">&{'view.offerdetails.rentintruct'}:</p>
+      <span id="invalidDateMessage"><u>&{'view.offerdetails.dateintruct'}</u><br /><br /></span>
 		#{form @Rentability.saveRequest(), class:'form-horizontal'}
 		    #{field 'offerID'}
 	            <input type="hidden" name="${field.name}" value="${offer.id}">
@@ -121,7 +121,7 @@ function checkValidDate() {
 	
 		    #{field 'startTime'}
 		        <div class="control-group ${field.errorClass}">
-			        <label class="control-label" for="inputImage">Start Time:</label>
+			        <label class="control-label" for="inputImage">&{'view.offerdetails.starttime'}:</label>
 			        <div class="controls" id="datetimepicker1">
 			            <div class="input-append">
 				            <input onchange="checkValidDate()" data-format="MM/dd/yyyy" type="text" name="${field.name}" id="startTime" size="16" value="${startTime}">
@@ -140,7 +140,7 @@ function checkValidDate() {
 		    #{/field}
 		    #{field 'endTime'}
 		        <div class="control-group ${field.errorClass}">
-			        <label class="control-label" for="inputImage">End Time:</label>
+			        <label class="control-label" for="inputImage">&{'view.offerdetails.endtime'}:</label>
 			        <div class="controls" id="datetimepicker2">
 			            <div class="input-append">
 				            <input onchange="checkValidDate()" data-format="MM/dd/yyyy" type="text" name="${field.name}" id="endTime" size="16" value="${endTime}">
@@ -160,7 +160,7 @@ function checkValidDate() {
 		    
 		    #{field 'adjustedPrice'}
 		        <div class="control-group ${field.errorClass}">
-			        <label class="control-label" for="inputImage">Calculated price:</label>
+			        <label class="control-label" for="inputImage">&{'view.offerdetails.caledprice'}:</label>
 			        <div class="controls">
 			            <input type="text" readonly="readonly" id="calculatedPrice" name="${field.name}" size="5" value="">
 			            <span class="error">${field.error}</span>
@@ -171,7 +171,7 @@ function checkValidDate() {
 		    <div class="control-group ">
 			        <label class="control-label" for="inputImage"></label>
 			        <div class="controls">
-			            <input class="btn" id="sendrequestbutton" style="display:none;" type="submit" value="Send request!">
+			            <input class="btn" id="sendrequestbutton" style="display:none;" type="submit" value="&{'view.offerdetails.sendrequest'}!">
 			        </div>
 			    </div>
 

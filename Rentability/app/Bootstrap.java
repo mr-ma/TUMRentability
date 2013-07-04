@@ -1,7 +1,12 @@
 import java.util.List;
+import java.util.Locale;
 
-import models.*;
+import models.Article;
+import models.Category;
+import models.Offer;
+import models.User;
 import play.db.DB;
+import play.i18n.Lang;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.test.Fixtures;
@@ -11,8 +16,8 @@ import play.test.Fixtures;
 public class Bootstrap extends Job {
 
 	public void doJob(){
-		if(Category.count() == 0){
-		Fixtures.loadModels("categories.yml");
+		if(Category.count() == 0 ){
+			Fixtures.loadModels("categories.yml");
 		}
 		
 		if(User.count() == 0){

@@ -36,7 +36,7 @@
                     <div class="span5">
                         #{form @Search.index(), id:'search', class:'form-horizontal'}
                             <input type="text" name="search_string" class="input-medium search-query span9">
-                            <button type="submit" class="btn">Search</button>
+                            <button type="submit" class="btn">&{'view.main.searchbutton'}</button>
                         #{/form}
                     </div>
                     
@@ -75,11 +75,11 @@
                        		#{/secure.check}
                         
                         	<div class="btn-group">
-  							<a class="btn btn btn-info" href="#"><i class="icon-globe icon-white"></i> English</a>
+  							<a class="btn btn btn-info" href="#"><i class="icon-globe icon-white"></i> #{mytags.getLang/}</a>
   							<a class="btn btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
   							<ul class="dropdown-menu">
-  								<li><a href="#"><i class="i"></i> English</a></li>
-    							<li><a href="#"><i class="i"></i> Deutsch</a></li>
+  								<li><a class="sublan" href="@{Application.setLanguageEN()}"><i class="i"></i> English</a></li>
+    							<li><a class="sublan" href="@{Application.setLanguageDE()}"><i class="i"></i> Deutsch</a></li>
   							</ul>
 							</div>
 						</div>
@@ -125,19 +125,22 @@
                         <!--sidebar menu goes here-->
 						<div class="row-fluid menu-wrapper">
 							<ul class="obsm">
-								<li><a href="@{Application.index()}">Home</a></li>
+								<li><a href="@{Application.index()}">&{'view.main.home'}</a></li>
 								#{list items:mainCates, as:'mainCate'}
-									<li><a href="@{Search.index(mainCate.name)}">${mainCate.name}</a>
+								    %{
+								        mainCateName = 'view.main.maincate.' + mainCate.name.joinWithDot();
+								    }%
+									<li><a href="@{Search.index(mainCate.name)}">&{mainCateName}</a>
 									    <ul>#{mytags.getSubCate mainCate.id/}</ul>
 									</li>
 								#{/list}
-								<li><a href="@{Application.aboutUs()}">About us</a></li>
+								<li><a href="@{Application.aboutUs()}">&{'view.main.aboutus'}</a></li>
 								
 							</ul>
 						</div>
 						<!--end sidebar menu-->
 						<div class="row-fluid">
-						    <a href="@{Rentability.createOffer()}" class="btn btn-large btn-block btn-lend" type="button">I Want To Lend</a>
+						    <a href="@{Rentability.createOffer()}" class="btn btn-large btn-block btn-lend" type="button">&{'view.main.lendbutton'}</a>
 						</div>
 						<br>
 						<div class="row-fluid" style="border:solid blue 2px;">
@@ -173,8 +176,8 @@
         <div id="footer">
             <div class="container  ">
                 <ul class="breadcrumb text-center credit">
-                    <li><a href="@{Application.aboutUs()}">About us</a> <span class="divider">/</span></li>
-                    <li><a href="@{Application.privacyPolicy()}">Privacy Policy</a>
+                    <li><a href="@{Application.aboutUs()}">&{'view.main.aboutus'}</a> <span class="divider">/</span></li>
+                    <li><a href="@{Application.privacyPolicy()}">&{'view.main.privacypolicy'}</a>
                 </ul>
             </div>
         </div>

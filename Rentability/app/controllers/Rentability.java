@@ -1,22 +1,23 @@
 package controllers;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.Email;
-import org.apache.commons.mail.SimpleEmail;
-
+import models.Article;
+import models.Category;
+import models.Offer;
+import models.Request;
+import models.User;
+import play.data.validation.Required;
 import play.db.jpa.Blob;
-import play.libs.Mail;
-import play.mvc.*;
+import play.i18n.Messages;
+import play.mvc.Before;
+import play.mvc.Controller;
+import play.mvc.With;
+import tags.MyTags;
 import tools.Mailing;
-
-import models.*;
-import play.data.validation.*;
-import play.data.validation.Error;
+import tools.StringExtensions;
 @With(Secure.class)
 public class Rentability extends Controller {
 
@@ -51,6 +52,11 @@ public class Rentability extends Controller {
     	User u = (User)renderArgs.get("user");
     	
     	List<Category> categories = Inventory.getAllMainCategories();
+    	
+    	for (int i = 0; i < categories.size(); i++){
+    		String msgkey = "view.main.maincate." + StringExtensions.joinWithDot(categories.get(i).name);
+    		categories.get(i).name = Messages.get(msgkey);
+    	}
     	List<Article> articles = Inventory.getArticlesByOwner(u.id);
     	
     	render(categories, articles);
@@ -59,7 +65,10 @@ public class Rentability extends Controller {
     public static void reloadSubCate(String name) {
     	long cateID = Long.parseLong(name);
     	List<Category> subCates = Inventory.getSubCategories(cateID);
-
+    	for (int i=0; i < subCates.size(); i++){
+    		String msgkey = "view.main.subcate." + StringExtensions.joinWithDot(subCates.get(i).name);
+    		subCates.get(i).name = Messages.get(msgkey);
+    	}
         render("@selectSubCate", subCates);
     }
     

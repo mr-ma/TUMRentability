@@ -1,20 +1,24 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-import play.data.validation.*;
-import play.libs.*;
-import play.cache.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.List;
+
+import models.Category;
+import models.Offer;
+import models.Request;
+import models.User;
+import play.cache.Cache;
+import play.data.validation.IsTrue;
+import play.data.validation.Required;
+import play.data.validation.Valid;
+import play.i18n.Lang;
+import play.libs.Codec;
+import play.libs.Images;
+import play.mvc.Before;
+import play.mvc.Controller;
+import play.test.Fixtures;
 import tools.Mailing;
-
-import java.util.*;
-import java.security.*;
-
-import org.apache.commons.mail.*;
-import org.apache.commons.mail.Email;
-import org.hibernate.Query;
-
-import models.*;
 
 
 public class Application extends Controller {
@@ -47,6 +51,12 @@ public class Application extends Controller {
 	    renderArgs.put("mainCates", Inventory.getAllMainCategories());
 	}
 	
+//	@Before
+//	static void setLanguage() {
+//		Lang.change("de");
+//		
+//	}
+	
 
 	//Rendering the index page
     public static void index() {
@@ -54,6 +64,15 @@ public class Application extends Controller {
     	List<Offer> mostPopularOffers = Offer.find("select o from Offer o where o.state != '-1' order by countReviews desc").fetch(5);
     	List<Offer> offers = Inventory.getAllOffers();
     	render(offers,newestOffers,mostPopularOffers);
+    }
+    
+    public static void setLanguageEN(){
+    	Lang.change("en");
+    	index();
+    }
+    public static void setLanguageDE(){
+    	Lang.change("de");
+    	index();
     }
     
     
