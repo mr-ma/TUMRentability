@@ -85,7 +85,8 @@ public class Rentability extends Controller {
     		
     		validation.required(articleName);
         	validation.required(articleDescription);
-        	validation.required(subName).message("Please specify a Subcategory");
+        	if(subName == null)
+        		validation.addError("subName", "Please specify a subcategory");
     	}
     	else{
     		validation.required(article);
