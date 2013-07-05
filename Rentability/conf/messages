@@ -1,3 +1,63 @@
-# You can specialize this file for each language.
-# For example, for French create a messages.fr file
-#
+view.main.home = Home
+view.main.aboutus = About Us
+view.main.privacypolicy = Privacy Policy
+view.main.lendbutton = I Want To Lend
+view.main.searchbutton = Search
+view.main.maincate.Summer.Sports = Summer Sports
+view.main.maincate.Winter.Sports = Winter Sports
+view.main.maincate.Water.Sports = Water Sports
+view.main.maincate.Indoor.Sports = Indoor Sports
+view.main.maincate.Outdoor.Sports = Outdoor Sports
+view.main.subcate.Skis = Skis
+view.main.subcate.Sleds = Sleds
+view.main.subcate.Skates = Skates
+view.main.subcate.Bikes = Bikes
+view.main.subcate.Boating = Boating
+view.main.subcate.Water.Accessories = Water Accessories
+view.main.subcate.Indoor.Accessories = Indoor Accessories
+view.main.subcate.Hiking = Hiking
+view.main.subcate.Climbing = Climbing
+
+view.offerdetails.articledescription = Article description
+view.offerdetails.offerdescription = Offer description
+view.offerdetails.insurance = Insurance
+view.offerdetails.pickupaddress = Pick-up address
+view.offerdetails.priceperday = Price per day
+view.offerdetails.availability = Availability
+view.offerdetails.reserved = Already reserved
+view.offerdetails.offeror = Offeror
+view.offerdetails.rentintruct = You want to rent this item? Send a request for this offer
+view.offerdetails.dateintruct = Please enter two valid dates that are in the timeperiod of the offer and doen't overlap with already reserved timeperiods. Then the price will be calculated and you are able to rent the item.
+view.offerdetails.starttime = Start Time
+view.offerdetails.endtime = End Time
+view.offerdetails.caledprice = Calculated price
+view.offerdetails.sendrequest = Send request
+
+view.pending.sent1 = Your Registration is almost complete!
+view.pending.sent2 = Congratulations, your Data has successfully been submitted and you're only one step away from Rentability!
+view.pending.sent3 = An email has been sent to your account, please check it and click on the link in the email!
+
+view.register.header = Create your account and start renting sports equipment
+view.register.instruct = All required fields are marked with an asterisk
+view.register.nickname = Nick Name
+view.register.firstname = First Name
+view.register.lastname = Last Name
+view.register.email = Email
+view.register.phone = Phone
+view.register.password = Password
+view.register.verifypassword = Verify password
+view.register.verifcode = Please type the code below to verfify your registration
+view.register.cancel = Cancel
+view.register.agree = Do you agree to our
+
+view.createoffer.myarticles = My articles
+view.createoffer.newarticle = New article
+view.createoffer.image = Article Image
+view.createoffer.articlename = Article Name
+view.createoffer.articledescrp = Article Description
+view.createoffer.catename = Category Name
+view.createoffer.offerdescrp = Offer Description
+view.createoffer.pickupaddress = Pick Up Address
+view.createoffer.price = Price
+view.createoffer.insurance = Insurance required
+view.createoffer.createoffer = Create Offer
