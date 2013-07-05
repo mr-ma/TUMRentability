@@ -41,7 +41,7 @@ function changeSelect() {
         <label class="control-label" for="inputArticle">&{'view.createoffer.myarticles'}:</label>
         <div class="controls">
             #{select 'article', id:"articles", items:articles, valueProperty:'id', labelProperty:'name'/}
-            <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo" onclick="changeSelect()">&{'view.createoffer.newarticle'}</button>
+            <button type="button" id="newArticle" class="btn btn-danger" data-toggle="collapse" data-target="#demo" onclick="changeSelect()">&{'view.createoffer.newarticle'}</button>
         </div>
     </div>
     
@@ -172,7 +172,7 @@ function changeSelect() {
     #{/field}
     <div class="control-group ${field.errorClass}">
         <div class="controls">
-        <input class="btn" type="submit" value="&{'view.createoffer.createoffer'}"> <a href="@{index()}">Cancel</a>
+        <input id="submit" class="btn" type="submit" value="&{'view.createoffer.createoffer'}"> <a href="@{index()}">Cancel</a>
         </div>
     </div>
     

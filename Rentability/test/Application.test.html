@@ -5,3 +5,54 @@
     open('/')
     assertNotTitle('Application error')
 #{/selenium}
+
+
+#{selenium 'Test login'}
+    // Try to log in using predefind login data
+    clearSession()
+    open('/secure/login')
+    assertTitle('Login')
+    verifyElementPresent('password')
+    verifyElementPresent('username')
+    type('username', 'ma@tum.de')
+    type('password', 'test')
+    clickAndWait('signin')
+ 
+    // Verify that the user in correctly logged in
+    assertTitle('Rentability')
+    verifyTextPresent('Trending Offers')
+#{/selenium}
+
+
+#{selenium 'Test create Offer'}
+	// Opening page and insert data
+	open('offers/createOffer')
+	assertTitle('Creating an Offer')
+	type('offerDescription', 'Test Offer')
+	type('pickUpAddress', 'My address 80333 Munich')
+	type('startTime', '07/12/2013')
+	type('endTime', '07/19/2013')
+	type('price', '1.20')
+	clickAndWait('submit')
+	
+	//Verify output
+	verifyTextPresent('successfully')
+#{/selenium}
+
+
+#{selenium 'Test view offer'}
+	//Open first offer and see if text and title match
+	open('offers/1')
+	assertTitle('K2 Skis')
+	verifyTextPresent('K2 Skis')
+#{/selenium}
+
+
+#{selenium 'Test search functionality'}
+	//Open Homepage
+	open('/')
+	assertTitle('Rentability')
+	type('search_string', 'K2')
+	clickAndWait('submit')
+	verifyTextPresent('K2 Skis')
+#{/selenium}
