@@ -58,8 +58,8 @@
                          	
                          	
   							<div class="btn-group">
-  							<a class="btn btn btn-success" href="#"><i class="icon-user icon-white"></i> ${user.nick_name}</a>
-  							<a class="btn btn btn-success dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+  							<a class="btn " href="#"><i class="icon-user "></i> ${user.nick_name}</a>
+  							<a class="btn  dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
   							<ul class="dropdown-menu">
     							<li><a href=/userProfile/${user.id}><i class="icon-pencil"></i> Edit Profile</a></li>
     							<li><a href=/changePassword><i class="icon-lock"></i> Change Password</a></li>
@@ -75,8 +75,8 @@
                        		#{/secure.check}
                         
                         	<div class="btn-group">
-  							<a class="btn btn btn-info" href="#"><i class="icon-globe icon-white"></i> #{mytags.getLang/}</a>
-  							<a class="btn btn btn-info dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+  							<a class="btn " href="#"><i class="icon-globe "></i> #{mytags.getLang/}</a>
+  							<a class="btn  dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
   							<ul class="dropdown-menu">
   								<li><a class="sublan" href="@{Application.setLanguageEN()}"><i class="i"></i> English</a></li>
     							<li><a class="sublan" href="@{Application.setLanguageDE()}"><i class="i"></i> Deutsch</a></li>
@@ -143,11 +143,11 @@
 						    <a href="@{Rentability.createOffer()}" class="btn btn-large btn-block btn-lend" type="button">&{'view.main.lendbutton'}</a>
 						</div>
 						<br>
-						<div class="row-fluid" style="border:solid blue 2px;">
-						    <img src="@{'/public/images/ad.png'}" alt="Ad"><br />
+						<div class="row-fluid" >
+						    <img src="@{'/public/images/ad4.png'}" alt="Ad"><br />
 						</div>
 						<br />
-						<div class="row-fluid" style="border:solid #CCCCAA 2px;">
+						<div class="row-fluid" >
 						    <img src="@{'/public/images/ad2.png'}" alt="Ad"><br />
 						</div>
                     </div>

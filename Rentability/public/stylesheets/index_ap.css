@@ -1,5 +1,12 @@
 
+
+
 div.thumbnail {
+	height: 381px;
+	 position:relative;
+}
+
+.thumbnail.newest {
 	 height: 230px;
 	 position:relative;
 }
@@ -16,4 +23,14 @@ div.thumbnail p {
 
 .carousel-inner a {
 	color: white;
+}
+
+#trend_legend{
+	border-bottom: 1px solid #FFD6BB;
+	color:#ff6600
+}
+
+#new_legend{
+	border-bottom: 1px solid #CAE1B6;
+	color:#77cc33
 }

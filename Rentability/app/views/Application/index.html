@@ -15,13 +15,15 @@
     
 
 <!-- Start: TREND PRODUCT SLIDE -->
+<fieldset>
+<legend id="trend_legend">Trending Offers</legend>
 <div id="myCarousel" class="carousel slide row-fluid">
     <ol class="carousel-indicators">
         %{def count = 0;}%
         #{list items:mostPopularOffers, as:'offer'}
             #{if (count < 3)}
             #{if (count == 0)}
-                <li data-target="#myCarousel" class="active"></li>
+                <li data-target="#myCarousel" class="active" data-slide-to="${count}"></li>
             #{/if}
             #{else}
                 <li data-target="#myCarousel"></li>
@@ -41,9 +43,10 @@
 	        #{else}
 	            <div class="item">
 	        #{/else}
+	            <img src="">
 	            <a href="@{offerDetails(offer.id)}"><img class="offset2" src="@{Inventory.articleImage(offer.article.id)}" alt="" data-pinit="registered"></a>
 	            <div class="carousel-caption">
-	            <a href="@{offerDetails(offer.id)}">
+	              <a href="@{offerDetails(offer.id)}">
 	              <h4>${offer.article.name}</h4>
 	              <p>
 	                  ${offer.price} EUR<br/>
@@ -60,17 +63,20 @@
 	<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 	<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
+</fieldset>
 <!-- End: TREND PRODUCT SLIDE -->
 
 
 <!-- Start: NEWEST PRODUCT SLIDE -->
 <div class="row-fluid">
+    <fieldset>
+    <legend id="new_legend">Check Out the Newest Offers</legend>
     %{def count3 = 0;}%
     <ul class="thumbnails">
     #{list items:newestOffers, as:'offer'}
          #{if (count3 < 4)}
          <li class="span3">
-         <div class="thumbnail">
+         <div class="thumbnail newest">
              <img data-src="holder.js/150x100" src="@{Inventory.articleImage(offer.article.id)}" alt="product name">
              <div class="caption">
                  <h4>${offer.article.name}</h4>
@@ -90,6 +96,7 @@
         %{count3 = count3 + 1;}%
     #{/list}
     </ul>
+    </fieldset>
 </div>
 <!-- End: NEWEST PRODUCT SLIDE -->
 
