@@ -55,7 +55,7 @@ public class Rentability extends Controller {
     	
     	for (int i = 0; i < categories.size(); i++){
     		String msgkey = "view.main.maincate." + StringExtensions.joinWithDot(categories.get(i).name);
-    		categories.get(i).name = Messages.get(msgkey);
+//    		categories.get(i).name = Messages.get(msgkey);
     	}
     	List<Article> articles = Inventory.getArticlesByOwner(u.id);
     	
@@ -67,7 +67,7 @@ public class Rentability extends Controller {
     	List<Category> subCates = Inventory.getSubCategories(cateID);
     	for (int i=0; i < subCates.size(); i++){
     		String msgkey = "view.main.subcate." + StringExtensions.joinWithDot(subCates.get(i).name);
-    		subCates.get(i).name = Messages.get(msgkey);
+//    		subCates.get(i).name = Messages.get(msgkey);
     	}
         render("@selectSubCate", subCates);
     }
