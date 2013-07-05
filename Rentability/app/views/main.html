@@ -130,7 +130,7 @@
 								    %{
 								        mainCateName = 'view.main.maincate.' + mainCate.name.joinWithDot();
 								    }%
-									<li><a href="@{Search.index(mainCate.name)}">&{mainCateName}</a>
+									<li><a href="@{Search.getOffersByCategory(mainCate.id)}">&{mainCateName}</a>
 									    <ul>#{mytags.getSubCate mainCate.id/}</ul>
 									</li>
 								#{/list}

@@ -13,12 +13,14 @@ import play.data.validation.IsTrue;
 import play.data.validation.Required;
 import play.data.validation.Valid;
 import play.i18n.Lang;
+import play.i18n.Messages;
 import play.libs.Codec;
 import play.libs.Images;
 import play.mvc.Before;
 import play.mvc.Controller;
 import play.test.Fixtures;
 import tools.Mailing;
+import tools.StringExtensions;
 
 
 public class Application extends Controller {
@@ -57,6 +59,8 @@ public class Application extends Controller {
 //		
 //	}
 	
+	
+	
 
 	//Rendering the index page
     public static void index() {
@@ -68,6 +72,7 @@ public class Application extends Controller {
     
     public static void setLanguageEN(){
     	Lang.change("en");
+    	
     	index();
     }
     public static void setLanguageDE(){

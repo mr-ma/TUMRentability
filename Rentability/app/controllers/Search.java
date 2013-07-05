@@ -62,4 +62,9 @@ public class Search extends Controller {
 		
 	}
 	
+	public static void getOffersByCategory(long id_category){
+		List<Offer> offers = Inventory.getOffersByCategory(id_category);
+		render("@index", offers);
+	}
+	
 }

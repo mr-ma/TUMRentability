@@ -22,7 +22,7 @@ public class MyTags extends play.templates.FastTags {
 		long cateID = Long.parseLong(args.get("arg").toString());
 		List<Category> subCates = Inventory.getSubCategories(cateID);
 		for(int i = 0; i<subCates.size(); i++){
-			out.println("<li><a href=\"/search/"+subCates.get(i).name+"\">"+Messages.get("view.main.subcate."+StringExtensions.joinWithDot(subCates.get(i).name))+"</a></li>");
+			out.println("<li><a href=\"/es-admin/search/getoffersbycategory?id_category="+subCates.get(i).id+"\">"+Messages.get("view.main.subcate."+StringExtensions.joinWithDot(subCates.get(i).name))+"</a></li>");
 		}
 	}
 	
