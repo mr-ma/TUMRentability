@@ -26,6 +26,17 @@ import play.modules.elasticsearch.search.SearchResults;
 
 
 public class Search extends Controller {
+	@Before
+    static void setConnectedUser() {
+        if(Security.isConnected()) {
+            User user = User.find("byEmail", Security.connected()).first();
+
+//            if(user!= null)
+                renderArgs.put("user", user);
+//            else 
+//            	renderArgs.put("user", "guest");
+        }
+    }
 	
 	@Before
 	static void addDefaults() {
