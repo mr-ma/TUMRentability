@@ -1,0 +1,99 @@
+#{extends 'userHome.html' /}
+
+		<h3>Edit offer-details of article ${offer.article.name}:</h3>
+
+   		#{form @Rentability.saveEditedOffer(), class:'form-horizontal'}
+		    #{field 'offerID'}
+	            <input type="hidden" name="${field.name}" value="${offer.id}">
+		    #{/field}
+		    #{field 'description'}
+		        <div class="control-group ${field.errorClass}">
+				        <label class="control-label" for="inputDescription">&{'view.createoffer.offerdescrp'}:</label>
+				        <div class="controls">
+				        	<textarea name="${field.name}" cols="15" rows="3">${offer.description}</textarea> *
+				    	<span class="error">${field.error}</span>
+					</div>
+				</div>
+		    #{/field}
+		    
+		    #{field 'pick_up_address'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputAddress">&{'view.createoffer.pickupaddress'}:</label>
+			        <div class="controls">
+			            <input type="text" name="${field.name}" size="16" value="${offer.pick_up_address}"> *
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		    #{/field}
+		    
+		    #{field 'startTime'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputStartTime">&{'view.offerdetails.starttime'}:</label>
+			        <div class="controls" id = "datetimepicker3">
+			            <div class="input-append">
+			            <input type="text" data-format="MM/dd/yyyy" name="${field.name}" size="16" value="${offer.startTime.format('MM/dd/yyyy')}">
+			            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
+			            </div>
+			            *
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+			    <script type="text/javascript">
+				  $(function() {
+				    $('#datetimepicker3').datetimepicker({
+				      pickTime: false
+				    });
+				  });
+				</script>
+		    #{/field}
+		    
+		    #{field 'endTime'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputEndTime">&{'view.offerdetails.endtime'}:</label>
+			        <div class="controls " id="datetimepicker4">
+			            <div class="input-append">
+			            <input type="text" data-format="MM/dd/yyyy" name="${field.name}" size="16" value="${offer.endTime.format('MM/dd/yyyy')}"> 
+			            <span class="add-on"><i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar"></i></span>
+			            </div>
+			            *
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+			    <script type="text/javascript">
+				  $(function() {
+				    $('#datetimepicker4').datetimepicker({
+				      pickTime: false
+				    });
+				  });
+				</script>
+		    #{/field}
+		    #{field 'price'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputPrice">&{'view.createoffer.price'}:</label>
+			        <div class="controls">
+			            <input type="text" name="${field.name}" size="16" value="${offer.price}"> * Format: 12.34
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		    #{/field}
+		    #{field 'insurance'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputInsurance">&{'view.createoffer.insurance'}?</label>
+			        <div class="controls">
+			            <input type="checkbox" name="${field.name}" value="true" ${insurance}>
+			            <span class="error">${field.error}</span>
+			            
+			        </div>
+			        
+			    </div>
+		    #{/field}
+		    <div class="control-group ${field.errorClass}">
+		        <div class="controls">
+		        <input id="submit" class="btn" type="submit" value="OK">
+		        </div>
+		    </div>
+    
+    
+     
+
+#{/form}

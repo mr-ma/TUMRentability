@@ -1,0 +1,24 @@
+#{extends 'userHome.html' /}
+
+
+		<img src="@{Inventory.articleImage(article.id)}" class="img-rounded">
+
+   		#{form @Rentability.saveEditedArticle(), class:'form-horizontal'}
+		    #{field 'articleID'}
+	            <input type="hidden" name="${field.name}" value="${article.id}">
+		    #{/field}
+		    #{field 'articleName'}
+	            <input type="text" name="${field.name}" value="${article.name}">
+		    #{/field}
+		    <br />
+		    #{field 'articleDescription'}
+	            <textarea name="${field.name}" cols="30" rows="5">${article.description}</textarea>
+		    #{/field}
+		    <br />
+		    <div class="control-group ">
+			        <label class="control-label" for="inputImage"></label>
+			        <div class="controls">
+			            <input class="btn" type="submit" value="OK">
+			        </div>
+			    </div>
+		#{/form}

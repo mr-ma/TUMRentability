@@ -454,4 +454,46 @@ public class Rentability extends Controller {
             	}
             }
   }
+  
+	public static void editArticle(long articleID){
+		Article article = Article.findById(articleID);
+		render(article);
+	}
+
+	public static void saveEditedArticle(long articleID, String articleName, String articleDescription){
+		Article article = Article.findById(articleID);
+		article.name = articleName;
+		article.description = articleDescription;
+		article.save();
+		userArticles();
+	}
+	  
+	public static void editOffer(long offerID){
+		Offer offer = Offer.findById(offerID);
+		String insurance = "";
+		if (offer.insurance){
+			insurance = "checked='checked'";
+		}
+		render(offer,insurance);
+	}
+
+	public static void saveEditedOffer(long offerID, String pick_up_address, String startTime, String endTime, String insurance, String price, String description){
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+		try {
+			Offer offer = Offer.findById(offerID);
+			offer.pick_up_address = pick_up_address;
+			offer.description = description;
+			offer.price = Double.parseDouble(price);
+			if(insurance == null || !insurance.equals("true"))
+				offer.insurance = false;
+			else
+				offer.insurance = true;
+			offer.startTime = sdf.parse(startTime);
+			offer.endTime = sdf.parse(endTime);
+			offer.save();
+			articleOffers(offer.article.id);
+		} catch (Exception ex) {
+			flash.error("Sorry an error occured, please try again!");
+		}
+	}
 }
