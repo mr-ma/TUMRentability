@@ -72,7 +72,8 @@ public class Rentability extends Controller {
         render("@selectSubCate", subCates);
     }
     
-    //Creating a new Offer
+    /*Process for creating a new offer using the entered values.
+    In the sub-processes a new article might also be created, depending on the users decision*/
     public static void saveOffer(String article, Blob image, String articleName, String articleDescription, String name, String subName, 
     		String offerDescription, String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
     	
@@ -80,7 +81,7 @@ public class Rentability extends Controller {
     	Category c = null;
     	User u = (User)renderArgs.get("user");
     	
-    	//An existing article has been choosen
+    	//A new article has to be created
     	if(!articleName.isEmpty()){
     		
     		validation.required(articleName);
@@ -310,6 +311,7 @@ public class Rentability extends Controller {
   	renderArgs.put("article", article);
   	render(categories);
   }
+  
   //Creating a new Offer
   public static void saveOfferOfArticle(String description, String name, 
   		String pickUpAddress, String startTime, String endTime, String price, String insurance) {    	
@@ -378,6 +380,7 @@ public class Rentability extends Controller {
 			
 		articleOffers(articleId); 
   }
+  
   public static void removeArticle(long articleId)
   {
 	  //if article has offer can not be deleted
@@ -427,9 +430,9 @@ public class Rentability extends Controller {
           render();
   	}
   }
+  
   public static void changePassword()
   {
-	  
 	  render();
   }
   

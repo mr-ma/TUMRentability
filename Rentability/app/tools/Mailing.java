@@ -34,14 +34,14 @@ public class Mailing {
 				"<br />Requesting User: " + requestingUser.nick_name + 
 				"<br />Adjusted Price: " + request.adjustedPrice + "</p>" +
 				"<br /><br />Your Rentability Team!</body></html>";
-		//sendMail(owner.email, subject, message);
+		sendMail(owner.email, subject, message);
 			
 		//Send confirmation E-Mail to the requester
 		subject = "Your Request has successfully been created!";
 		message = "<html><body><p>Dear " + requestingUser.nick_name + ",</p><p>" +
 				"your request has successfully been created! Log into your Account for details.</p>" +
 				"<p>Your Rentability Team!</p></body></html>";
-		//sendMail(requestingUser.email, subject, message);
+		sendMail(requestingUser.email, subject, message);
 	}
 
 	//Send the confirmation Mail to the user for registration
@@ -55,7 +55,7 @@ public class Mailing {
 				"<p><a href=\""+ confirmation_link + "\">" + confirmation_link + "</a></p>" +
 				"<p>Thanks! Your Rentability Team!</p></body></html>";
 		
-		//sendMail(user.email, subject, message);
+		sendMail(user.email, subject, message);
 	}
 	
 	//Technical stuff to actually send the mail
