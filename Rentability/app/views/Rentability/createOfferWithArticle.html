@@ -15,9 +15,25 @@
 
 #{form @saveOfferOfArticle(), enctype:'multipart/form-data', class:'form-horizontal'}
 
-	    
-	    <label class="control-label" >Article Name: ${article.name}</label>
-		<img src="@{Inventory.articleImage(article.id)}" width="15%" height="15%" class="img-rounded">  	     
+	#{field 'image'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputImaeg">Article Image:</label>
+	        <div class="controls">
+	            <img src="@{Inventory.articleImage(article.id)}" width="15%" height="15%" class="img-rounded">
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+    #{/field}  	
+		 
+	#{field 'name'}
+        <div class="control-group ${field.errorClass}">
+	        <label class="control-label" for="inputName">Article Name:</label>
+	        <div class="controls">
+	            <span class="input-medium uneditable-input">${article.name}</span>
+	            <span class="error">${field.error}</span>
+	        </div>
+	    </div>
+    #{/field}  	     
     #{field 'description'}
         <div class="control-group ${field.errorClass}">
 	        <label class="control-label" for="inputDescription">Description:</label>

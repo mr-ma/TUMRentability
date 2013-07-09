@@ -1,22 +1,42 @@
 #{extends 'userHome.html' /}
 
 
-		<img src="@{Inventory.articleImage(article.id)}" class="img-rounded">
+		
 
    		#{form @Rentability.saveEditedArticle(), class:'form-horizontal'}
+   		    #{field 'image'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputImaeg">Article Image:</label>
+			        <div class="controls">
+			            <img src="@{Inventory.articleImage(article.id)}" class="img-rounded" width="150px" height="100px" class="img-rounded">
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		    #{/field}  
 		    #{field 'articleID'}
-	            <input type="hidden" name="${field.name}" value="${article.id}">
-		    #{/field}
-		    #{field 'articleName'}
-	            <input type="text" name="${field.name}" value="${article.name}">
-		    #{/field}
-		    <br />
-		    #{field 'articleDescription'}
-	            <textarea name="${field.name}" cols="30" rows="5">${article.description}</textarea>
-		    #{/field}
-		    <br />
+ 	            <input type="hidden" name="${field.name}" value="${article.id}">
+ 		    #{/field}	
+		    #{field 'name'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputName">Article Name:</label>
+			        <div class="controls">
+			            <input type="text" name="${field.name}" value="${article.name}">
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		    #{/field}  	
+		    #{field 'description'}
+		        <div class="control-group ${field.errorClass}">
+			        <label class="control-label" for="inputDescription">Description:</label>
+			        <div class="controls">
+			            <textarea name="${field.name}" cols="30" rows="5">${article.description}</textarea>
+			            <span class="error">${field.error}</span>
+			        </div>
+			    </div>
+		    #{/field} 
+		    
 		    <div class="control-group ">
-			        <label class="control-label" for="inputImage"></label>
+			        <label class="control-label" ></label>
 			        <div class="controls">
 			            <input class="btn" type="submit" value="OK">
 			        </div>

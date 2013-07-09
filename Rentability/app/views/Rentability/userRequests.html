@@ -1,8 +1,6 @@
 #{extends 'userHome.html' /}
 
 
-<p>In this page you can review your requests!</p>
-
 #{ifErrors}
     <p class="error">
         ${errors[0]}
@@ -16,7 +14,7 @@
    <p>You have ${requests.size()} request(s)<p>
 
      
-     <ul>
+
       	<table class="table table-hover">
       	<thead>
     	<tr>
@@ -56,4 +54,4 @@
 		 	</tr>
     #{/list}
 	</table>
-	</ul>   
+ 

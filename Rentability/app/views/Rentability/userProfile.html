@@ -1,5 +1,4 @@
 #{extends 'userHome.html' /}
-Wellcome to user management page!
 
 #{ifErrors}
     <p class="error">
@@ -8,20 +7,12 @@ Wellcome to user management page!
 #{/ifErrors}
 
 
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Profile</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
 
    #{form @updateUser(), class:'form-horizontal'} 
 
 <form id="profileform" class="form-horizontal">
 <fieldset>
 
-<!-- Form Name -->
-<!--<legend>Update your personal information</legend>-->
 #{field 'nick_name'}
 <!-- Text input-->
 <div class="control-group">
@@ -74,9 +65,3 @@ Wellcome to user management page!
 </form>
 #{/form}
 
-</div>
-
-	
-	
-  </div>
-</div>

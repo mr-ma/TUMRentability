@@ -1,5 +1,21 @@
 #{extends 'main.html' /}
-<p>User profile page</p>
+#{set 'moreStyles'}
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/userhome.css'}">
+#{/set}
+<div class="row-fluid userhome">
+    
+    <div class="media userheader page-header">
+      <a class="pull-left" href="#">
+        <img class="media-object " data-src="holder.js/80x80" alt="profile pic" style="width: 80px; height: 80px;" src="@{'/public/images/panda_wilde.jpg'}">
+      </a>
+      <div class="media-body">
+        <h3 class="media-heading">${user.nick_name}</h3>
+        <p></p>
+      </div>
+    </div>
+
 
 
 #{doLayout /}
+
+</div>
