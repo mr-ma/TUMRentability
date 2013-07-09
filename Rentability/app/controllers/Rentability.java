@@ -252,7 +252,7 @@ public class Rentability extends Controller {
     	renderArgs.put("phone", user.phone);
     	render("@userProfile");
     }
-
+// get articles whose user is owning 
     public static void userArticles()
     {
     	if(Security.isConnected()) {
@@ -262,7 +262,7 @@ public class Rentability extends Controller {
             render();
     	}
     }
-    
+   //get offers of an article 
     public static void articleOffers(long articleId)
     {
     	Article article= Article.findById(articleId);
@@ -271,7 +271,7 @@ public class Rentability extends Controller {
     	renderArgs.put("offers", offers);
     	render();
     }
-    
+    //List of requests which has been sent for a particular request
   public static void offerRequests(long offerId)
   {
 	Offer offer= Offer.findById(offerId);
@@ -286,12 +286,16 @@ public class Rentability extends Controller {
   	renderArgs.put("requests", requests);
   	render();
   }
-  
+  /// Approve a request it triggers by owner
   public static void approveRequest(long requestId,long offerId)
   {
 	  Request request= Request.findById(requestId);
+	  /// approved request state would be 5 based on internal decision
 	  request.state=5;
 	  request.save();
+	  
+	  ///once an offer been approved it must be removed from 
+	  /// so that we set the state of offer to -1
 	  Offer offer= Offer.findById(offerId);
 	  offer.state= -1;
 	  offerRequests(offerId);
@@ -441,6 +445,7 @@ public class Rentability extends Controller {
             else
             {
             	User user = User.find("byEmail", Security.connected()).first();     
+            /// check if current password entered correctly
             	if( user.password.equals(Application.getHash(currentpassword, "SHA-256"))) {
             		user.password= Application.getHash(newpassword,"SHA-256");
             		user.save();
