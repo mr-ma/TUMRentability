@@ -468,10 +468,10 @@ public class Rentability extends Controller {
 		render(article);
 	}
 
-	public static void saveEditedArticle(long articleID, String articleName, String articleDescription){
+	public static void saveEditedArticle(long articleID, String name, String description){
 		Article article = Article.findById(articleID);
-		article.name = articleName;
-		article.description = articleDescription;
+		article.name = name;
+		article.description = description;
 		article.save();
 		userArticles();
 	}
